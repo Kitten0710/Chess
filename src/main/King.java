@@ -5,7 +5,7 @@ import main.Piece;
 
 public class King implements Spot{
 	
-	//THH 01
+	//THH 011
 	
 	private Piece a;
 
