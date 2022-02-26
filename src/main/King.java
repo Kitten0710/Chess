@@ -4,7 +4,9 @@ import main.Spot;
 import main.Piece;
 
 public class King implements Spot{
-
+	
+	// THH
+	
 	private Piece a;
 
 	public King(Piece a) {

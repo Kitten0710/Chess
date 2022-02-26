@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class Game {
 	private Board board;
 	private Player []player = new Player[2];
-	
+	private Spot []spots = new Spot[32];
 	public Game() {
 		super();
 		this.board = new Board();
