@@ -21,7 +21,7 @@ public class Game {
 		this.board = new Board();
 		BufferedImage all = null;
 		try {
-			all = ImageIO.read(new File("D:\\chess.png"));
+			all = ImageIO.read(new File("img\\chess.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
