@@ -4,8 +4,6 @@ import main.Spot;
 import main.Piece;
 
 public class Knight implements Spot{
-
-	// VHD
 	
 	private Piece a;
 	private static int[] moves ={-1, 2, -1, -2, 1, 2, 1, -2, -2, 1, -2, -1, 2, 1, 2, -1 };
