@@ -6,4 +6,6 @@ public interface Spot {
 	
 	public boolean isCheckMove();
 
+	public Piece getPiece();
+
 }

@@ -58,5 +58,9 @@ public class King implements Spot{
 		// TODO phải kiểm tra xem ô đó trống hay k
 		return false;
 	}
-
+	
+	@Override
+	public Piece getPiece() {
+		return this.a;
+	}
 }

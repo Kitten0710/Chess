@@ -3,6 +3,9 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +17,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import week_04.shapes.ShapeT;
 
 
 public class Game {
@@ -23,6 +25,7 @@ public class Game {
 	private Pawn []Pawns = new Pawn[32];
 	private List<Spot> bspots = new ArrayList<Spot>();
 	private List<Spot> wspots = new ArrayList<Spot>();
+	public static Piece selectedPiece = null;
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
@@ -59,7 +62,7 @@ public class Game {
 
 		Rook wrook      = new Rook(0, 7, true, false, "rook");
 		wspots.add(wrook);
-		Pawn wkinght    = new Pawn(1, 7, true, false, "knight");
+		Knight wknight    = new Knight(1, 7, true, false, "knight");
 		wspots.add(wknight);
 		Bishop wbishop  = new Bishop(2, 7, true, false, "bishop");
 		wspots.add(wbishop);
@@ -89,7 +92,7 @@ public class Game {
 		wspots.add(wpawn7);
 		Pawn wpawn8     = new Pawn(0, 6, true, false, "pawn");
 		wspots.add(wpawn8);
-		
+
 		this.board = new Board();
 		BufferedImage all = null;
 		try {
@@ -125,11 +128,100 @@ public class Game {
 					}
 					white =! white;
 				}
+				for(Spot p: wspots)
+				{
+					int id = 0;
+					if((p.getPiece()).getName().equalsIgnoreCase("king")){
+						id = 0;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("queen")){
+						id = 1;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+						id = 2;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("knight")){
+						id = 3;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("rook")){
+						id = 4;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+						id = 5;
+					}
+					if(!p.getPiece().isColor()){
+						id += 6;
+					}
+					g.drawImage(imgs[id], p.getPiece().getX()*64, p.getPiece().getY()*64, this);
+				}
+				for(Spot p: bspots)
+				{
+					int id = 0;
+					if((p.getPiece()).getName().equalsIgnoreCase("king")){
+						id = 0;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("queen")){
+						id = 1;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+						id = 2;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("knight")){
+						id = 3;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("rook")){
+						id = 4;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+						id = 5;
+					}
+					if(!p.getPiece().isColor()){
+						id += 6;
+					}
+					g.drawImage(imgs[id], p.getPiece().getX()*64, p.getPiece().getY()*64, this);
+				}
 			}
 		};
-		for(Spot spot : spots) {
-			
-		}
+		frame.addMouseMotionListener(new MouseMotionListener() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				if(selectedPiece != null){
+					selectedPiece.setX(e.getX()-32);
+					selectedPiece.setY(e.getY()-32);
+					frame.repaint();
+				}
+			}
+
+			@Override
+			public void mouseMoved(MouseEvent e) {
+			}
+		});
+		
+		frame.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// System.out.println((getPiece(e.getX(), e.getY()).isWhite?"white ":"balck ")+getPiece(e.getX(), e.getY()).name);
+				//selectedPiece = new Piece(e.getX(), e.getY());
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				//selectedPiece.move(e.getX()/64, e.getY()/64);
+				frame.repaint();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+		});
 		frame.add(pn);
 		frame.setDefaultCloseOperation(3);
 		frame.setVisible(true);
@@ -150,20 +242,20 @@ public class Game {
 	public String toString() {
 		return "Game [board=" + board + ", player=" + Arrays.toString(player) + "]";
 	}
-	
+
 	public boolean isEnd() {
 		return false;
 	}
-	
+
 	public boolean isTurn() {
 		return false;
 	}
-	
+
 	public boolean isCheckMated() {
 		return false;
 	}
-	
+
 	public void play() {
-		
+
 	}
 }

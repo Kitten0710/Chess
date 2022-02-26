@@ -7,7 +7,7 @@ public class Piece {
 	private boolean color;
 	private boolean isDead;
 	private String name;
-
+	
 	public Piece(int x, int y, boolean color, boolean isDead, String name) {
 		super();
 		this.x = x;
@@ -66,4 +66,5 @@ public class Piece {
 		
 		return false;
 	}
+
 }

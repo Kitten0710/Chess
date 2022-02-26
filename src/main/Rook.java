@@ -37,4 +37,9 @@ public class Rook implements Spot{
 		return false;
 	}
 
+	@Override
+	public Piece getPiece() {
+		return this.a;
+	}
+
 }

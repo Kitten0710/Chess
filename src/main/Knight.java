@@ -68,4 +68,9 @@ public class Knight implements Spot{
 		return false;
 	}
 	
+	@Override
+	public Piece getPiece() {
+		return this.a;
+	}
+
 }

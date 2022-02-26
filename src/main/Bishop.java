@@ -36,5 +36,10 @@ public class Bishop implements Spot{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public Piece getPiece() {
+		return this.a;
+	}
 
 }
