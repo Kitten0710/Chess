@@ -1,7 +1,7 @@
-package main;
+package game;
 
-import main.Spot;
-import main.Piece;
+import game.Piece;
+import game.Spot;
 
 public class Pawn implements Spot{
 

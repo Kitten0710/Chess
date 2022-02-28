@@ -1,4 +1,4 @@
-package main;
+package game;
 
 public class Square {
 	private int x;
