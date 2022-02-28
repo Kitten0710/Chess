@@ -1,18 +1,18 @@
-package main;
+package game;
 
-import main.Spot;
-import main.Piece;
+import game.Piece;
+import game.Spot;
 
-public class Pawn implements Spot{
+public class Rook implements Spot{
 
 	private Piece a;
 
-	public Pawn(Piece a) {
+	public Rook(Piece a) {
 		super();
 		this.a = a;
 	}
 
-	public Pawn(int x, int y, boolean color, boolean isDead, String name) {
+	public Rook(int x, int y, boolean color, boolean isDead, String name) {
 		super();
 		this.a = new Piece(x, y, color, isDead, name);
 	}
@@ -27,7 +27,7 @@ public class Pawn implements Spot{
 
 	@Override
 	public boolean move() {
-		if(a.getX() == a.getX() && a.getY() == a.getY() + 1) return true;
+		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -36,7 +36,7 @@ public class Pawn implements Spot{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
 	public Piece getPiece() {
 		return this.a;

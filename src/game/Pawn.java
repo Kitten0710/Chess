@@ -1,18 +1,18 @@
-package main;
+package game;
 
-import main.Spot;
-import main.Piece;
+import game.Piece;
+import game.Spot;
 
-public class Bishop implements Spot{
+public class Pawn implements Spot{
 
 	private Piece a;
 
-	public Bishop(Piece a) {
+	public Pawn(Piece a) {
 		super();
 		this.a = a;
 	}
 
-	public Bishop(int x, int y, boolean color, boolean isDead, String name) {
+	public Pawn(int x, int y, boolean color, boolean isDead, String name) {
 		super();
 		this.a = new Piece(x, y, color, isDead, name);
 	}
@@ -27,7 +27,7 @@ public class Bishop implements Spot{
 
 	@Override
 	public boolean move() {
-		// TODO Auto-generated method stub
+		if(a.getX() == a.getX() && a.getY() == a.getY() + 1) return true;
 		return false;
 	}
 

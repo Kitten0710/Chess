@@ -1,18 +1,18 @@
-package main;
+package game;
 
-import main.Spot;
-import main.Piece;
+import game.Piece;
+import game.Spot;
 
-public class Rook implements Spot{
+public class Bishop implements Spot{
 
 	private Piece a;
 
-	public Rook(Piece a) {
+	public Bishop(Piece a) {
 		super();
 		this.a = a;
 	}
 
-	public Rook(int x, int y, boolean color, boolean isDead, String name) {
+	public Bishop(int x, int y, boolean color, boolean isDead, String name) {
 		super();
 		this.a = new Piece(x, y, color, isDead, name);
 	}
@@ -36,7 +36,7 @@ public class Rook implements Spot{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 	@Override
 	public Piece getPiece() {
 		return this.a;
