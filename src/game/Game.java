@@ -23,8 +23,8 @@ public class Game {
 	private Board board;
 	private Player []player = new Player[2];
 	private Pawn []Pawns = new Pawn[32];
-	private List<Spot> bspots = new ArrayList<Spot>();
-	private List<Spot> wspots = new ArrayList<Spot>();
+	private static List<Spot> bspots = new ArrayList<Spot>();
+	private static List<Spot> wspots = new ArrayList<Spot>();
 	public static Piece selectedPiece = null;
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -39,7 +39,7 @@ public class Game {
 		bspots.add(bking);
 		Bishop bbishop2 = new Bishop(5, 0, false, false, "bishop");
 		bspots.add(bbishop2);
-		Knight bknight2  = new Knight(6, 0, false, false, "knight");
+		Knight bknight2 = new Knight(6, 0, false, false, "knight");
 		bspots.add(bknight2);
 		Rook brook2     = new Rook(7, 0, false, false, "rook");
 		bspots.add(brook2);
@@ -62,7 +62,7 @@ public class Game {
 
 		Rook wrook      = new Rook(0, 7, true, false, "rook");
 		wspots.add(wrook);
-		Knight wknight    = new Knight(1, 7, true, false, "knight");
+		Knight wknight  = new Knight(1, 7, true, false, "knight");
 		wspots.add(wknight);
 		Bishop wbishop  = new Bishop(2, 7, true, false, "bishop");
 		wspots.add(wbishop);
@@ -72,7 +72,7 @@ public class Game {
 		wspots.add(wking);
 		Bishop wbishop2 = new Bishop(5, 7, true, false, "bishop");
 		wspots.add(wbishop2);
-		Knight wknight2  = new Knight(6, 7, true, false, "knight");
+		Knight wknight2 = new Knight(6, 7, true, false, "knight");
 		wspots.add(wknight2);
 		Rook wrook2     = new Rook(7, 7, true, false, "rook");
 		wspots.add(wrook2);
@@ -109,8 +109,10 @@ public class Game {
 			}    
 		}
 		JFrame frame = new JFrame();
-		frame.setBounds(30, 30, 525, 550);
+		frame.setBounds(30, 30, 512, 512);
+		frame.setUndecorated(true);
 		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setUndecorated(true);
 		//frame.setSize(532, 522);
 		frame.setTitle("Chess");
@@ -132,7 +134,7 @@ public class Game {
 				for(Spot p: wspots)
 				{
 					int id = 0;
-					if((p.getPiece()).getName().equalsIgnoreCase("king")){
+					if(p.getPiece().getName().equalsIgnoreCase("king")){
 						id = 0;
 					}
 					if(p.getPiece().getName().equalsIgnoreCase("queen")){
@@ -187,8 +189,9 @@ public class Game {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				if(selectedPiece != null){
-					selectedPiece.setX(e.getX()-32);
-					selectedPiece.setY(e.getY()-32);
+					System.out.println("da click" + e.getX() + " " + e.getY());
+					selectedPiece.setX((e.getX())/64);
+					selectedPiece.setY((e.getY())/64);
 					frame.repaint();
 				}
 			}
@@ -197,7 +200,7 @@ public class Game {
 			public void mouseMoved(MouseEvent e) {
 			}
 		});
-		
+
 		frame.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -205,13 +208,14 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// System.out.println((getPiece(e.getX(), e.getY()).isWhite?"white ":"balck ")+getPiece(e.getX(), e.getY()).name);
-				//selectedPiece = new Piece(e.getX(), e.getY());
+				System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white":"black")+getSpot(e.getX(), e.getY()).getPiece().getName());
+				//selectedPiece = new Piece(e.getX(), e.getY(), getSpot(e.getX(), e.getY()).getPiece().isColor()?true:false, false, getSpot(e.getX(), e.getY()).getPiece().getName());
+				selectedPiece = (getSpot(e.getX(), e.getY()).getPiece());
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				//selectedPiece.move(e.getX()/64, e.getY()/64);
+				selectedPiece.move(e.getX()/64, e.getY()/64);
 				frame.repaint();
 			}
 
@@ -227,6 +231,22 @@ public class Game {
 		frame.setDefaultCloseOperation(3);
 		frame.setVisible(true);
 	}
+	public static Spot getSpot(int x, int y){
+		int xp = x/64;
+		int yp = y/64;
+		for(Spot p: bspots){
+			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
+				return p;
+			}
+		}
+		for(Spot p: wspots){
+			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
+				return p;
+			}
+		}
+		return null;
+	}
+
 	public Board getBoard() {
 		return board;
 	}

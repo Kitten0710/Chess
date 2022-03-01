@@ -66,5 +66,19 @@ public class Piece {
 		
 		return false;
 	}
+	public void move(int xp,int yp){
+		if(Game.getSpot(xp*64, yp*64) != null){
+			if(Game.getSpot(xp*64, yp*64).getPiece().isColor() != color){
+				Game.getSpot(xp*64, yp*64).getPiece().kill();
+			}else{
+				x = xp;
+				y = yp;
+				return;
+			}
+		}
+	}
+	public void kill(){
+		this.isDead = true;
+	}
 
 }
