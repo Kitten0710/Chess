@@ -110,6 +110,7 @@ public class Game {
 		}
 		JFrame frame = new JFrame();
 		frame.setBounds(30, 30, 525, 550);
+		frame.setLocationRelativeTo(null);
 		//frame.setUndecorated(true);
 		//frame.setSize(532, 522);
 		frame.setTitle("Chess");
