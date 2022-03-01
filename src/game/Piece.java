@@ -4,6 +4,25 @@ public class Piece {
 
 	private int x;
 	private int y;
+	public int getPx() {
+		return px;
+	}
+
+	public void setPx(int px) {
+		this.px = px;
+		this.x = px/64;
+	}
+
+	public int getPy() {
+		return py;
+	}
+
+	public void setPy(int py) {
+		this.py = py;
+		this.y = py/64;
+	}
+	private int px;
+	private int py;
 	private boolean color;
 	private boolean isDead;
 	private String name;
@@ -12,6 +31,8 @@ public class Piece {
 		super();
 		this.x = x;
 		this.y = y;
+		this.px = x*64;
+		this.py = y*64;
 		this.color = color;
 		this.isDead = isDead;
 		this.name = name;
@@ -23,6 +44,7 @@ public class Piece {
 
 	public void setX(int x) {
 		this.x = x;
+		this.px = x*64;
 	}
 
 	public int getY() {
@@ -31,6 +53,7 @@ public class Piece {
 
 	public void setY(int y) {
 		this.y = y;
+		this.py = y*64;
 	}
 
 	public boolean isColor() {
@@ -67,15 +90,20 @@ public class Piece {
 		return false;
 	}
 	public void move(int xp,int yp){
+		
 		if(Game.getSpot(xp*64, yp*64) != null){
 			if(Game.getSpot(xp*64, yp*64).getPiece().isColor() != color){
 				Game.getSpot(xp*64, yp*64).getPiece().kill();
 			}else{
-				x = xp;
-				y = yp;
+				px = this.x*64;
+				py = this.y*64;
 				return;
 			}
 		}
+		this.x = xp;
+		this.y = yp;
+		this.px = xp*64;
+		this.py = yp*64;
 	}
 	public void kill(){
 		this.isDead = true;

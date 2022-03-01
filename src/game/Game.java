@@ -61,37 +61,37 @@ public class Game {
 		bspots.add(bpawn8);
 
 		Rook wrook      = new Rook(0, 7, true, false, "rook");
-		wspots.add(wrook);
+		getWspots().add(wrook);
 		Knight wknight  = new Knight(1, 7, true, false, "knight");
-		wspots.add(wknight);
+		getWspots().add(wknight);
 		Bishop wbishop  = new Bishop(2, 7, true, false, "bishop");
-		wspots.add(wbishop);
+		getWspots().add(wbishop);
 		Queen wqueen    = new Queen(3, 7, true, false, "queen");
-		wspots.add(wqueen);
+		getWspots().add(wqueen);
 		King wking      = new King(4, 7, true, false, "king");
-		wspots.add(wking);
+		getWspots().add(wking);
 		Bishop wbishop2 = new Bishop(5, 7, true, false, "bishop");
-		wspots.add(wbishop2);
+		getWspots().add(wbishop2);
 		Knight wknight2 = new Knight(6, 7, true, false, "knight");
-		wspots.add(wknight2);
+		getWspots().add(wknight2);
 		Rook wrook2     = new Rook(7, 7, true, false, "rook");
-		wspots.add(wrook2);
+		getWspots().add(wrook2);
 		Pawn wpawn1     = new Pawn(1, 6, true, false, "pawn");
-		wspots.add(wpawn1);
+		getWspots().add(wpawn1);
 		Pawn wpawn2     = new Pawn(2, 6, true, false, "pawn");
-		wspots.add(wpawn2);
+		getWspots().add(wpawn2);
 		Pawn wpawn3     = new Pawn(3, 6, true, false, "pawn");
-		wspots.add(wpawn3);
+		getWspots().add(wpawn3);
 		Pawn wpawn4     = new Pawn(4, 6, true, false, "pawn");
-		wspots.add(wpawn4);
+		getWspots().add(wpawn4);
 		Pawn wpawn5     = new Pawn(5, 6, true, false, "pawn");
-		wspots.add(wpawn5);
+		getWspots().add(wpawn5);
 		Pawn wpawn6     = new Pawn(6, 6, true, false, "pawn");
-		wspots.add(wpawn6);
+		getWspots().add(wpawn6);
 		Pawn wpawn7     = new Pawn(7, 6, true, false, "pawn");
-		wspots.add(wpawn7);
+		getWspots().add(wpawn7);
 		Pawn wpawn8     = new Pawn(0, 6, true, false, "pawn");
-		wspots.add(wpawn8);
+		getWspots().add(wpawn8);
 
 		this.board = new Board();
 		BufferedImage all = null;
@@ -131,7 +131,7 @@ public class Game {
 					}
 					white =! white;
 				}
-				for(Spot p: wspots)
+				for(Spot p: getWspots())
 				{
 					int id = 0;
 					if(p.getPiece().getName().equalsIgnoreCase("king")){
@@ -155,7 +155,7 @@ public class Game {
 					if(!p.getPiece().isColor()){
 						id += 6;
 					}
-					g.drawImage(imgs[id], p.getPiece().getX()*64, p.getPiece().getY()*64, this);
+					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
 				}
 				for(Spot p: bspots)
 				{
@@ -181,7 +181,7 @@ public class Game {
 					if(!p.getPiece().isColor()){
 						id += 6;
 					}
-					g.drawImage(imgs[id], p.getPiece().getX()*64, p.getPiece().getY()*64, this);
+					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
 				}
 			}
 		};
@@ -190,8 +190,8 @@ public class Game {
 			public void mouseDragged(MouseEvent e) {
 				if(selectedPiece != null){
 					System.out.println("da click" + e.getX() + " " + e.getY());
-					selectedPiece.setX((e.getX())/64);
-					selectedPiece.setY((e.getY())/64);
+					selectedPiece.setPx((e.getX()-32));
+					selectedPiece.setPy((e.getY()-32));
 					frame.repaint();
 				}
 			}
@@ -208,14 +208,19 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white":"black")+getSpot(e.getX(), e.getY()).getPiece().getName());
-				//selectedPiece = new Piece(e.getX(), e.getY(), getSpot(e.getX(), e.getY()).getPiece().isColor()?true:false, false, getSpot(e.getX(), e.getY()).getPiece().getName());
+				//System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white":"black")+getSpot(e.getX(), e.getY()).getPiece().getName());
 				selectedPiece = (getSpot(e.getX(), e.getY()).getPiece());
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				selectedPiece.move(e.getX()/64, e.getY()/64);
+				for(Spot p : wspots) {
+					if(p.getPiece().isDead() == true) wspots.remove(p);
+				}
+				for(Spot p : bspots) {
+					if(p.getPiece().isDead() == true) bspots.remove(p);
+				}
 				frame.repaint();
 			}
 
@@ -239,7 +244,7 @@ public class Game {
 				return p;
 			}
 		}
-		for(Spot p: wspots){
+		for(Spot p: getWspots()){
 			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
 				return p;
 			}
@@ -278,5 +283,11 @@ public class Game {
 
 	public void play() {
 
+	}
+	public static List<Spot> getWspots() {
+		return wspots;
+	}
+	public static void setWspots(List<Spot> wspots) {
+		Game.wspots = wspots;
 	}
 }
