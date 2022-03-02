@@ -4,6 +4,7 @@ public class Piece {
 
 	private int x;
 	private int y;
+	
 	public int getPx() {
 		return px;
 	}
