@@ -27,7 +27,8 @@ public class Rook implements Spot{
 
 	@Override
 	public void move(int x, int y) {
-		boolean canMove = true; 
+		boolean canMove = false; 
+		if((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY()) && x >= 0 && x < 8 && y >= 0 && y < 8) canMove = true;
 		a.move(x, y, canMove);
 	}
 

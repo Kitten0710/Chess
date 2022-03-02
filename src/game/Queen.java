@@ -27,7 +27,10 @@ public class Queen implements Spot{
 
 	@Override
 	public void move(int x, int y) {
-		boolean canMove = true; 
+		boolean canMove = false;
+		if(x >= 0 && x < 8 && y >= 0 && y < 8) {
+			if((x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y) || (x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY())) canMove = true;
+		}
 		a.move(x, y, canMove);
 	}
 

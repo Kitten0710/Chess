@@ -27,7 +27,11 @@ public class Bishop implements Spot{
 
 	@Override
 	public void move(int x, int y) {
-		boolean canMove = true; 
+		boolean canMove = false;
+		System.out.println(x + " " + y);
+		if(x >= 0 && x < 8 && y >= 0 && y < 8) {
+			if((x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y)) canMove = true;
+		}
 		a.move(x, y, canMove);
 		// TODO Auto-generated method stub
 	}
