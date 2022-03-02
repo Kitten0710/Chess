@@ -107,6 +107,13 @@ public class Piece {
 	}
 	public void kill(){
 		this.isDead = true;
+		for(Spot p : Game.getWspots()) {
+			if(p.getPiece().isDead() == true) Game.getWspots().remove(p);
+		}
+		
+		for(Spot p : Game.getBspots()) {
+			if(p.getPiece().isDead() == true) Game.getBspots().remove(p);
+		}
 	}
 
 }

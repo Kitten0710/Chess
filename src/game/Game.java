@@ -215,12 +215,6 @@ public class Game {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				selectedPiece.move(e.getX()/64, e.getY()/64);
-				for(Spot p : wspots) {
-					if(p.getPiece().isDead() == true) wspots.remove(p);
-				}
-				for(Spot p : bspots) {
-					if(p.getPiece().isDead() == true) bspots.remove(p);
-				}
 				frame.repaint();
 			}
 
@@ -289,5 +283,11 @@ public class Game {
 	}
 	public static void setWspots(List<Spot> wspots) {
 		Game.wspots = wspots;
+	}
+	public static List<Spot> getBspots() {
+		return bspots;
+	}
+	public static void setBspots(List<Spot> bspots) {
+		Game.bspots = bspots;
 	}
 }
