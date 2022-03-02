@@ -4,24 +4,6 @@ public class Piece {
 
 	private int x;
 	private int y;
-	
-	public int getPx() {
-		return px;
-	}
-
-	public void setPx(int px) {
-		this.px = px;
-		this.x = px/64;
-	}
-
-	public int getPy() {
-		return py;
-	}
-
-	public void setPy(int py) {
-		this.py = py;
-		this.y = py/64;
-	}
 	private int px;
 	private int py;
 	private boolean color;
@@ -38,7 +20,20 @@ public class Piece {
 		this.isDead = isDead;
 		this.name = name;
 	}
-
+	public int getPx() {
+		return px;
+	}
+	public void setPx(int px) {
+		this.px = px;
+		this.x = px/64;
+	}
+	public int getPy() {
+		return py;
+	}
+	public void setPy(int py) {
+		this.py = py;
+		this.y = py/64;
+	}
 	public int getX() {
 		return x;
 	}
@@ -108,13 +103,6 @@ public class Piece {
 	}
 	public void kill(){
 		this.isDead = true;
-		for(Spot p : Game.getWspots()) {
-			if(p.getPiece().isDead() == true) Game.getWspots().remove(p);
-		}
-		
-		for(Spot p : Game.getBspots()) {
-			if(p.getPiece().isDead() == true) Game.getBspots().remove(p);
-		}
 	}
 
 }

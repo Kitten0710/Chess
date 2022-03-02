@@ -62,37 +62,37 @@ public class Game {
 		bspots.add(bpawn8);
 
 		Rook wrook      = new Rook(0, 7, true, false, "rook");
-		getWspots().add(wrook);
+		wspots.add(wrook);
 		Knight wknight  = new Knight(1, 7, true, false, "knight");
-		getWspots().add(wknight);
+		wspots.add(wknight);
 		Bishop wbishop  = new Bishop(2, 7, true, false, "bishop");
-		getWspots().add(wbishop);
+		wspots.add(wbishop);
 		Queen wqueen    = new Queen(3, 7, true, false, "queen");
-		getWspots().add(wqueen);
+		wspots.add(wqueen);
 		King wking      = new King(4, 7, true, false, "king");
-		getWspots().add(wking);
+		wspots.add(wking);
 		Bishop wbishop2 = new Bishop(5, 7, true, false, "bishop");
-		getWspots().add(wbishop2);
+		wspots.add(wbishop2);
 		Knight wknight2 = new Knight(6, 7, true, false, "knight");
-		getWspots().add(wknight2);
+		wspots.add(wknight2);
 		Rook wrook2     = new Rook(7, 7, true, false, "rook");
-		getWspots().add(wrook2);
+		wspots.add(wrook2);
 		Pawn wpawn1     = new Pawn(1, 6, true, false, "pawn");
-		getWspots().add(wpawn1);
+		wspots.add(wpawn1);
 		Pawn wpawn2     = new Pawn(2, 6, true, false, "pawn");
-		getWspots().add(wpawn2);
+		wspots.add(wpawn2);
 		Pawn wpawn3     = new Pawn(3, 6, true, false, "pawn");
-		getWspots().add(wpawn3);
+		wspots.add(wpawn3);
 		Pawn wpawn4     = new Pawn(4, 6, true, false, "pawn");
-		getWspots().add(wpawn4);
+		wspots.add(wpawn4);
 		Pawn wpawn5     = new Pawn(5, 6, true, false, "pawn");
-		getWspots().add(wpawn5);
+		wspots.add(wpawn5);
 		Pawn wpawn6     = new Pawn(6, 6, true, false, "pawn");
-		getWspots().add(wpawn6);
+		wspots.add(wpawn6);
 		Pawn wpawn7     = new Pawn(7, 6, true, false, "pawn");
-		getWspots().add(wpawn7);
+		wspots.add(wpawn7);
 		Pawn wpawn8     = new Pawn(0, 6, true, false, "pawn");
-		getWspots().add(wpawn8);
+		wspots.add(wpawn8);
 
 		this.board = new Board();
 		BufferedImage all = null;
@@ -132,8 +132,9 @@ public class Game {
 					}
 					white =! white;
 				}
-				for(Spot p: getWspots())
+				for(Spot p: wspots)
 				{
+					if(p.getPiece().isDead() == true) continue;
 					int id = 0;
 					if(p.getPiece().getName().equalsIgnoreCase("king")){
 						id = 0;
@@ -160,8 +161,9 @@ public class Game {
 				}
 				for(Spot p: bspots)
 				{
+					if(p.getPiece().isDead() == true) continue;
 					int id = 0;
-					if((p.getPiece()).getName().equalsIgnoreCase("king")){
+					if(p.getPiece().getName().equalsIgnoreCase("king")){
 						id = 0;
 					}
 					if(p.getPiece().getName().equalsIgnoreCase("queen")){
@@ -190,7 +192,7 @@ public class Game {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				if(selectedPiece != null){
-					System.out.println("da click" + e.getX() + " " + e.getY());
+					//System.out.println("da click " + e.getX() + " " + e.getY());
 					selectedPiece.setPx((e.getX()-32));
 					selectedPiece.setPy((e.getY()-32));
 					frame.repaint();
@@ -209,13 +211,27 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				//System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white":"black")+getSpot(e.getX(), e.getY()).getPiece().getName());
+				
+				System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white ":"black ")+getSpot(e.getX(), e.getY()).getPiece().getName());
 				selectedPiece = (getSpot(e.getX(), e.getY()).getPiece());
+				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				selectedPiece.move(e.getX()/64, e.getY()/64);
+				for(Spot p : Game.wspots) {
+					if(p.getPiece().isDead() == true) {
+						bspots.remove(p);
+						System.out.println(p.getPiece() + " will dead");
+					}
+				}
+				for(Spot p : Game.getBspots()) {
+					if(p.getPiece().isDead() == true) {
+						bspots.remove(p);
+						System.out.println(p.getPiece() + " will dead");
+					}
+				}
 				frame.repaint();
 			}
 
@@ -239,7 +255,7 @@ public class Game {
 				return p;
 			}
 		}
-		for(Spot p: getWspots()){
+		for(Spot p: wspots){
 			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
 				return p;
 			}
