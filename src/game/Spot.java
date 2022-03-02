@@ -2,7 +2,7 @@ package game;
 
 public interface Spot {
 
-	public boolean move(int x, int y);
+	public void move(int x, int y);
 	
 	public boolean isCheckMove();
 

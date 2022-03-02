@@ -26,11 +26,9 @@ public class Rook implements Spot{
 	}
 
 	@Override
-	public boolean move(int x, int y) {
+	public void move(int x, int y) {
 		boolean canMove = true; 
 		a.move(x, y, canMove);
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

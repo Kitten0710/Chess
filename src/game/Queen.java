@@ -26,10 +26,9 @@ public class Queen implements Spot{
 	}
 
 	@Override
-	public boolean move(int x, int y) {
+	public void move(int x, int y) {
 		boolean canMove = true; 
 		a.move(x, y, canMove);
-		return false;
 	}
 
 	@Override

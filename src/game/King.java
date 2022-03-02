@@ -26,11 +26,10 @@ public class King implements Spot{
 	}
 
 	@Override
-	public boolean move(int x, int y) {
+	public void move(int x, int y) {
 		boolean canMove = false; 
 		if(Math.abs(x - a.getX()) <= 1 && Math.abs(y - a.getY()) <= 1 && x >= 0 && x < 8 && y >= 0 && y < 8) canMove = true;
 		a.move(x, y, canMove);
-		return true;
 	}
 
 	@Override
