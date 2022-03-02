@@ -213,11 +213,11 @@ public class Game {
 				
 				System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white ":"black ")+getSpot(e.getX(), e.getY()).getPiece().getName());
 				selectedSpot = (getSpot(e.getX(), e.getY()));
-				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				if(selectedSpot.getPiece().getName().equalsIgnoreCase("king")) selectedSpot = (King) selectedSpot;
 				selectedSpot.move(e.getX()/64, e.getY()/64);
 				wspots.remove(brook);
 				for(Spot p : wspots) {

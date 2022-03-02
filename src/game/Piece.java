@@ -86,9 +86,13 @@ public class Piece {
 		return false;
 	}
 	public void move(int xp, int yp, boolean canMove){
-		
+		if(canMove == false) {
+			px = this.x*64;
+			py = this.y*64;
+			return;
+		}
 		if(Game.getSpot(xp*64, yp*64) != null){
-			if(Game.getSpot(xp*64, yp*64).getPiece().isColor() != color && canMove == true){
+			if(Game.getSpot(xp*64, yp*64).getPiece().isColor() != color){
 				Game.getSpot(xp*64, yp*64).getPiece().kill();
 			}else{
 				px = this.x*64;
