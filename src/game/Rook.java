@@ -1,8 +1,9 @@
 package game;
 
+import java.util.Iterator;
+
 import game.Piece;
 import game.Spot;
-
 public class Rook implements Spot{
 
 	private Piece a;
@@ -28,7 +29,60 @@ public class Rook implements Spot{
 	@Override
 	public void move(int x, int y) {
 		boolean canMove = false; 
-		if((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY()) && x >= 0 && x < 8 && y >= 0 && y < 8) canMove = true;
+		if((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY()) && x >= 0 && x < 8 && y >= 0 && y < 8) {
+			canMove = true;
+			int k1, k2;
+			if(x != a.getX()) {
+				if(x > a.getX()) {
+					k1 = a.getX();
+					k2 = x;
+				} else {
+					k1 = x;
+					k2 = a.getX();
+				}
+				for(int i = k1 + 1; i < k2; i++) {
+					for(Spot p : Game.getWspots()) {
+						if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
+							canMove = false;
+							a.move(x, y, canMove);
+							return;
+						}
+					}
+					for(Spot p : Game.getBspots()) {
+						if(p.getPiece().getX() == a.getX() && p.getPiece().getY() == i) {
+							canMove = false;
+							a.move(x, y, canMove);
+							return;
+						}
+					}
+				}
+			} else {
+				if(y > a.getY()) {
+					k1 = a.getY();
+					k2 = y;
+				} else {
+					k1 = y;
+					k2 = a.getY();
+				}
+				for(int i = k1 + 1; i < k2; i++) {
+					for(Spot p : Game.getWspots()) {
+						if(p.getPiece().getX() == a.getX() && p.getPiece().getY() == i) {
+							canMove = false;
+							a.move(x, y, canMove);
+							return;
+						}
+					}
+					for(Spot p : Game.getBspots()) {
+						if(p.getPiece().getX() == a.getX() && p.getPiece().getY() == i) {
+							canMove = false;
+							a.move(x, y, canMove);
+							return;
+						}
+					}
+				}
+			}
+			
+		}
 		a.move(x, y, canMove);
 	}
 
