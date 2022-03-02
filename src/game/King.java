@@ -5,8 +5,6 @@ import game.Spot;
 
 public class King implements Spot{
 	
-	//THH 0111
-	
 	private Piece a;
 
 	public King(Piece a) {
