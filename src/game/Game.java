@@ -22,7 +22,6 @@ import javax.swing.JPanel;
 public class Game {
 	private Board board;
 	private Player []player = new Player[2];
-	private Pawn []Pawns = new Pawn[32];
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
 	public static Piece selectedPiece = null;
@@ -220,14 +219,17 @@ public class Game {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				selectedPiece.move(e.getX()/64, e.getY()/64);
-				for(Spot p : Game.wspots) {
+				wspots.remove(brook);
+				for(Spot p : wspots) {
 					if(p.getPiece().isDead() == true) {
-						bspots.remove(p);
+						frame.repaint();
+						wspots.remove(p);
 						System.out.println(p.getPiece() + " will dead");
 					}
 				}
-				for(Spot p : Game.getBspots()) {
+				for(Spot p : Game.bspots) {
 					if(p.getPiece().isDead() == true) {
+						frame.repaint();
 						bspots.remove(p);
 						System.out.println(p.getPiece() + " will dead");
 					}
