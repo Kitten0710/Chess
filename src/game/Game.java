@@ -24,7 +24,7 @@ public class Game {
 	private Player []player = new Player[2];
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
-	public static Piece selectedPiece = null;
+	public static Spot selectedSpot = null;
 	
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -190,10 +190,10 @@ public class Game {
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				if(selectedPiece != null){
+				if(selectedSpot != null){
 					//System.out.println("da click " + e.getX() + " " + e.getY());
-					selectedPiece.setPx((e.getX()-32));
-					selectedPiece.setPy((e.getY()-32));
+					selectedSpot.getPiece().setPx((e.getX()-32));
+					selectedSpot.getPiece().setPy((e.getY()-32));
 					frame.repaint();
 				}
 			}
@@ -212,13 +212,13 @@ public class Game {
 			public void mousePressed(MouseEvent e) {
 				
 				System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white ":"black ")+getSpot(e.getX(), e.getY()).getPiece().getName());
-				selectedPiece = (getSpot(e.getX(), e.getY()).getPiece());
+				selectedSpot = (getSpot(e.getX(), e.getY()));
 				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				selectedPiece.move(e.getX()/64, e.getY()/64);
+				selectedSpot.move(e.getX()/64, e.getY()/64);
 				wspots.remove(brook);
 				for(Spot p : wspots) {
 					if(p.getPiece().isDead() == true) {

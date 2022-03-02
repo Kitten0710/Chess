@@ -55,7 +55,8 @@ public class Knight implements Spot{
 	// more simple way
 	// TODO code function: boolean still_in_the_board() if necessary
 	@Override
-	public boolean move() {
+	public boolean move(int x, int y) {
+		a.move(x, y);
 		for(int i = 0; i < moves.length; i++) {
 			if(a.getX() == a.getX() + moves[i] && a.getY() == a.getY() + moves[i + 1]) return true;
 		}

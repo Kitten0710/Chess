@@ -26,7 +26,8 @@ public class King implements Spot{
 	}
 
 	@Override
-	public boolean move() {
+	public boolean move(int x, int y) {
+		a.move(x, y);
 		if(a.getX() >= 0) {
 			// sang trái 1
 			if(a.getX() == a.getX() - 1 && a.getY() == a.getY()) return true;
