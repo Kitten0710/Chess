@@ -25,14 +25,14 @@ public class Piece {
 	}
 	public void setPx(int px) {
 		this.px = px;
-		this.x = px/64;
+		//this.x = px/64;
 	}
 	public int getPy() {
 		return py;
 	}
 	public void setPy(int py) {
 		this.py = py;
-		this.y = py/64;
+		//this.y = py/64;
 	}
 	public int getX() {
 		return x;
