@@ -27,29 +27,31 @@ public class King implements Spot{
 
 	@Override
 	public boolean move(int x, int y) {
-		a.move(x, y);
-		if(a.getX() >= 0) {
-			// sang trái 1
-			if(a.getX() == a.getX() - 1 && a.getY() == a.getY()) return true;
-			// sang phải 1
-			if(a.getX() == a.getX() + 1 && a.getY() == a.getY()) return true;
-			// chéo trái 1
-			if(a.getX() == a.getX() - 1 && a.getY() == a.getY() + 1) return true;
-			// lên 1
-			if(a.getX() == a.getX() && a.getY() == a.getY() + 1) return true;
-			// chéo phải 1
-			if(a.getX() == a.getX() + 1 && a.getY() == a.getY() + 1) return true;
-			// xuống dưới
-			if(a.getX() >= 1) {
-				// xuống -1
-				if(a.getX() == a.getX() && a.getY() == a.getY() - 1) return true;
-				// chéo phải -1
-				if(a.getX() == a.getX() + 1 && a.getY() == a.getY() - 1) return true;
-				// chéo trái -1
-				if(a.getX() == a.getX() - 1 && a.getY() == a.getY() - 1) return true;
-			}
-		}
-		return false;
+		boolean canMove = true; 
+		if(Math.abs(x - a.getX()) > 1 && Math.abs(y - a.getY()) > 1) canMove = false;
+		a.move(x, y, canMove);
+//		if(a.getX() >= 0) {
+//			// sang trái 1
+//			if(a.getX() == a.getX() - 1 && a.getY() == a.getY()) return true;
+//			// sang phải 1
+//			if(a.getX() == a.getX() + 1 && a.getY() == a.getY()) return true;
+//			// chéo trái 1
+//			if(a.getX() == a.getX() - 1 && a.getY() == a.getY() + 1) return true;
+//			// lên 1
+//			if(a.getX() == a.getX() && a.getY() == a.getY() + 1) return true;
+//			// chéo phải 1
+//			if(a.getX() == a.getX() + 1 && a.getY() == a.getY() + 1) return true;
+//			// xuống dưới
+//			if(a.getX() >= 1) {
+//				// xuống -1
+//				if(a.getX() == a.getX() && a.getY() == a.getY() - 1) return true;
+//				// chéo phải -1
+//				if(a.getX() == a.getX() + 1 && a.getY() == a.getY() - 1) return true;
+//				// chéo trái -1
+//				if(a.getX() == a.getX() - 1 && a.getY() == a.getY() - 1) return true;
+//			}
+//		}
+		return true;
 	}
 
 	@Override

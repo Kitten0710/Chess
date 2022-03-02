@@ -27,7 +27,8 @@ public class Bishop implements Spot{
 
 	@Override
 	public boolean move(int x, int y) {
-		a.move(x, y);
+		boolean canMove = true; 
+		a.move(x, y, canMove);
 		// TODO Auto-generated method stub
 		return false;
 	}

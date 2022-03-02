@@ -27,7 +27,8 @@ public class Pawn implements Spot{
 
 	@Override
 	public boolean move(int x, int y) {
-		a.move(x, y);
+		boolean canMove = true; 
+		a.move(x, y, canMove);
 		if(a.getX() == a.getX() && a.getY() == a.getY() + 1) return true;
 		return false;
 	}
