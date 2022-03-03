@@ -1,7 +1,4 @@
-package game;
-
-import game.Piece;
-import game.Spot;
+package model;
 
 public class Queen implements Spot{
 

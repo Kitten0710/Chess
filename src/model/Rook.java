@@ -1,9 +1,5 @@
-package game;
+package model;
 
-import java.util.Iterator;
-
-import game.Piece;
-import game.Spot;
 public class Rook implements Spot{
 
 	private Piece a;
