@@ -31,70 +31,89 @@ public class Queen implements Spot{
 		if(x >= 0 && x < 8 && y >= 0 && y < 8) {
 			if((x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y) || (x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY())) {
 				canMove = true;
-				int kx1, kx2, ky1, ky2;
-				if((x - a.getX() == y - a.getY())) {
-					if(x > a.getX()) {
-						kx1 = a.getX();
-						kx2 = x;
-						ky1 = a.getY();
-						ky2 = y;
-					} else {
-						kx1 = x;
-						kx2 = a.getX();
-						ky1 = y;
-						ky2 = a.getY();
-					}
-					for(int i = kx1 + 1; i < kx2; i++) {
-						for(int j = ky2 - 1; j > ky1; j--) {
-							for(Spot p : Game.getWspots()) {
-								if(p.getPiece().getX() == i && p.getPiece().getY() == j) {
-									canMove = false;
-									a.move(x, y, canMove);
-									return;
+				if((x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y)) {
+					int k;
+					if((x - a.getX() == y - a.getY())) {	// cheo chinh
+						if(x > a.getX()) {
+							k = x - a.getX();
+							for(int i = 1; i < k; i++) {
+								for(Spot p : Game.getWspots()) {
+									if(p.getPiece().getX() == a.getX() + i && p.getPiece().getY() == a.getY() + i) {
+										canMove = false;
+										a.move(x, y, canMove);
+										return;
+									}
+								}
+								for(Spot p : Game.getBspots()) {
+									if(p.getPiece().getX() == a.getX() + i && p.getPiece().getY() == a.getY() + i) {
+										canMove = false;
+										a.move(x, y, canMove);
+										return;
+									}
 								}
 							}
-							for(Spot p : Game.getBspots()) {
-								if(p.getPiece().getX() == i && p.getPiece().getY() == j) {
-									canMove = false;
-									a.move(x, y, canMove);
-									return;
+						} else {	// cheo phu
+							k = a.getX() - x;
+							for(int i = 1; i < k; i++) {
+								for(Spot p : Game.getWspots()) {
+									if(p.getPiece().getX() == x + i && p.getPiece().getY() == y + i) {
+										canMove = false;
+										a.move(x, y, canMove);
+										return;
+									}
+								}
+								for(Spot p : Game.getBspots()) {
+									if(p.getPiece().getX() == x + i && p.getPiece().getY() == y + i) {
+										canMove = false;
+										a.move(x, y, canMove);
+										return;
+									}
+								}
+							}
+						}
+					} else if(x - a.getX() == a.getY() - y) {
+						if(x > a.getX()) {
+							k = x - a.getX();
+							for(int i = 1; i < k; i++) {
+								for(Spot p : Game.getWspots()) {
+									if(p.getPiece().getX() == a.getX() + i && p.getPiece().getY() == a.getY() - i) {
+										canMove = false;
+										a.move(x, y, canMove);
+										return;
+									}
+								}
+								for(Spot p : Game.getBspots()) {
+									if(p.getPiece().getX() == a.getX() + i && p.getPiece().getY() == a.getY() - i) {
+										canMove = false;
+										a.move(x, y, canMove);
+										return;
+									}
+								}
+							}
+						} else {
+							k = a.getX() - x;
+							for(int i = 1; i < k; i++) {
+								for(Spot p : Game.getWspots()) {
+									if(p.getPiece().getX() == x + i && p.getPiece().getY() == y - i) {
+										canMove = false;
+										a.move(x, y, canMove);
+										return;
+									}
+								}
+								for(Spot p : Game.getBspots()) {
+									if(p.getPiece().getX() == x + i && p.getPiece().getY() == y - i) {
+										canMove = false;
+										a.move(x, y, canMove);
+										return;
+									}
 								}
 							}
 						}
 					}
-				} else if(x - a.getX() == a.getY() - y){
-					if(y < a.getY()) {
-						kx1 = a.getX();
-						kx2 = x;
-						ky1 = y;
-						ky2 = a.getY();
-					} else {
-						kx1 = x;
-						kx2 = a.getX();
-						ky1 = a.getY();
-						ky2 = y;
-					}
-					for(int i = kx1 + 1; i < kx2; i++) {
-						for(int j = ky2 - 1; j > ky1; j--) {
-							for(Spot p : Game.getWspots()) {
-								if(p.getPiece().getX() == i && p.getPiece().getY() == j) {
-									canMove = false;
-									a.move(x, y, canMove);
-									return;
-								}
-							}
-							for(Spot p : Game.getBspots()) {
-								if(p.getPiece().getX() == i && p.getPiece().getY() == j) {
-									canMove = false;
-									a.move(x, y, canMove);
-									return;
-								}
-							}
-						}
-					}
-				} else {
+					a.move(x, y, canMove);
+				} else {	// di ngang, doc
 					int k1, k2;
-					if(x != a.getX() && y == a.getY()) {
+					if(x != a.getX() && y == a.getY()) {	// di ngang
 						if(x > a.getX()) {
 							k1 = a.getX();
 							k2 = x;
@@ -118,7 +137,7 @@ public class Queen implements Spot{
 								}
 							}
 						}
-					} else {
+					} else {	// di doc
 						if(x == a.getX() && y > a.getY()) {
 							k1 = a.getY();
 							k2 = y;
