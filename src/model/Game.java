@@ -24,7 +24,8 @@ public class Game {
 	private Player []player = new Player[2];
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
-	public static Spot selectedSpot = null;
+	private Spot selectedSpot = null;
+	private static boolean isContinue = true; 
 	
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -308,5 +309,11 @@ public class Game {
 	}
 	public static void setBspots(List<Spot> bspots) {
 		Game.bspots = bspots;
+	}
+	public static boolean isContinue() {
+		return isContinue;
+	}
+	public static void setContinue(boolean isContinue) {
+		Game.isContinue = isContinue;
 	}
 }

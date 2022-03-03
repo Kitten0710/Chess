@@ -1,9 +1,14 @@
 package controller;
 
+import model.Game;
+
 public class Controller {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Game game = new Game();
+		while(game.isContinue()) {
+			
+		}
 
 	}
 
