@@ -193,9 +193,9 @@ public class Game {
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				if(selectedSpot.getPiece().isColor() != isTurn) {
-					selectedSpot = null;
-				}
+//				if(selectedSpot.getPiece().isColor() != isTurn) {
+//					selectedSpot = null;
+//				}
 				if(selectedSpot != null){
 					//System.out.println("da click " + e.getX() + " " + e.getY());
 					selectedSpot.getPiece().setPx((e.getX()-32));

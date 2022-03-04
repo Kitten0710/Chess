@@ -28,6 +28,14 @@ public class Pawn implements Spot{
 		boolean canMove = false; 
 		if(a.isColor() == false) {	// nếu là tốt đen
 			if(Math.abs(x - a.getX()) == 1 && y == a.getY() + 1) {	// kiểm tra giết
+				if(a.getY() == 6 && y == 7) { // phong hau
+					canMove = true;
+					a.move(x, y, canMove);
+					a.kill();
+					Queen b = new Queen(a);
+					Game.getWspots().add(b);
+					return;
+				}
 				for(Spot p : Game.getWspots()) {
 					if(p.getPiece().getX() == x && p.getPiece().getY() == y) {
 						canMove = true;
@@ -35,6 +43,7 @@ public class Pawn implements Spot{
 						return;
 					}
 				}
+				
 			} else if(a.getY() == 1) {	// nếu ở vị trí xuất phát
 				if(y - a.getY() <= 2 && x == a.getX()) {	// có thể đi 2 bước
 					canMove = true;
