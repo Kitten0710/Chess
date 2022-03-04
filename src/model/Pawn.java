@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pawn implements Spot{
 
 	private Piece a;
@@ -24,26 +27,28 @@ public class Pawn implements Spot{
 
 	@Override
 	public void move(int x, int y) {
-		System.out.println(a.getX() + " " + a.getY());
+		System.out.println(a.getName() + " " + a.getX() + " " + a.getY());
 		boolean canMove = false; 
 		if(a.isColor() == false) {	// nếu là tốt đen
 			if(Math.abs(x - a.getX()) == 1 && y == a.getY() + 1) {	// kiểm tra giết
-				if(a.getY() == 6 && y == 7) { // phong hau
-					canMove = true;
-					a.move(x, y, canMove);
-					a.kill();
-					Queen b = new Queen(a);
-					Game.getWspots().add(b);
-					return;
-				}
 				for(Spot p : Game.getWspots()) {
 					if(p.getPiece().getX() == x && p.getPiece().getY() == y) {
+						if(a.getY() == 6 && y == 7) { // phong hậu
+							canMove = true;
+							a.move(x, y, canMove);
+							Queen b = new Queen(x, y, false, false, "queen");
+							List<Spot> l = new ArrayList<Spot>(Game.getBspots());
+							l.add(b);
+							l.remove(this);
+							a.kill();
+							Game.setBspots(l);
+							return;
+						}
 						canMove = true;
 						a.move(x, y, canMove);
 						return;
 					}
 				}
-				
 			} else if(a.getY() == 1) {	// nếu ở vị trí xuất phát
 				if(y - a.getY() <= 2 && x == a.getX()) {	// có thể đi 2 bước
 					canMove = true;
@@ -58,7 +63,17 @@ public class Pawn implements Spot{
 					return;
 				} 
 			} else {	// các bước sau
-				if(y - a.getY() == 1 && x == a.getX()) {	// có thể đi 2 bước
+				if(a.getY() == 6 && y == 7) { // phong hậu
+					canMove = true;
+					a.move(x, y, canMove);
+					a.kill();
+					Queen b = new Queen(x, y, false, false, "queen");
+					List<Spot> l = new ArrayList<Spot>(Game.getWspots());
+					l.add(b);
+					Game.setWspots(l);
+					return;
+				}
+				if(y - a.getY() == 1 && x == a.getX()) {	// có thể đi 1 bước
 					canMove = true;
 					for(Spot p : Game.getWspots()) {
 						if(p.getPiece().getX() == x && p.getPiece().getY() == y) {
@@ -75,6 +90,17 @@ public class Pawn implements Spot{
 			if(Math.abs(x - a.getX()) == 1 && a.getY() == y + 1) {	// kiểm tra giết
 				for(Spot p : Game.getBspots()) {
 					if(p.getPiece().getX() == x && p.getPiece().getY() == y) {
+						if(a.getY() == 1 && y == 0) { // phong hậu
+							canMove = true;
+							a.move(x, y, canMove);
+							Queen b = new Queen(x, y, true, false, "queen");
+							List<Spot> l = new ArrayList<Spot>(Game.getWspots());
+							l.add(b);
+							l.remove(this);
+							a.kill();
+							Game.setWspots(l);
+							return;
+						}
 						canMove = true;
 						a.move(x, y, canMove);
 						return;
@@ -94,7 +120,18 @@ public class Pawn implements Spot{
 					return;
 				} 
 			} else {	// các bước sau
-				if(a.getY() - y == 1 && x == a.getX()) {	// có thể đi 2 bước
+				if(a.getY() - y == 1 && x == a.getX()) {	// có thể đi 1 bước
+					if(a.getY() == 1 && y == 0) { // phong hậu
+						canMove = true;
+						a.move(x, y, canMove);
+						Queen b = new Queen(x, y, true, false, "queen");
+						List<Spot> l = new ArrayList<Spot>(Game.getWspots());
+						l.add(b);
+						l.remove(this);
+						a.kill();
+						Game.setWspots(l);
+						return;
+					}
 					canMove = true;
 					for(Spot p : Game.getBspots()) {
 						if(p.getPiece().getX() == x && p.getPiece().getY() == y) {

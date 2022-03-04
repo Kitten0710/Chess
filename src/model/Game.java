@@ -322,4 +322,5 @@ public class Game {
 	public static void setContinue(boolean isContinue) {
 		Game.isContinue = isContinue;
 	}
+
 }
