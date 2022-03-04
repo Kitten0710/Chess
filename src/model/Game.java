@@ -26,6 +26,8 @@ public class Game {
 	private static List<Spot> wspots = new ArrayList<Spot>();
 	private Spot selectedSpot = null;
 	private static boolean isContinue = true; 
+	private static boolean isTurn = true;
+	
 	
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -191,6 +193,9 @@ public class Game {
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
+				if(selectedSpot.getPiece().isColor() != isTurn) {
+					selectedSpot = null;
+				}
 				if(selectedSpot != null){
 					//System.out.println("da click " + e.getX() + " " + e.getY());
 					selectedSpot.getPiece().setPx((e.getX()-32));
@@ -218,7 +223,7 @@ public class Game {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if(selectedSpot.getPiece().getName().equalsIgnoreCase("king")) selectedSpot = (King) selectedSpot;
+				//if(selectedSpot.getPiece().getName().equalsIgnoreCase("king")) selectedSpot = (King) selectedSpot;
 				selectedSpot.move(e.getX()/64, e.getY()/64);
 				wspots.remove(brook);
 				for(Spot p : wspots) {
@@ -265,7 +270,9 @@ public class Game {
 		}
 		return null;
 	}
-
+	public void play() {
+		
+	}
 	public Board getBoard() {
 		return board;
 	}
@@ -294,10 +301,6 @@ public class Game {
 	public boolean isCheckMated() {
 		return false;
 	}
-
-	public void play() {
-
-	}
 	public static List<Spot> getWspots() {
 		return wspots;
 	}
@@ -312,6 +315,9 @@ public class Game {
 	}
 	public static boolean isContinue() {
 		return isContinue;
+	}
+	public static void setTurn(boolean isTurn) {
+		Game.isTurn = isTurn;
 	}
 	public static void setContinue(boolean isContinue) {
 		Game.isContinue = isContinue;
