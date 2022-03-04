@@ -127,7 +127,7 @@ public class Queen implements Spot{
 								}
 							}
 							for(Spot p : Game.getBspots()) {
-								if(p.getPiece().getX() == a.getX() && p.getPiece().getY() == i) {
+								if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
 									canMove = false;
 									a.move(x, y, canMove);
 									return;
