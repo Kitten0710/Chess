@@ -35,10 +35,26 @@ public class Pawn implements Spot{
 	}
 	@Override
 	public void move(int x, int y) {
-		System.out.println(a.getName() + " " + a.getX() + " " + a.getY());
+		System.out.println(a.getName() + " " + a.getX() + " " + a.getY() + " " + countTurn);
 		boolean canMove = false; 
 		if(a.isColor() == false) {	// nếu là tốt đen
-			//if(a.getY() == 4 )
+			//bắt tốt sang sông
+//			if(a.getY() == 4 && y == 5 && Math.abs(x - a.getX()) == 1
+//					&& Game.getSpot(x*64, (y - 1)*64) != null
+//					&& Game.getSpot(x*64, (y - 1)*64).getPiece().isColor() != a.isColor()) {	
+//				Spot p = Game.getSpot(x*64, (y - 1)*64);
+//				Pawn pawn = (Pawn) p;
+//				if(pawn.getCountTurn() == 1) {
+//					List<Spot> l = new ArrayList<Spot>(Game.getWspots());
+//					l.remove(p);
+//					Game.getSpot(x*64, (y - 1)*64).getPiece().kill();
+//					Game.setWspots(l);
+//					canMove = true;
+//					a.move(x, y, canMove);
+//					countTurn++;
+//					return;
+//				}
+//			}
 			if(Math.abs(x - a.getX()) == 1 && y == a.getY() + 1) {	// kiểm tra giết
 				for(Spot p : Game.getWspots()) {
 					if(p.getPiece().getX() == x && p.getPiece().getY() == y) {
@@ -69,6 +85,7 @@ public class Pawn implements Spot{
 						}
 					}
 					a.move(x, y, canMove);
+					countTurn++;
 					return;
 				} 
 			} else {	// các bước sau
@@ -80,6 +97,7 @@ public class Pawn implements Spot{
 					List<Spot> l = new ArrayList<Spot>(Game.getWspots());
 					l.add(b);
 					Game.setWspots(l);
+					countTurn++;
 					return;
 				}
 				if(y - a.getY() == 1 && x == a.getX()) {	// có thể đi 1 bước
@@ -92,6 +110,7 @@ public class Pawn implements Spot{
 						}
 					}
 					a.move(x, y, canMove);
+					countTurn++;
 					return;
 				}
 			}
@@ -110,8 +129,8 @@ public class Pawn implements Spot{
 							Game.setWspots(l);
 							return;
 						}
-						canMove = true;
 						a.move(x, y, canMove);
+						countTurn++;
 						return;
 					}
 				}
@@ -126,6 +145,7 @@ public class Pawn implements Spot{
 						}
 					}
 					a.move(x, y, canMove);
+					countTurn++;
 					return;
 				} 
 			} else {	// các bước sau
@@ -139,6 +159,7 @@ public class Pawn implements Spot{
 						l.remove(this);
 						a.kill();
 						Game.setWspots(l);
+						countTurn++;
 						return;
 					}
 					canMove = true;
@@ -150,12 +171,12 @@ public class Pawn implements Spot{
 						}
 					}
 					a.move(x, y, canMove);
+					countTurn++;
 					return;
 				} 
 			}
 		}
 		a.move(x, y, canMove);
-		if(canMove == true) countTurn++;
 	}
 
 	@Override
