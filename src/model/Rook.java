@@ -39,7 +39,7 @@ public class Rook implements Spot{
 		System.out.println(countTurn);
 		Spot b = Game.getSpot(x*64, y*64);
 		// nhập thành
-		if(countTurn == 0 && b.getPiece().getName() == "king") {
+		if(b != null && countTurn == 0 && b.getPiece().getName() == "king") {
 			King k = (King) b;
 			if(a.isColor() == false && k.getCountTurn() == 0) {	// quân đen
 				int k1, k2;

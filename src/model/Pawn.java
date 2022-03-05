@@ -6,11 +6,7 @@ import java.util.List;
 public class Pawn implements Spot{
 
 	private Piece a;
-
-	public Pawn(Piece a) {
-		super();
-		this.a = a;
-	}
+	private int countTurn = 0;
 
 	public Pawn(int x, int y, boolean color, boolean isDead, String name) {
 		super();
@@ -24,12 +20,25 @@ public class Pawn implements Spot{
 	public void setA(Piece a) {
 		this.a = a;
 	}
+	
+	public int getCountTurn() {
+		return countTurn;
+	}
 
+	public void setCountTurn(int countTurn) {
+		this.countTurn = countTurn;
+	}
+
+	public Pawn(Piece a) {
+		super();
+		this.a = a;
+	}
 	@Override
 	public void move(int x, int y) {
 		System.out.println(a.getName() + " " + a.getX() + " " + a.getY());
 		boolean canMove = false; 
 		if(a.isColor() == false) {	// nếu là tốt đen
+			//if(a.getY() == 4 )
 			if(Math.abs(x - a.getX()) == 1 && y == a.getY() + 1) {	// kiểm tra giết
 				for(Spot p : Game.getWspots()) {
 					if(p.getPiece().getX() == x && p.getPiece().getY() == y) {
@@ -84,7 +93,7 @@ public class Pawn implements Spot{
 					}
 					a.move(x, y, canMove);
 					return;
-				} 
+				}
 			}
 		} else {	// nếu là tốt trắng
 			if(Math.abs(x - a.getX()) == 1 && a.getY() == y + 1) {	// kiểm tra giết
@@ -146,6 +155,7 @@ public class Pawn implements Spot{
 			}
 		}
 		a.move(x, y, canMove);
+		if(canMove == true) countTurn++;
 	}
 
 	@Override

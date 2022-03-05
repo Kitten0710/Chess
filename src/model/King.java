@@ -30,10 +30,10 @@ public class King implements Spot{
 	@Override
 	public void move(int x, int y) {
 		boolean canMove = false; 
-		System.out.println(countTurn);
 		Spot b = Game.getSpot(x*64, y*64);
+		System.out.println(a.getName() + " " + countTurn);
 		// nhập thành
-		if(countTurn == 0 && b.getPiece().getName() == "rook") {
+		if(b != null && countTurn == 0 && b.getPiece().getName() == "rook") {
 			Rook r = (Rook) b;
 			if(a.isColor() == false && r.getCountTurn() == 0) {	// quân đen
 				int k1, k2;
@@ -125,6 +125,8 @@ public class King implements Spot{
 				return;
 			}
 		}
+		System.out.println("binh thuong");
+
 		if(Math.abs(x - a.getX()) <= 1 && Math.abs(y - a.getY()) <= 1 
 				&& x >= 0 && x < 8 && y >= 0 && y < 8) {
 			canMove = true;
@@ -134,10 +136,7 @@ public class King implements Spot{
 					a.move(x, y, canMove);
 					return;
 				}
-			}
-			
-			
-			
+			}	
 		}
 		a.move(x, y, canMove);
 		if(canMove == true) countTurn++;
