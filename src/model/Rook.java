@@ -1,8 +1,8 @@
 package model;
 
 public class Rook implements Spot{
-
 	private Piece a;
+	private int countTurn = 0;
 
 	public Rook(Piece a) {
 		super();
@@ -12,6 +12,14 @@ public class Rook implements Spot{
 	public Rook(int x, int y, boolean color, boolean isDead, String name) {
 		super();
 		this.a = new Piece(x, y, color, isDead, name);
+	}
+	
+	public int getCountTurn() {
+		return countTurn;
+	}
+
+	public void setCountTurn(int countTurn) {
+		this.countTurn = countTurn;
 	}
 	
 	public Piece getA() {
@@ -25,8 +33,18 @@ public class Rook implements Spot{
 	@Override
 	public void move(int x, int y) {
 		boolean canMove = false; 
-		if((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY()) && x >= 0 && x < 8 && y >= 0 && y < 8) {
+		System.out.println(countTurn);
+		if((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY()) 
+				&& x >= 0 && x < 8 && y >= 0 && y < 8
+				&& (a.getX() == x && a.getY() != y) || (a.getX() != x && a.getY() == y)) {
 			canMove = true;
+			if(Game.getSpot(x*64, y*64) != null) {
+				if(Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
+					canMove = false;
+					a.move(x, y, canMove);
+					return;
+				}
+			}
 			int k1, k2;
 			if(x != a.getX()) {
 				if(x > a.getX()) {
@@ -80,6 +98,7 @@ public class Rook implements Spot{
 			
 		}
 		a.move(x, y, canMove);
+		if(canMove == true) countTurn++;
 	}
 
 	@Override
