@@ -168,7 +168,6 @@ public class Rook implements Spot{
 						}
 					}
 				}
-
 			} else {
 				if(y > a.getY()) {
 					k1 = a.getY();
