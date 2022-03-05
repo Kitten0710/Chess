@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -226,18 +227,18 @@ public class Game {
 				//if(selectedSpot.getPiece().getName().equalsIgnoreCase("king")) selectedSpot = (King) selectedSpot;
 				selectedSpot.move(e.getX()/64, e.getY()/64);
 				wspots.remove(brook);
-				for(Spot p : wspots) {
-					if(p.getPiece().isDead() == true) {
-						frame.repaint();
-						wspots.remove(p);
-						System.out.println(p.getPiece() + " will dead");
+				Iterator<Spot> itr1 = wspots.iterator();
+				while(itr1.hasNext()) {
+					Spot temp = itr1.next();
+					if(temp.getPiece().isDead() == true) {
+						itr1.remove();
 					}
 				}
-				for(Spot p : Game.bspots) {
-					if(p.getPiece().isDead() == true) {
-						frame.repaint();
-						bspots.remove(p);
-						System.out.println(p.getPiece() + " will dead");
+				Iterator<Spot> itr2 = bspots.iterator();
+				while(itr2.hasNext()) {
+					Spot temp = itr2.next();
+					if(temp.getPiece().isDead() == true) {
+						itr2.remove();
 					}
 				}
 				frame.repaint();
