@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+
 public class Piece {
 
 	private int x;
@@ -87,7 +89,9 @@ public class Piece {
 	}
 	public boolean move(int xp, int yp, boolean canMove){
 		if(x == xp && y == yp) canMove = false;
-		if(canMove == true) System.out.println((color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp));
+		if(canMove == true) {
+			System.out.println((color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp));
+		}
 		if(canMove == false) {
 			px = this.x*64;
 			py = this.y*64;
