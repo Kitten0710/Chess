@@ -27,7 +27,7 @@ public class MouseInput implements MouseListener{
 				Game.State = Game.STATE.GAME;
 			}
 		}
-		// Setting Button
+		// Setting Button ??
 	}
 
 	@Override
