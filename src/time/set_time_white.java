@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class set_time implements ActionListener{
+public class set_time_white implements ActionListener{
  
  JFrame frame = new JFrame();
  JButton startButton = new JButton("START");
@@ -39,7 +39,7 @@ public class set_time implements ActionListener{
  });
  
  
- public set_time(){
+ public set_time_white(){
   
   timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
   timeLabel.setBounds(100,100,200,100);
