@@ -31,7 +31,6 @@ public class King implements Spot{
 	public void move(int x, int y) {
 		boolean canMove = false; 
 		Spot b = Game.getSpot(x*64, y*64);
-		System.out.println(a.getName() + " " + countTurn);
 		// nhập thành
 		if(b != null && countTurn == 0 && b.getPiece().getName() == "rook") {
 			Rook r = (Rook) b;
@@ -125,7 +124,6 @@ public class King implements Spot{
 				return;
 			}
 		}
-		System.out.println("binh thuong");
 
 		if(Math.abs(x - a.getX()) <= 1 && Math.abs(y - a.getY()) <= 1 
 				&& x >= 0 && x < 8 && y >= 0 && y < 8) {

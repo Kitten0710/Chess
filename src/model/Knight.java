@@ -21,32 +21,6 @@ public class Knight implements Spot{
 		this.a = a;
 	}
 
-	/*
-	@Override
-	public boolean move() {
-		// Tiến phải 1
-		if(a.getX() == a.getX() + 2 && a.getY() == a.getY()) return true;
-		// Tiến phải 2
-		if(a.getX() == a.getX() + 1 && a.getY() == a.getY() + 2) return true;
-		// Tiến trái 1
-		if(a.getX() == a.getX() - 1 && a.getY() == a.getY() + 2) return true;
-		// Tiến trái 2
-		if(a.getX() == a.getX() - 2 && a.getY() == a.getY() + 1) return true;
-		
-		// Lui trái 1
-		if(a.getX() == a.getX() - 1 && a.getY() == a.getY() - 2) return true;
-		// Lui trái 2
-		if(a.getX() == a.getX() - 2 && a.getY() == a.getY() - 1) return true;
-		// Lui phải 1
-		if(a.getX() == a.getX() + 1 && a.getY() == a.getY() - 2) return true;
-		// Lui phải 2
-		if(a.getX() == a.getX() + 2 && a.getY() == a.getY() - 1) return true;
-		return false;
-	}
-	*/
-
-	// more simple way
-	// TODO code function: boolean still_in_the_board() if necessary
 	@Override
 	public void move(int x, int y) {
 		boolean canMove = false; 

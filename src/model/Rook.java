@@ -36,7 +36,6 @@ public class Rook implements Spot{
 	@Override
 	public void move(int x, int y) {
 		boolean canMove = false; 
-		System.out.println(countTurn);
 		Spot b = Game.getSpot(x*64, y*64);
 		// nhập thành
 		if(b != null && countTurn == 0 && b.getPiece().getName() == "king") {

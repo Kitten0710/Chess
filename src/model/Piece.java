@@ -85,11 +85,13 @@ public class Piece {
 		
 		return false;
 	}
-	public void move(int xp, int yp, boolean canMove){
+	public boolean move(int xp, int yp, boolean canMove){
+		if(x == xp && y == yp) canMove = false;
+		if(canMove == true) System.out.println((color?"White ":"Black ") + name + ": " + (char)(x + 'A') + " " + y + " -> " + (char)(xp + 'A') + " " + yp);
 		if(canMove == false) {
 			px = this.x*64;
 			py = this.y*64;
-			return;
+			return false;
 		}
 		if(Game.getSpot(xp*64, yp*64) != null){
 			if(Game.getSpot(xp*64, yp*64).getPiece().isColor() != color){
@@ -97,13 +99,15 @@ public class Piece {
 			}else{
 				px = this.x*64;
 				py = this.y*64;
-				return;
+				return false;
 			}
 		}
 		this.x = xp;
 		this.y = yp;
 		this.px = xp*64;
 		this.py = yp*64;
+		if(canMove) return true;
+		else return false;
 	}
 	public void kill(){
 		this.isDead = true;
