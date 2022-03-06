@@ -29,6 +29,11 @@ public class Game {
 	private static boolean isContinue = true; 
 	private static boolean isTurn = true;
 	
+	public static enum STATE{
+		MENU,
+		GAME
+	};
+	public static STATE state = STATE.MENU;
 	
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
