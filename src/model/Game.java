@@ -28,14 +28,14 @@ public class Game {
 	private Spot selectedSpot = null;
 	private static boolean isContinue = true; 
 	private static boolean isTurn = true;
-	
+
 	public static enum STATE{
 		MENU,
 		GAME
 	};
 	public static STATE State = STATE.MENU;
 	private Menu menu = new Menu();
-	
+
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
@@ -118,7 +118,7 @@ public class Game {
 				ind++;
 			}    
 		}
-		
+
 		JFrame frame = new JFrame();
 		frame.setBounds(30, 30, 512, 512);
 		frame.setUndecorated(true);
@@ -132,72 +132,71 @@ public class Game {
 			public void paint(Graphics g) {
 				boolean white = true;
 				if(State == STATE.GAME) {
-					
-				for(int y = 0; y < 8; y++)
-				{
-					for(int x = 0; x < 8; x++)
+					for(int y = 0; y < 8; y++)
 					{
-						if(white) g.setColor(new Color(235,235, 208));
-						else g.setColor(new Color(119, 148, 85));
-						g.fillRect(x*64, y*64, 64, 64);
+						for(int x = 0; x < 8; x++)
+						{
+							if(white) g.setColor(new Color(235,235, 208));
+							else g.setColor(new Color(119, 148, 85));
+							g.fillRect(x*64, y*64, 64, 64);
+							white =! white;
+						}
 						white =! white;
 					}
-					white =! white;
-				}
-				for(Spot p: wspots)
-				{
-					if(p.getPiece().isDead() == true) continue;
-					int id = 0;
-					if(p.getPiece().getName().equalsIgnoreCase("king")){
-						id = 0;
+					for(Spot p: wspots)
+					{
+						if(p.getPiece().isDead() == true) continue;
+						int id = 0;
+						if(p.getPiece().getName().equalsIgnoreCase("king")){
+							id = 0;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("queen")){
+							id = 1;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+							id = 2;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("knight")){
+							id = 3;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("rook")){
+							id = 4;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+							id = 5;
+						}
+						if(!p.getPiece().isColor()){
+							id += 6;
+						}
+						g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
 					}
-					if(p.getPiece().getName().equalsIgnoreCase("queen")){
-						id = 1;
+					for(Spot p: bspots)
+					{
+						if(p.getPiece().isDead() == true) continue;
+						int id = 0;
+						if(p.getPiece().getName().equalsIgnoreCase("king")){
+							id = 0;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("queen")){
+							id = 1;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+							id = 2;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("knight")){
+							id = 3;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("rook")){
+							id = 4;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+							id = 5;
+						}
+						if(!p.getPiece().isColor()){
+							id += 6;
+						}
+						g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
 					}
-					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
-						id = 2;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("knight")){
-						id = 3;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("rook")){
-						id = 4;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
-						id = 5;
-					}
-					if(!p.getPiece().isColor()){
-						id += 6;
-					}
-					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
-				}
-				for(Spot p: bspots)
-				{
-					if(p.getPiece().isDead() == true) continue;
-					int id = 0;
-					if(p.getPiece().getName().equalsIgnoreCase("king")){
-						id = 0;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("queen")){
-						id = 1;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
-						id = 2;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("knight")){
-						id = 3;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("rook")){
-						id = 4;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
-						id = 5;
-					}
-					if(!p.getPiece().isColor()){
-						id += 6;
-					}
-					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
-				}
 				} else if(State == STATE.MENU) {
 					menu.render(g);
 				}
@@ -206,9 +205,9 @@ public class Game {
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-//				if(selectedSpot.getPiece().isColor() != isTurn) {
-//					selectedSpot = null;
-//				}
+				//				if(selectedSpot.getPiece().isColor() != isTurn) {
+				//					selectedSpot = null;
+				//				}
 				if(selectedSpot != null){
 					//System.out.println("da click " + e.getX() + " " + e.getY());
 					selectedSpot.getPiece().setPx((e.getX()-32));
@@ -229,7 +228,6 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
 				//System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white ":"black ")+getSpot(e.getX(), e.getY()).getPiece().getName());
 				if(getSpot(e.getX(), e.getY()) != null) selectedSpot = getSpot(e.getX(), e.getY());
 			}
@@ -256,8 +254,8 @@ public class Game {
 					}
 					frame.repaint();
 				}
-				}
-				
+			}
+
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -287,7 +285,7 @@ public class Game {
 		return null;
 	}
 	public void play() {
-		
+
 	}
 	public Board getBoard() {
 		return board;
