@@ -230,31 +230,34 @@ public class Game {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
-				System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white ":"black ")+getSpot(e.getX(), e.getY()).getPiece().getName());
-				selectedSpot = (getSpot(e.getX(), e.getY()));
+				//System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white ":"black ")+getSpot(e.getX(), e.getY()).getPiece().getName());
+				if(getSpot(e.getX(), e.getY()) != null) selectedSpot = getSpot(e.getX(), e.getY());
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				//if(selectedSpot.getPiece().getName().equalsIgnoreCase("king")) selectedSpot = (King) selectedSpot;
-				selectedSpot.move(e.getX()/64, e.getY()/64);
-				wspots.remove(brook);
-				Iterator<Spot> itr1 = wspots.iterator();
-				while(itr1.hasNext()) {
-					Spot temp = itr1.next();
-					if(temp.getPiece().isDead() == true) {
-						itr1.remove();
+				if(selectedSpot != null) {
+					selectedSpot.move(e.getX()/64, e.getY()/64);
+					wspots.remove(brook);
+					Iterator<Spot> itr1 = wspots.iterator();
+					while(itr1.hasNext()) {
+						Spot temp = itr1.next();
+						if(temp.getPiece().isDead() == true) {
+							itr1.remove();
+						}
 					}
-				}
-				Iterator<Spot> itr2 = bspots.iterator();
-				while(itr2.hasNext()) {
-					Spot temp = itr2.next();
-					if(temp.getPiece().isDead() == true) {
-						itr2.remove();
+					Iterator<Spot> itr2 = bspots.iterator();
+					while(itr2.hasNext()) {
+						Spot temp = itr2.next();
+						if(temp.getPiece().isDead() == true) {
+							itr2.remove();
+						}
 					}
+					frame.repaint();
 				}
-				frame.repaint();
-			}
+				}
+				
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
