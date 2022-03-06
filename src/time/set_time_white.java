@@ -10,9 +10,9 @@ public class set_time_white implements ActionListener{
 	JButton W_startButton = new JButton("START");
 	JButton W_resetButton = new JButton("RESET");
 	JLabel timeLabel = new JLabel();
-	int seconds =0;
-	int minutes =15;
-	int hours =0;
+	int seconds = 0;
+	int minutes = 15;
+	int hours = 0;
 	boolean started = false;
 	String seconds_string = String.format("%02d", seconds);
 	String minutes_string = String.format("%02d", minutes);

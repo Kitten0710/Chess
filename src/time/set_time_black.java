@@ -10,9 +10,9 @@ public class set_time_black implements ActionListener{
 	JButton B_startButton = new JButton("START");
 	JButton B_resetButton = new JButton("RESET");
 	JLabel timeLabel = new JLabel();
-	int seconds =0;
-	int minutes =15;
-	int hours =0;
+	int seconds = 0;
+	int minutes = 15;
+	int hours = 0;
 	boolean started = false;
 	String seconds_string = String.format("%02d", seconds);
 	String minutes_string = String.format("%02d", minutes);
@@ -83,9 +83,9 @@ public class set_time_black implements ActionListener{
 			}
 
 		}
-		if(e.getSource()==B_startButton) {
+		if(e.getSource()==B_resetButton) {
 			started=false;
-			B_startButton.setText("START");
+			B_resetButton.setText("START");
 			reset();
 		}
 
