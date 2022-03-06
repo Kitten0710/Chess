@@ -59,7 +59,7 @@ public class set_time implements ActionListener{
   frame.add(startButton);
   frame.add(resetButton);
   frame.add(timeLabel);
-  
+  frame.setTitle("White_clock");
   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   frame.setSize(420,420);
   frame.setLayout(null);
