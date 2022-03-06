@@ -23,7 +23,7 @@ public class Queen implements Spot{
 	}
 
 	@Override
-	public void move(int x, int y) {
+	public boolean move(int x, int y) {
 		boolean canMove = false;
 		if(x >= 0 && x < 8 && y >= 0 && y < 8) {
 			if((x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y) || (x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY())) {
@@ -38,14 +38,14 @@ public class Queen implements Spot{
 									if(p.getPiece().getX() == a.getX() + i && p.getPiece().getY() == a.getY() + i) {
 										canMove = false;
 										a.move(x, y, canMove);
-										return;
+										return canMove;
 									}
 								}
 								for(Spot p : Game.getBspots()) {
 									if(p.getPiece().getX() == a.getX() + i && p.getPiece().getY() == a.getY() + i) {
 										canMove = false;
 										a.move(x, y, canMove);
-										return;
+										return canMove;
 									}
 								}
 							}
@@ -56,14 +56,14 @@ public class Queen implements Spot{
 									if(p.getPiece().getX() == x + i && p.getPiece().getY() == y + i) {
 										canMove = false;
 										a.move(x, y, canMove);
-										return;
+										return canMove;
 									}
 								}
 								for(Spot p : Game.getBspots()) {
 									if(p.getPiece().getX() == x + i && p.getPiece().getY() == y + i) {
 										canMove = false;
 										a.move(x, y, canMove);
-										return;
+										return canMove;
 									}
 								}
 							}
@@ -76,14 +76,14 @@ public class Queen implements Spot{
 									if(p.getPiece().getX() == a.getX() + i && p.getPiece().getY() == a.getY() - i) {
 										canMove = false;
 										a.move(x, y, canMove);
-										return;
+										return canMove;
 									}
 								}
 								for(Spot p : Game.getBspots()) {
 									if(p.getPiece().getX() == a.getX() + i && p.getPiece().getY() == a.getY() - i) {
 										canMove = false;
 										a.move(x, y, canMove);
-										return;
+										return canMove;
 									}
 								}
 							}
@@ -94,20 +94,19 @@ public class Queen implements Spot{
 									if(p.getPiece().getX() == x + i && p.getPiece().getY() == y - i) {
 										canMove = false;
 										a.move(x, y, canMove);
-										return;
+										return canMove;
 									}
 								}
 								for(Spot p : Game.getBspots()) {
 									if(p.getPiece().getX() == x + i && p.getPiece().getY() == y - i) {
 										canMove = false;
 										a.move(x, y, canMove);
-										return;
+										return canMove;
 									}
 								}
 							}
 						}
 					}
-					a.move(x, y, canMove);
 				} else {	// di ngang, doc
 					int k1, k2;
 					if(x != a.getX() && y == a.getY()) {	// di ngang
@@ -123,14 +122,14 @@ public class Queen implements Spot{
 								if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
 									canMove = false;
 									a.move(x, y, canMove);
-									return;
+									return canMove;
 								}
 							}
 							for(Spot p : Game.getBspots()) {
 								if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
 									canMove = false;
 									a.move(x, y, canMove);
-									return;
+									return canMove;
 								}
 							}
 						}
@@ -147,14 +146,14 @@ public class Queen implements Spot{
 								if(p.getPiece().getX() == a.getX() && p.getPiece().getY() == i) {
 									canMove = false;
 									a.move(x, y, canMove);
-									return;
+									return canMove;
 								}
 							}
 							for(Spot p : Game.getBspots()) {
 								if(p.getPiece().getX() == a.getX() && p.getPiece().getY() == i) {
 									canMove = false;
 									a.move(x, y, canMove);
-									return;
+									return canMove;
 								}
 							}
 						}
@@ -162,7 +161,13 @@ public class Queen implements Spot{
 				}
 			}
 		}
+		if(canMove == true) {
+			if(Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
+				canMove = false;
+			}
+		}
 		a.move(x, y, canMove);
+		return canMove;
 	}
 
 	@Override

@@ -28,7 +28,7 @@ public class King implements Spot{
 		this.a = a;
 	}
 	@Override
-	public void move(int x, int y) {
+	public boolean move(int x, int y) {
 		boolean canMove = false; 
 		Spot b = Game.getSpot(x*64, y*64);
 		// nhập thành
@@ -48,14 +48,14 @@ public class King implements Spot{
 						if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
 							canMove = false;
 							a.move(x, y, canMove);
-							return;
+							return canMove;
 						}
 					}
 					for(Spot p : Game.getBspots()) {
 						if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
 							canMove = false;
 							a.move(x, y, canMove);
-							return;
+							return canMove;
 						}
 					}
 				}
@@ -77,7 +77,7 @@ public class King implements Spot{
 				rook.setCountTurn(1);
 				king.setCountTurn(1);
 				a.move(x, y, canMove);
-				return;
+				return canMove;
 			} else if(a.isColor() == true && r.getCountTurn() == 0) {	// quân trắng
 				int k1, k2;
 				if(x > a.getX()) {
@@ -92,14 +92,14 @@ public class King implements Spot{
 						if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
 							canMove = false;
 							a.move(x, y, canMove);
-							return;
+							return canMove;
 						}
 					}
 					for(Spot p : Game.getBspots()) {
 						if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
 							canMove = false;
 							a.move(x, y, canMove);
-							return;
+							return canMove;
 						}
 					}
 				}
@@ -121,7 +121,7 @@ public class King implements Spot{
 				rook.setCountTurn(1);
 				king.setCountTurn(1);
 				a.move(x, y, canMove);
-				return;
+				return canMove;
 			}
 		}
 
@@ -132,12 +132,18 @@ public class King implements Spot{
 				if(b.getPiece().isColor() == a.isColor()) {
 					canMove = false;
 					a.move(x, y, canMove);
-					return;
+					return canMove;
 				}
 			}	
 		}
+		if(canMove == true) {
+			if(Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
+				canMove = false;
+			}
+		}
 		a.move(x, y, canMove);
 		if(canMove == true) countTurn++;
+		return canMove;
 	}
 
 	@Override

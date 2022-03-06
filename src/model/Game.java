@@ -131,83 +131,84 @@ public class Game {
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
-				if(State == STATE.GAME) {
-					for(int y = 0; y < 8; y++)
+				//				if(State == STATE.GAME) {
+				for(int y = 0; y < 8; y++)
+				{
+					for(int x = 0; x < 8; x++)
 					{
-						for(int x = 0; x < 8; x++)
-						{
-							if(white) g.setColor(new Color(235,235, 208));
-							else g.setColor(new Color(119, 148, 85));
-							g.fillRect(x*64, y*64, 64, 64);
-							white =! white;
-						}
+						if(white) g.setColor(new Color(235,235, 208));
+						else g.setColor(new Color(119, 148, 85));
+						g.fillRect(x*64, y*64, 64, 64);
 						white =! white;
 					}
-					for(Spot p: wspots)
-					{
-						if(p.getPiece().isDead() == true) continue;
-						int id = 0;
-						if(p.getPiece().getName().equalsIgnoreCase("king")){
-							id = 0;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("queen")){
-							id = 1;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("bishop")){
-							id = 2;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("knight")){
-							id = 3;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("rook")){
-							id = 4;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("pawn")){
-							id = 5;
-						}
-						if(!p.getPiece().isColor()){
-							id += 6;
-						}
-						g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
-					}
-					for(Spot p: bspots)
-					{
-						if(p.getPiece().isDead() == true) continue;
-						int id = 0;
-						if(p.getPiece().getName().equalsIgnoreCase("king")){
-							id = 0;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("queen")){
-							id = 1;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("bishop")){
-							id = 2;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("knight")){
-							id = 3;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("rook")){
-							id = 4;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("pawn")){
-							id = 5;
-						}
-						if(!p.getPiece().isColor()){
-							id += 6;
-						}
-						g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
-					}
-				} else if(State == STATE.MENU) {
-					menu.render(g);
+					white =! white;
 				}
+				for(Spot p: wspots)
+				{
+					if(p.getPiece().isDead() == true) continue;
+					int id = 0;
+					if(p.getPiece().getName().equalsIgnoreCase("king")){
+						id = 0;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("queen")){
+						id = 1;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+						id = 2;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("knight")){
+						id = 3;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("rook")){
+						id = 4;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+						id = 5;
+					}
+					if(!p.getPiece().isColor()){
+						id += 6;
+					}
+					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
+				}
+				for(Spot p: bspots)
+				{
+					if(p.getPiece().isDead() == true) continue;
+					int id = 0;
+					if(p.getPiece().getName().equalsIgnoreCase("king")){
+						id = 0;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("queen")){
+						id = 1;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+						id = 2;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("knight")){
+						id = 3;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("rook")){
+						id = 4;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+						id = 5;
+					}
+					if(!p.getPiece().isColor()){
+						id += 6;
+					}
+					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
+				}
+				//				} else if(State == STATE.MENU) {
+				//					menu.render(g);
+				//				}
 			}
 		};
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				//				if(selectedSpot.getPiece().isColor() != isTurn) {
-				//					selectedSpot = null;
-				//				}
+				if(selectedSpot != null && selectedSpot.getPiece().isColor() != isTurn) {
+					selectedSpot = null;
+					return;
+				}
 				if(selectedSpot != null){
 					//System.out.println("da click " + e.getX() + " " + e.getY());
 					selectedSpot.getPiece().setPx((e.getX()-32));
@@ -228,16 +229,17 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				//System.out.println((getSpot(e.getX(), e.getY()).getPiece().isColor()?"white ":"black ")+getSpot(e.getX(), e.getY()).getPiece().getName());
 				if(getSpot(e.getX(), e.getY()) != null) selectedSpot = getSpot(e.getX(), e.getY());
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				//if(selectedSpot.getPiece().getName().equalsIgnoreCase("king")) selectedSpot = (King) selectedSpot;
 				if(selectedSpot != null) {
+					if(selectedSpot.move(e.getX()/64, e.getY()/64) == true) {
+						if(isTurn == true) isTurn = false;
+						else isTurn = true;
+					}
 					selectedSpot.move(e.getX()/64, e.getY()/64);
-					wspots.remove(brook);
 					Iterator<Spot> itr1 = wspots.iterator();
 					while(itr1.hasNext()) {
 						Spot temp = itr1.next();
@@ -305,11 +307,22 @@ public class Game {
 	}
 
 	public boolean isEnd() {
-		return false;
+		boolean bkinglive = false, wkinglive = false;
+		for(Spot p : bspots) {
+			if(p.getPiece().getName() == "king" && p.getPiece().isDead() == false) {
+				bkinglive = true;
+			}
+		}
+		for(Spot p : wspots) {
+			if(p.getPiece().getName() == "king" && p.getPiece().isDead() == false) {
+				wkinglive = true;
+			}
+		}	
+		return bkinglive && wkinglive;
 	}
 
 	public boolean isTurn() {
-		return false;
+		return isTurn;
 	}
 
 	public boolean isCheckMated() {
