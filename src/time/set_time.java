@@ -1,6 +1,9 @@
 package time;
+import java.sql.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.swing.*;
 public class set_time {
 	static int interval;
 	static Timer time;
@@ -10,6 +13,11 @@ public class set_time {
 	    return --interval;
 	}
 	public static void main(String[] args) {
+		JFrame jf = new JFrame();
+		JLabel jl = new JLabel();
+		jf.setSize(500, 500);
+		jf.add(jl);
+		jf.setVisible(true);
 		String seconds = "120";
 		int delay = 1000;
 	    int period = 1000;
@@ -18,9 +26,8 @@ public class set_time {
 	    System.out.println(seconds);
 	    time.scheduleAtFixedRate(new TimerTask() {
 	    	public void run() {
-	            System.out.println(setInterval());
+	            jl.setText(setInterval() +"");
 	        }
 	    }, delay, period);
 	}
 }
-
