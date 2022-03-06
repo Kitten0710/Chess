@@ -12,7 +12,7 @@ public class Pawn implements Spot{
 		super();
 		this.a = new Piece(x, y, color, isDead, name);
 	}
-	
+
 	public Piece getA() {
 		return a;
 	}
@@ -20,7 +20,7 @@ public class Pawn implements Spot{
 	public void setA(Piece a) {
 		this.a = a;
 	}
-	
+
 	public int getCountTurn() {
 		return countTurn;
 	}
@@ -39,22 +39,22 @@ public class Pawn implements Spot{
 		boolean canMove = false; 
 		if(a.isColor() == false) {	// nếu là tốt đen
 			//bắt tốt sang sông
-//			if(a.getY() == 4 && y == 5 && Math.abs(x - a.getX()) == 1
-//					&& Game.getSpot(x*64, (y - 1)*64) != null
-//					&& Game.getSpot(x*64, (y - 1)*64).getPiece().isColor() != a.isColor()) {	
-//				Spot p = Game.getSpot(x*64, (y - 1)*64);
-//				Pawn pawn = (Pawn) p;
-//				if(pawn.getCountTurn() == 1) {
-//					List<Spot> l = new ArrayList<Spot>(Game.getWspots());
-//					l.remove(p);
-//					Game.getSpot(x*64, (y - 1)*64).getPiece().kill();
-//					Game.setWspots(l);
-//					canMove = true;
-//					a.move(x, y, canMove);
-//					countTurn++;
-//					return;
-//				}
-//			}
+			//			if(a.getY() == 4 && y == 5 && Math.abs(x - a.getX()) == 1
+			//					&& Game.getSpot(x*64, (y - 1)*64) != null
+			//					&& Game.getSpot(x*64, (y - 1)*64).getPiece().isColor() != a.isColor()) {	
+			//				Spot p = Game.getSpot(x*64, (y - 1)*64);
+			//				Pawn pawn = (Pawn) p;
+			//				if(pawn.getCountTurn() == 1) {
+			//					List<Spot> l = new ArrayList<Spot>(Game.getWspots());
+			//					l.remove(p);
+			//					Game.getSpot(x*64, (y - 1)*64).getPiece().kill();
+			//					Game.setWspots(l);
+			//					canMove = true;
+			//					a.move(x, y, canMove);
+			//					countTurn++;
+			//					return;
+			//				}
+			//			}
 			if(Math.abs(x - a.getX()) == 1 && y == a.getY() + 1) {	// kiểm tra giết
 				for(Spot p : Game.getWspots()) {
 					if(p.getPiece().getX() == x && p.getPiece().getY() == y) {
@@ -89,7 +89,7 @@ public class Pawn implements Spot{
 					return;
 				} 
 			} else {	// các bước sau
-				if(a.getY() == 6 && y == 7) { // phong hậu
+				if(a.getY() == 6 && y == 7 && Game.getSpot(x*64, y*64) == null) { // phong hậu
 					canMove = true;
 					a.move(x, y, canMove);
 					a.kill();
@@ -127,10 +127,11 @@ public class Pawn implements Spot{
 							l.remove(this);
 							a.kill();
 							Game.setWspots(l);
+							countTurn++;
 							return;
 						}
+						canMove = true;
 						a.move(x, y, canMove);
-						countTurn++;
 						return;
 					}
 				}
@@ -150,7 +151,7 @@ public class Pawn implements Spot{
 				} 
 			} else {	// các bước sau
 				if(a.getY() - y == 1 && x == a.getX()) {	// có thể đi 1 bước
-					if(a.getY() == 1 && y == 0) { // phong hậu
+					if(a.getY() == 1 && y == 0 && Game.getSpot(x*64, y*64) == null) { // phong hậu
 						canMove = true;
 						a.move(x, y, canMove);
 						Queen b = new Queen(x, y, true, false, "queen");
@@ -184,7 +185,7 @@ public class Pawn implements Spot{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
 	public Piece getPiece() {
 		return this.a;
