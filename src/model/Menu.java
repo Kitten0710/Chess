@@ -1,16 +1,24 @@
 package model;
 
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Menu {
+import javax.imageio.ImageIO;
+
+
+public class Menu extends Canvas{
 			
 	public Rectangle playButton = new Rectangle(205, 150, 120, 50);
 	public Rectangle settingButton = new Rectangle(205, 250, 120, 50);
 	public Rectangle exitButton = new Rectangle(205, 350, 120, 50);
+	private BufferedImage background = null;
 	
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
@@ -20,6 +28,18 @@ public class Menu {
 		g.setColor(Color.BLUE);
 		g.setColor(new Color(57, 172, 115));
 		g.drawString("CHESS GAME", 150, 100);
+		/*BufferedImageLoader loader = new BufferedImageLoader();
+		try {
+			background = loader.loadImage("");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}*/
+		try {
+			background = ImageIO.read(new File("img\\bg2.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		g.drawImage(background, 0, 0, null);
 		
 		Font f1 = new Font("arial", Font.BOLD, 24);
 		g.setFont(f1);
@@ -30,14 +50,6 @@ public class Menu {
 		g.drawString("EXIT", exitButton.x + 36, exitButton.y + 34);
 		g2d.draw(exitButton);
 		
-		/*
-		try {
-			BufferedImage image = ImageIO.read(new File("D:\\Background & Theme\\Walpaper\\TXT\\txt.jpg"));
-			g.drawImage(image, 0, 0, this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
 	}
 
 }

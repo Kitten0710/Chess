@@ -33,7 +33,8 @@ public class Game {
 		MENU,
 		GAME
 	};
-	public static STATE state = STATE.MENU;
+	public static STATE State = STATE.MENU;
+	private Menu menu = new Menu();
 	
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -117,6 +118,7 @@ public class Game {
 				ind++;
 			}    
 		}
+		
 		JFrame frame = new JFrame();
 		frame.setBounds(30, 30, 512, 512);
 		frame.setUndecorated(true);
@@ -129,6 +131,8 @@ public class Game {
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
+				if(State == STATE.GAME) {
+					
 				for(int y = 0; y < 8; y++)
 				{
 					for(int x = 0; x < 8; x++)
@@ -193,6 +197,9 @@ public class Game {
 						id += 6;
 					}
 					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
+				}
+				} else if(State == STATE.MENU) {
+					menu.render(g);
 				}
 			}
 		};
