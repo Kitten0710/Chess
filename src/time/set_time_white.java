@@ -7,8 +7,8 @@ import javax.swing.*;
 public class set_time_white implements ActionListener{
  
  JFrame frame = new JFrame();
- JButton startButton = new JButton("START");
- JButton resetButton = new JButton("RESET");
+ JButton W_startButton = new JButton("START");
+ JButton W_resetButton = new JButton("RESET");
  JLabel timeLabel = new JLabel();
  int seconds =0;
  int minutes =15;
@@ -48,16 +48,16 @@ public class set_time_white implements ActionListener{
   timeLabel.setOpaque(true);
   timeLabel.setHorizontalAlignment(JTextField.CENTER);
   
-  startButton.setBounds(100,200,100,50);
-  startButton.setFocusable(false);
-  startButton.addActionListener(this);
+  W_startButton.setBounds(100,200,100,50);
+  W_startButton.setFocusable(false);
+  W_startButton.addActionListener(this);
   
-  resetButton.setBounds(200,200,100,50);
-  resetButton.setFocusable(false);
-  resetButton.addActionListener(this);
+  W_resetButton.setBounds(200,200,100,50);
+  W_resetButton.setFocusable(false);
+  W_resetButton.addActionListener(this);
   
-  frame.add(startButton);
-  frame.add(resetButton);
+  frame.add(W_startButton);
+  frame.add(W_resetButton);
   frame.add(timeLabel);
   frame.setTitle("White_clock");
   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,23 +69,23 @@ public class set_time_white implements ActionListener{
  @Override
  public void actionPerformed(ActionEvent e) {
   
-  if(e.getSource()==startButton) {
+  if(e.getSource()==W_startButton) {
    
    if(started==false) {
     started=true;
-    startButton.setText("STOP");
+    W_startButton.setText("STOP");
     start();
    }
    else {
     started=false;
-    startButton.setText("START");
+    W_startButton.setText("START");
     stop();
    }
    
   }
-  if(e.getSource()==resetButton) {
+  if(e.getSource()==W_resetButton) {
    started=false;
-   startButton.setText("START");
+   W_resetButton.setText("START");
    reset();
   }
   

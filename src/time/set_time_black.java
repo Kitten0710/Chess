@@ -7,8 +7,8 @@ import javax.swing.*;
 public class set_time_black implements ActionListener{
  
  JFrame frame = new JFrame();
- JButton startButton = new JButton("START");
- JButton resetButton = new JButton("RESET");
+ JButton B_startButton = new JButton("START");
+ JButton B_resetButton = new JButton("RESET");
  JLabel timeLabel = new JLabel();
  int seconds =0;
  int minutes =15;
@@ -48,18 +48,18 @@ public class set_time_black implements ActionListener{
   timeLabel.setOpaque(true);
   timeLabel.setHorizontalAlignment(JTextField.CENTER);
   
-  startButton.setBounds(100,200,100,50);
-  startButton.setFocusable(false);
-  startButton.addActionListener(this);
+  B_startButton.setBounds(100,200,100,50);
+  B_startButton.setFocusable(false);
+  B_startButton.addActionListener(this);
   
-  resetButton.setBounds(200,200,100,50);
-  resetButton.setFocusable(false);
-  resetButton.addActionListener(this);
+  B_resetButton.setBounds(200,200,100,50);
+  B_resetButton.setFocusable(false);
+  B_resetButton.addActionListener(this);
   
-  frame.add(startButton);
-  frame.add(resetButton);
+  frame.add(B_startButton);
+  frame.add(B_resetButton);
   frame.add(timeLabel);
-  frame.setTitle("Black_clock");
+  frame.setTitle("B_clock");
   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   frame.setSize(420,420);
   frame.setLayout(null);
@@ -69,23 +69,23 @@ public class set_time_black implements ActionListener{
  @Override
  public void actionPerformed(ActionEvent e) {
   
-  if(e.getSource()==startButton) {
+  if(e.getSource()==B_startButton) {
    
    if(started==false) {
     started=true;
-    startButton.setText("STOP");
+    B_startButton.setText("STOP");
     start();
    }
    else {
     started=false;
-    startButton.setText("START");
+    B_startButton.setText("START");
     stop();
    }
    
   }
-  if(e.getSource()==resetButton) {
+  if(e.getSource()==B_startButton) {
    started=false;
-   startButton.setText("START");
+   B_startButton.setText("START");
    reset();
   }
   
