@@ -87,7 +87,7 @@ public class Piece {
 	}
 	public boolean move(int xp, int yp, boolean canMove){
 		if(x == xp && y == yp) canMove = false;
-		if(canMove == true) System.out.println((color?"White ":"Black ") + name + ": " + (char)(x + 'A') + " " + y + " -> " + (char)(xp + 'A') + " " + yp);
+		if(canMove == true) System.out.println((color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp));
 		if(canMove == false) {
 			px = this.x*64;
 			py = this.y*64;
