@@ -162,7 +162,7 @@ public class Queen implements Spot{
 			}
 		}
 		if(canMove == true) {
-			if(Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
+			if(Game.getSpot(x*64, y*64) != null && Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
 				canMove = false;
 			}
 		}
