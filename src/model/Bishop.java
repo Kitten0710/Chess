@@ -124,9 +124,8 @@ public class Bishop implements Spot{
 	}
 
 	@Override
-	public boolean isCheckMove() {
+	public void CheckMove() {
 		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

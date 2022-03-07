@@ -147,9 +147,8 @@ public class King implements Spot{
 	}
 
 	@Override
-	public boolean isCheckMove() {
+	public void CheckMove() {
 		// TODO phải kiểm tra xem ô đó trống hay k
-		return false;
 	}
 	
 	@Override
