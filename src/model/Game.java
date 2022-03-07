@@ -130,7 +130,6 @@ public class Game {
 				ind++;
 			}    
 		}
-
 		JFrame frame = new JFrame();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
