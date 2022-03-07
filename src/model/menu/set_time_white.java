@@ -1,4 +1,4 @@
-package time;
+package model.menu;
 
 import java.awt.*;
 import java.awt.event.*;
