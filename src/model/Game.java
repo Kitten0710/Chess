@@ -49,6 +49,7 @@ public class Game {
 	private Menu menu = new Menu();
 
 	public Game() {
+
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
 		Knight bkinght  = new Knight(1, 0, false, false, "knight");
@@ -140,7 +141,7 @@ public class Game {
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
-				//				if(State == STATE.GAME) {
+				//						if(State == STATE.GAME) {
 				for(int y = 0; y < 8; y++)
 				{
 					for(int x = 0; x < 8; x++)
@@ -206,9 +207,9 @@ public class Game {
 					}
 					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
 				}
-				//				} else if(State == STATE.MENU) {
-				//					menu.render(g);
-				//				}
+				//						} else if(State == STATE.MENU) {
+				//							menu.render(g);
+				//						}
 			}
 		};
 		frame.addMouseMotionListener(new MouseMotionListener() {
@@ -282,10 +283,12 @@ public class Game {
 		JPanel Pn = new JPanel();
 		Pn.add(jl1);
 		frame.add(Pn, BorderLayout.EAST);
-		
+
 		frame.setDefaultCloseOperation(3);
 		frame.setVisible(true);
 	}
+
+
 	public static Spot getSpot(int x, int y){
 		int xp = x/88;
 		int yp = y/88;
