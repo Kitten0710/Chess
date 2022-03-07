@@ -27,7 +27,12 @@ public class MouseInput implements MouseListener{
 				Game.State = Game.STATE.GAME;
 			}
 		}
-		// Setting Button ??
+		// Setting Button 
+		if(x >= 205 && x <= 325) {
+			if(y >=  150 && y <= 200) {
+				System.exit(0);
+			}
+		}
 	}
 
 	@Override
