@@ -1,4 +1,4 @@
-package model;
+package model.menu;
 
 import java.awt.Canvas;
 import java.awt.Color;

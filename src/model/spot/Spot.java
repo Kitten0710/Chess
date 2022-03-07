@@ -1,4 +1,6 @@
-package model;
+package model.spot;
+
+import model.spot.piece.Piece;
 
 public interface Spot {
 

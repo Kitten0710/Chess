@@ -1,4 +1,6 @@
-package model;
+package model.spot.piece;
+
+import model.spot.Spot;
 
 public class Knight implements Spot{
 	private Piece a;

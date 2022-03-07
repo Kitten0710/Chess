@@ -1,40 +1,49 @@
-package model;
+package model.spot.piece;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class King implements Spot{
+import model.Game;
+import model.spot.Spot;
+
+public class Rook implements Spot{
 	private Piece a;
 	private int countTurn = 0;
-	public King(Piece a) {
+
+	public Rook(Piece a) {
 		super();
 		this.a = a;
 	}
 
-	public King(int x, int y, boolean color, boolean isDead, String name) {
+	public Rook(int x, int y, boolean color, boolean isDead, String name) {
 		super();
 		this.a = new Piece(x, y, color, isDead, name);
 	}
+
 	public int getCountTurn() {
 		return countTurn;
 	}
+
 	public void setCountTurn(int countTurn) {
 		this.countTurn = countTurn;
 	}
+
 	public Piece getA() {
 		return a;
 	}
+
 	public void setA(Piece a) {
 		this.a = a;
 	}
+
 	@Override
 	public boolean move(int x, int y) {
 		boolean canMove = false; 
 		Spot b = Game.getSpot(x*64, y*64);
 		// nhập thành
-		if(b != null && countTurn == 0 && b.getPiece().getName() == "rook") {
-			Rook r = (Rook) b;
-			if(a.isColor() == false && r.getCountTurn() == 0) {	// quân đen
+		if(b != null && countTurn == 0 && b.getPiece().getName() == "king") {
+			King k = (King) b;
+			if(a.isColor() == false && k.getCountTurn() == 0) {	// quân đen
 				int k1, k2;
 				if(x > a.getX()) {
 					k1 = a.getX();
@@ -60,10 +69,10 @@ public class King implements Spot{
 					}
 				}
 				a.kill();
-				r.getPiece().kill();
+				k.getPiece().kill();
 				Rook rook;
 				King king;
-				if(x == 7) {	// nhập thành cánh vua
+				if(a.getX() == 7) {	// nhập thành cánh vua
 					rook = new Rook(5, 0, false, false, "rook");
 					king = new King(6, 0, false, false, "king");
 				} else {	//Nếu nhập thành cánh Hậu, 
@@ -78,7 +87,7 @@ public class King implements Spot{
 				king.setCountTurn(1);
 				a.move(x, y, canMove);
 				return canMove;
-			} else if(a.isColor() == true && r.getCountTurn() == 0) {	// quân trắng
+			} else if(a.isColor() == true && k.getCountTurn() == 0) {	// quân trắng
 				int k1, k2;
 				if(x > a.getX()) {
 					k1 = a.getX();
@@ -104,10 +113,10 @@ public class King implements Spot{
 					}
 				}
 				a.kill();
-				r.getPiece().kill();
+				k.getPiece().kill();
 				Rook rook;
 				King king;
-				if(x == 7) {	// nhập thành cánh vua
+				if(a.getX() == 7) {	// nhập thành cánh vua
 					rook = new Rook(5, 7, true, false, "rook");
 					king = new King(6, 7, true, false, "king");
 				} else {	//Nếu nhập thành cánh Hậu, 
@@ -124,21 +133,67 @@ public class King implements Spot{
 				return canMove;
 			}
 		}
-
-		if(Math.abs(x - a.getX()) <= 1 && Math.abs(y - a.getY()) <= 1 
-				&& x >= 0 && x < 8 && y >= 0 && y < 8) {
+		
+		if((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY()) 
+				&& x >= 0 && x < 8 && y >= 0 && y < 8
+				&& (a.getX() == x && a.getY() != y) || (a.getX() != x && a.getY() == y)) {
 			canMove = true;
-			if(b != null) {
-				if(b.getPiece().isColor() == a.isColor()) {
+			if(Game.getSpot(x*64, y*64) != null) {
+				if(Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
 					canMove = false;
 					a.move(x, y, canMove);
 					return canMove;
 				}
-			}	
-		}
-		if(canMove == true) {
-			if(Game.getSpot(x*64, y*64) != null && Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
-				canMove = false;
+			}
+			int k1, k2;
+			if(x != a.getX()) {
+				if(x > a.getX()) {
+					k1 = a.getX();
+					k2 = x;
+				} else {
+					k1 = x;
+					k2 = a.getX();
+				}
+				for(int i = k1 + 1; i < k2; i++) {
+					for(Spot p : Game.getWspots()) {
+						if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
+							canMove = false;
+							a.move(x, y, canMove);
+							return canMove;
+						}
+					}
+					for(Spot p : Game.getBspots()) {
+						if(p.getPiece().getX() == i && p.getPiece().getY() == a.getY()) {
+							canMove = false;
+							a.move(x, y, canMove);
+							return canMove;
+						}
+					}
+				}
+			} else {
+				if(y > a.getY()) {
+					k1 = a.getY();
+					k2 = y;
+				} else {
+					k1 = y;
+					k2 = a.getY();
+				}
+				for(int i = k1 + 1; i < k2; i++) {
+					for(Spot p : Game.getWspots()) {
+						if(p.getPiece().getX() == a.getX() && p.getPiece().getY() == i) {
+							canMove = false;
+							a.move(x, y, canMove);
+							return canMove;
+						}
+					}
+					for(Spot p : Game.getBspots()) {
+						if(p.getPiece().getX() == a.getX() && p.getPiece().getY() == i) {
+							canMove = false;
+							a.move(x, y, canMove);
+							return canMove;
+						}
+					}
+				}
 			}
 		}
 		a.move(x, y, canMove);
@@ -148,11 +203,12 @@ public class King implements Spot{
 
 	@Override
 	public void CheckMove() {
-		// TODO phải kiểm tra xem ô đó trống hay k
+		// TODO Auto-generated method stub
 	}
-	
+
 	@Override
 	public Piece getPiece() {
 		return this.a;
 	}
+
 }

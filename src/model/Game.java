@@ -21,11 +21,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.board.Board;
+import model.menu.Menu;
+import model.spot.Spot;
+import model.spot.piece.Bishop;
+import model.spot.piece.King;
+import model.spot.piece.Knight;
+import model.spot.piece.Pawn;
+import model.spot.piece.Queen;
+import model.spot.piece.Rook;
+
 
 
 public class Game {
 	private Board board;
-	private Player []player = new Player[2];
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
 	private Spot selectedSpot = null;
@@ -301,16 +310,6 @@ public class Game {
 	}
 	public void setBoard(Board board) {
 		this.board = board;
-	}
-	public Player[] getPlayer() {
-		return player;
-	}
-	public void setPlayer(Player[] player) {
-		this.player = player;
-	}
-	@Override
-	public String toString() {
-		return "Game [board=" + board + ", player=" + Arrays.toString(player) + "]";
 	}
 
 	public boolean isEnd() {

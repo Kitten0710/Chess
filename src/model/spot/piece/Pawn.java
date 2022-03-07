@@ -1,7 +1,10 @@
-package model;
+package model.spot.piece;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Game;
+import model.spot.Spot;
 
 public class Pawn implements Spot{
 

@@ -1,8 +1,11 @@
-package model;
+package model.menu;
 
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import model.Game;
+import model.Game.STATE;
 
 public class MouseInput implements MouseListener{
 

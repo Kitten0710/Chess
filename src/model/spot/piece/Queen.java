@@ -1,4 +1,7 @@
-package model;
+package model.spot.piece;
+
+import model.Game;
+import model.spot.Spot;
 
 public class Queen implements Spot{
 

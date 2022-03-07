@@ -1,6 +1,8 @@
-package model;
+package model.spot.piece;
 
 import java.awt.Color;
+
+import model.Game;
 
 public class Piece {
 
