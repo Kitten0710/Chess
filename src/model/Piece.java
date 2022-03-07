@@ -16,8 +16,8 @@ public class Piece {
 		super();
 		this.x = x;
 		this.y = y;
-		this.px = x*64;
-		this.py = y*64;
+		this.px = x*88;
+		this.py = y*88;
 		this.color = color;
 		this.isDead = isDead;
 		this.name = name;
@@ -27,14 +27,14 @@ public class Piece {
 	}
 	public void setPx(int px) {
 		this.px = px;
-		//this.x = px/64;
+		//this.x = px/88;
 	}
 	public int getPy() {
 		return py;
 	}
 	public void setPy(int py) {
 		this.py = py;
-		//this.y = py/64;
+		//this.y = py/88;
 	}
 	public int getX() {
 		return x;
@@ -42,7 +42,7 @@ public class Piece {
 
 	public void setX(int x) {
 		this.x = x;
-		this.px = x*64;
+		this.px = x*88;
 	}
 
 	public int getY() {
@@ -51,7 +51,7 @@ public class Piece {
 
 	public void setY(int y) {
 		this.y = y;
-		this.py = y*64;
+		this.py = y*88;
 	}
 
 	public boolean isColor() {
@@ -93,23 +93,23 @@ public class Piece {
 			System.out.println((color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp));
 		}
 		if(canMove == false) {
-			px = this.x*64;
-			py = this.y*64;
+			px = this.x*88;
+			py = this.y*88;
 			return false;
 		}
-		if(Game.getSpot(xp*64, yp*64) != null){
-			if(Game.getSpot(xp*64, yp*64).getPiece().isColor() != color){
-				Game.getSpot(xp*64, yp*64).getPiece().kill();
+		if(Game.getSpot(xp*88, yp*88) != null){
+			if(Game.getSpot(xp*88, yp*88).getPiece().isColor() != color){
+				Game.getSpot(xp*88, yp*88).getPiece().kill();
 			}else{
-				px = this.x*64;
-				py = this.y*64;
+				px = this.x*88;
+				py = this.y*88;
 				return false;
 			}
 		}
 		this.x = xp;
 		this.y = yp;
-		this.px = xp*64;
-		this.py = yp*64;
+		this.px = xp*88;
+		this.py = yp*88;
 		if(canMove) return true;
 		else return false;
 	}
