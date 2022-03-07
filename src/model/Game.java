@@ -2,6 +2,7 @@ package model;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -266,6 +267,7 @@ public class Game {
 			public void mouseExited(MouseEvent e) {
 			}
 		});
+		pn.setPreferredSize( new Dimension(1400, 600) );
 		frame.add(pn, BorderLayout.CENTER);
 		JLabel jl1 = new JLabel();
 		jl1.setText("HELLO THUONG!");
