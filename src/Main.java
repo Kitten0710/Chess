@@ -1,6 +1,6 @@
 import model.Game;
-import time.set_time_black;
-import time.set_time_white;
+import model.menu.set_time_black;
+import model.menu.set_time_white;
 
 public class Main {
 
