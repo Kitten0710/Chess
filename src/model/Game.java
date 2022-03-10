@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 
 import model.board.Board;
 import model.menu.Menu;
+import model.menu.button.GameState;
 import model.spot.Spot;
 import model.spot.piece.Bishop;
 import model.spot.piece.King;
@@ -46,10 +47,9 @@ public class Game {
 		GAME
 	};
 	public static STATE State = STATE.MENU;
-	private Menu menu = new Menu();
+	private GameState menu = new GameState();
 
 	public Game() {
-
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
 		Knight bkinght  = new Knight(1, 0, false, false, "knight");
@@ -141,75 +141,75 @@ public class Game {
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
-				//						if(State == STATE.GAME) {
-				for(int y = 0; y < 8; y++)
-				{
-					for(int x = 0; x < 8; x++)
+				//if(State == STATE.GAME) {
+					for(int y = 0; y < 8; y++)
 					{
-						if(white) g.setColor(new Color(235,235, 208));
-						else g.setColor(new Color(119, 148, 85));
-						g.fillRect(x*88, y*88, 88, 88);
+						for(int x = 0; x < 8; x++)
+						{
+							if(white) g.setColor(new Color(235,235, 208));
+							else g.setColor(new Color(119, 148, 85));
+							g.fillRect(x*88, y*88, 88, 88);
+							white =! white;
+						}
 						white =! white;
 					}
-					white =! white;
-				}
-				for(Spot p: wspots)
-				{
-					if(p.getPiece().isDead() == true) continue;
-					int id = 0;
-					if(p.getPiece().getName().equalsIgnoreCase("king")){
-						id = 0;
+					for(Spot p: wspots)
+					{
+						if(p.getPiece().isDead() == true) continue;
+						int id = 0;
+						if(p.getPiece().getName().equalsIgnoreCase("king")){
+							id = 0;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("queen")){
+							id = 1;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+							id = 2;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("knight")){
+							id = 3;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("rook")){
+							id = 4;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+							id = 5;
+						}
+						if(!p.getPiece().isColor()){
+							id += 6;
+						}
+						g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
 					}
-					if(p.getPiece().getName().equalsIgnoreCase("queen")){
-						id = 1;
+					for(Spot p: bspots)
+					{
+						if(p.getPiece().isDead() == true) continue;
+						int id = 0;
+						if(p.getPiece().getName().equalsIgnoreCase("king")){
+							id = 0;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("queen")){
+							id = 1;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+							id = 2;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("knight")){
+							id = 3;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("rook")){
+							id = 4;
+						}
+						if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+							id = 5;
+						}
+						if(!p.getPiece().isColor()){
+							id += 6;
+						}
+						g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
 					}
-					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
-						id = 2;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("knight")){
-						id = 3;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("rook")){
-						id = 4;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
-						id = 5;
-					}
-					if(!p.getPiece().isColor()){
-						id += 6;
-					}
-					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
-				}
-				for(Spot p: bspots)
-				{
-					if(p.getPiece().isDead() == true) continue;
-					int id = 0;
-					if(p.getPiece().getName().equalsIgnoreCase("king")){
-						id = 0;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("queen")){
-						id = 1;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
-						id = 2;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("knight")){
-						id = 3;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("rook")){
-						id = 4;
-					}
-					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
-						id = 5;
-					}
-					if(!p.getPiece().isColor()){
-						id += 6;
-					}
-					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
-				}
-				//						} else if(State == STATE.MENU) {
-				//							menu.render(g);
-				//						}
+				//} else if(State == STATE.MENU) {
+				//	menu.render(g);
+				//}
 			}
 		};
 		frame.addMouseMotionListener(new MouseMotionListener() {
