@@ -3,6 +3,7 @@ package model;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -127,15 +128,16 @@ public class Game {
 		int ind=0;
 		for(int y = 0; y < 400; y += 200){
 			for(int x = 0; x < 1200; x += 200){
-				imgs[ind] = all.getSubimage(x, y, 200, 200).getScaledInstance(88, 88, BufferedImage.SCALE_SMOOTH);
+				imgs[ind] = all.getSubimage(x, y, 200, 200).getScaledInstance(72, 72, BufferedImage.SCALE_SMOOTH);
 				ind++;
 			}    
 		}
 		JFrame frame = new JFrame();
-		frame.setLocationRelativeTo(null);
+		//frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setUndecorated(false);
+		//frame.setUndecorated(true);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frame.setBounds(100, 100, 576, 576);
 		frame.setTitle("Chess");
 		JPanel pn = new JPanel() {
 			@Override
@@ -148,7 +150,7 @@ public class Game {
 						{
 							if(white) g.setColor(new Color(235,235, 208));
 							else g.setColor(new Color(119, 148, 85));
-							g.fillRect(x*88, y*88, 88, 88);
+							g.fillRect(x*72, y*72, 72, 72);
 							white =! white;
 						}
 						white =! white;
@@ -220,8 +222,8 @@ public class Game {
 					return;
 				}
 				if(selectedSpot != null){
-					selectedSpot.getPiece().setPx((e.getX()-50));
-					selectedSpot.getPiece().setPy((e.getY()-70));
+					selectedSpot.getPiece().setPx((e.getX() - 8));
+					selectedSpot.getPiece().setPy((e.getY() - 31));
 					frame.repaint();
 				}
 			}
@@ -238,17 +240,18 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if(getSpot(e.getX(), e.getY()) != null) selectedSpot = getSpot(e.getX()-10, e.getY()-30);
+				System.out.println(e.getX() + " " + e.getY());
+				if(getSpot(e.getX() - 8, e.getY() - 31) != null) selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(selectedSpot != null) {
-					if(selectedSpot.move((e.getX() - 10)/88, (e.getY() - 30)/88) == true) {
+					if(selectedSpot.move((e.getX())/72, (e.getY())/72) == true) {
 						if(isTurn == true) isTurn = false;
 						else isTurn = true;
 					}
-					selectedSpot.move((e.getX() - 10)/88, (e.getY() - 30)/88);
+					selectedSpot.move((e.getX())/72, (e.getY())/72);
 					Iterator<Spot> itr1 = wspots.iterator();
 					while(itr1.hasNext()) {
 						Spot temp = itr1.next();
@@ -266,8 +269,6 @@ public class Game {
 					frame.repaint();
 				}
 			}
-
-
 			@Override
 			public void mouseEntered(MouseEvent e) {
 			}
@@ -276,29 +277,25 @@ public class Game {
 			public void mouseExited(MouseEvent e) {
 			}
 		});
-		pn.setPreferredSize( new Dimension(1400, 600) );
-		frame.add(pn, BorderLayout.CENTER);
-		JLabel jl1 = new JLabel();
-		jl1.setText("HELLO THUONG!");
-		JPanel Pn = new JPanel();
-		Pn.add(jl1);
-		frame.add(Pn, BorderLayout.EAST);
-
+		//pn.setPreferredSize(new Dimension(1000, 600));
+		pn.setBackground(Color.red);
+		pn.setBounds(0, 0, 250, 250);
+		pn.setLayout(new FlowLayout());
+		frame.add(pn);
 		frame.setDefaultCloseOperation(3);
 		frame.setVisible(true);
 	}
-
-
+	
 	public static Spot getSpot(int x, int y){
-		int xp = x/88;
-		int yp = y/88;
+		int xp = x/72;
+		int yp = y/72;
 		for(Spot p: bspots){
 			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
 				return p;
 			}
 		}
 		for(Spot p: wspots){
-			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
+			if(xp == p.getPiece().getX()&& yp== p.getPiece().getY()){
 				return p;
 			}
 		}
