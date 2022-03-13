@@ -142,8 +142,8 @@ public class Game {
 		//frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setUndecorated(true);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//frame.setBounds(100, 100, 576, 576);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setBounds(100, 100, 1000, 1000);
 		frame.setTitle("Chess");
 		JPanel pn = new JPanel() {
 			@Override
@@ -228,8 +228,8 @@ public class Game {
 					return;
 				}
 				if(selectedSpot != null){
-					selectedSpot.getPiece().setPx((e.getX()));
-					selectedSpot.getPiece().setPy((e.getY()));
+					selectedSpot.getPiece().setPx((e.getX() - 140));
+					selectedSpot.getPiece().setPy((e.getY() - 110));
 					frame.repaint();
 				}
 			}
@@ -247,17 +247,20 @@ public class Game {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println(e.getX() + " " + e.getY());
-				if(getSpot(e.getX(), e.getY()) != null) selectedSpot = getSpot(e.getX(), e.getY());
+				if(getSpot(e.getX() - 110, e.getY() - 80) != null) {
+					selectedSpot = getSpot(e.getX() - 110, e.getY() - 80);
+					System.out.println(selectedSpot.getPiece().getName());
+				}
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(selectedSpot != null) {
-					if(selectedSpot.move((e.getX())/72, (e.getY())/72) == true) {
+					if(selectedSpot.move((e.getX() - 112)/72, (e.getY() - 82)/72) == true) {
 						if(isTurn == true) isTurn = false;
 						else isTurn = true;
 					}
-					selectedSpot.move((e.getX())/72, (e.getY())/72);
+					selectedSpot.move((e.getX() - 112)/72, (e.getY() - 82)/72);
 					Iterator<Spot> itr1 = wspots.iterator();
 					while(itr1.hasNext()) {
 						Spot temp = itr1.next();
@@ -365,7 +368,7 @@ public class Game {
 		//		resetButton.addActionListener(this);
 
 
-		pn.setBounds(0, 0, 704, 704);
+		pn.setBounds(100, 50, 704, 704);
 		frame.add(pn);
 		frame.setLayout(null);
 		frame.setVisible(true);
