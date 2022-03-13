@@ -138,6 +138,8 @@ public class Game {
 		frame.setUndecorated(false);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setTitle("Chess");
+		JLabel jb2 = new JLabel();
+		jb2.setText("ok");
 		JPanel pn = new JPanel() {
 			@Override
 			public void paint(Graphics g) {
@@ -277,15 +279,11 @@ public class Game {
 			public void mouseExited(MouseEvent e) {
 			}
 		});
-		pn.setPreferredSize( new Dimension(1400, 600) );
-		frame.add(pn, BorderLayout.CENTER);
-		JLabel jl1 = new JLabel();
-		jl1.setText("HELLO THUONG!");
-		JPanel Pn = new JPanel();
-		Pn.add(jl1);
-		frame.add(Pn, BorderLayout.EAST);
-
-		frame.setDefaultCloseOperation(3);
+		
+	
+		pn.setBounds(100, 40, 704, 704);
+		frame.add(pn);
+		frame.setLayout(null);
 		frame.setVisible(true);
 	}
 
