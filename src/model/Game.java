@@ -3,7 +3,6 @@ package model;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -134,16 +133,16 @@ public class Game {
 		int ind=0;
 		for(int y = 0; y < 400; y += 200){
 			for(int x = 0; x < 1200; x += 200){
-				imgs[ind] = all.getSubimage(x, y, 200, 200).getScaledInstance(72, 72, BufferedImage.SCALE_SMOOTH);
+				imgs[ind] = all.getSubimage(x, y, 200, 200).getScaledInstance(88, 88, BufferedImage.SCALE_SMOOTH);
 				ind++;
 			}    
 		}
+
 		JFrame frame = new JFrame();
-		//frame.setLocationRelativeTo(null);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setUndecorated(true);
+		frame.setUndecorated(false);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//frame.setBounds(100, 100, 576, 576);
 		frame.setTitle("Chess");
 		JPanel pn = new JPanel() {
 			@Override
@@ -156,7 +155,7 @@ public class Game {
 					{
 						if(white) g.setColor(new Color(235,235, 208));
 						else g.setColor(new Color(119, 148, 85));
-						g.fillRect(x*72, y*72, 72, 72);
+						g.fillRect(x*88, y*88, 88, 88);
 						white =! white;
 					}
 					white =! white;
@@ -228,8 +227,8 @@ public class Game {
 					return;
 				}
 				if(selectedSpot != null){
-					selectedSpot.getPiece().setPx((e.getX() - 8));
-					selectedSpot.getPiece().setPy((e.getY() - 31));
+					selectedSpot.getPiece().setPx((e.getX()-50));
+					selectedSpot.getPiece().setPy((e.getY()-70));
 					frame.repaint();
 				}
 			}
@@ -246,18 +245,17 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println(e.getX() + " " + e.getY());
-				if(getSpot(e.getX() - 8, e.getY() - 31) != null) selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
+				if(getSpot(e.getX(), e.getY()) != null) selectedSpot = getSpot(e.getX()-10, e.getY()-30);
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(selectedSpot != null) {
-					if(selectedSpot.move((e.getX())/72, (e.getY())/72) == true) {
+					if(selectedSpot.move((e.getX() - 10)/88, (e.getY() - 30)/88) == true) {
 						if(isTurn == true) isTurn = false;
 						else isTurn = true;
 					}
-					selectedSpot.move((e.getX())/72, (e.getY())/72);
+					selectedSpot.move((e.getX() - 10)/88, (e.getY() - 30)/88);
 					Iterator<Spot> itr1 = wspots.iterator();
 					while(itr1.hasNext()) {
 						Spot temp = itr1.next();
@@ -275,6 +273,8 @@ public class Game {
 					frame.repaint();
 				}
 			}
+
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 			}
@@ -283,105 +283,100 @@ public class Game {
 			public void mouseExited(MouseEvent e) {
 			}
 		});
-		//pn.setPreferredSize(new Dimension(1000, 600));
-		pn.setBackground(Color.red);
-		pn.setBounds(0, 0, 250, 250);
-		pn.setLayout(new FlowLayout());
-		frame.add(pn);
-		frame.setDefaultCloseOperation(3);
-		//		JButton startButton = new JButton("START");
-		//		JButton resetButton = new JButton("RESET");
-		//		JLabel timeLabel = new JLabel();
-		//		JLabel timeLabel2 = new JLabel();
-		//		JPanel pn2 = new JPanel();
-		//		int seconds =0;
-		//		int minutes =1;
-		//		int hours =0;
-		//		boolean started = true;
-		//		String seconds_string = String.format("%02d", seconds);
-		//		String minutes_string = String.format("%02d", minutes);
-		//		String hours_string = String.format("%02d", hours);
-		//
-		//		Timer timer = new Timer(1000, new ActionListener() {
-		//
-		//			public void actionPerformed(ActionEvent e) {
-		//
-		//				if(seconds>0) {
-		//					seconds = seconds-1;
-		//				}
-		//				else if(seconds==0 && minutes>0) {
-		//					minutes = minutes - 1;
-		//					seconds = 59;
-		//				}
-		//				seconds_string = String.format("%02d", seconds);
-		//				minutes_string = String.format("%02d", minutes);
-		//				hours_string = String.format("%02d", hours);
-		//				timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
-		//
-		//			}
-		//
-		//		});
-		//		Timer timer2 = new Timer(1000, new ActionListener() {
-		//
-		//			public void actionPerformed(ActionEvent e) {
-		//
-		//				if(seconds>0) {
-		//					seconds = seconds-1;
-		//				}
-		//				else if(seconds==0 && minutes>0) {
-		//					minutes = minutes - 1;
-		//					seconds = 59;
-		//				}
-		//				seconds_string = String.format("%02d", seconds);
-		//				minutes_string = String.format("%02d", minutes);
-		//				hours_string = String.format("%02d", hours);
-		//				timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
-		//
-		//			}
-		//
-		//		});
-		//		pn2.add(timeLabel);
-		//		pn2.add(timeLabel2);
-		//		pn2.add(startButton);
-		//		pn2.add(resetButton);
-		//		pn2.setLayout(null);
-		//		pn2.setBackground(Color.red);
-		//		pn2.setBounds(10, 10, 500, 500);
-		//		timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
-		//		timeLabel.setBounds(100,100,200,100);
-		//		timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
-		//		timeLabel.setBorder(BorderFactory.createBevelBorder(1));
-		//		timeLabel.setOpaque(true);
-		//		timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
-		//		timeLabel2.setBounds(100,350,200,100);
-		//		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,35));
-		//		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
-		//		timeLabel2.setOpaque(true);
-		//		startButton.setBounds(200,200,100,50);
-		//		startButton.setFocusable(false);
-		//		startButton.addActionListener(this);
-		//
-		//		resetButton.setBounds(200,300,100,50);
-		//		resetButton.setFocusable(false);
-		//		resetButton.addActionListener(this);
+//		JButton startButton = new JButton("START");
+//		JButton resetButton = new JButton("RESET");
+//		JLabel timeLabel = new JLabel();
+//		JLabel timeLabel2 = new JLabel();
+//		JPanel pn2 = new JPanel();
+//		int seconds =0;
+//		int minutes =1;
+//		int hours =0;
+//		boolean started = true;
+//		String seconds_string = String.format("%02d", seconds);
+//		String minutes_string = String.format("%02d", minutes);
+//		String hours_string = String.format("%02d", hours);
+//
+//		Timer timer = new Timer(1000, new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//
+//				if(seconds>0) {
+//					seconds = seconds-1;
+//				}
+//				else if(seconds==0 && minutes>0) {
+//					minutes = minutes - 1;
+//					seconds = 59;
+//				}
+//				seconds_string = String.format("%02d", seconds);
+//				minutes_string = String.format("%02d", minutes);
+//				hours_string = String.format("%02d", hours);
+//				timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//
+//			}
+//
+//		});
+//		Timer timer2 = new Timer(1000, new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//
+//				if(seconds>0) {
+//					seconds = seconds-1;
+//				}
+//				else if(seconds==0 && minutes>0) {
+//					minutes = minutes - 1;
+//					seconds = 59;
+//				}
+//				seconds_string = String.format("%02d", seconds);
+//				minutes_string = String.format("%02d", minutes);
+//				hours_string = String.format("%02d", hours);
+//				timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//
+//			}
+//
+//		});
+//		pn2.add(timeLabel);
+//		pn2.add(timeLabel2);
+//		pn2.add(startButton);
+//		pn2.add(resetButton);
+//		pn2.setLayout(null);
+//		pn2.setBackground(Color.red);
+//		pn2.setBounds(10, 10, 500, 500);
+//		timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//		timeLabel.setBounds(100,100,200,100);
+//		timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
+//		timeLabel.setBorder(BorderFactory.createBevelBorder(1));
+//		timeLabel.setOpaque(true);
+//		timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//		timeLabel2.setBounds(100,350,200,100);
+//		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,35));
+//		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
+//		timeLabel2.setOpaque(true);
+//		startButton.setBounds(200,200,100,50);
+//		startButton.setFocusable(false);
+//		startButton.addActionListener(this);
+//
+//		resetButton.setBounds(200,300,100,50);
+//		resetButton.setFocusable(false);
+//		resetButton.addActionListener(this);
+//
+//
+//		pn.setBounds(100, 40, 704, 704);
+//		frame.add(pn);
+//		frame.setLayout(null);
+//		frame.setVisible(true);
+}
 
-
-		pn.setBounds(100, 40, 704, 704);
-		frame.add(pn);
-		frame.setLayout(null);
-		frame.setVisible(true);
-	}
 
 	public static Spot getSpot(int x, int y){
-		int xp = x/72;
-		int yp = y/72;
+		int xp = x/88;
+		int yp = y/88;
 		for(Spot p: bspots){
 			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
 				return p;
 			}
 		}
 		for(Spot p: wspots){
-			if(xp == p.getPiece().getX()&& yp== p.getPiece().getY()){
+			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
 				return p;
 			}
 		}
