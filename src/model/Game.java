@@ -228,8 +228,8 @@ public class Game {
 					return;
 				}
 				if(selectedSpot != null){
-					selectedSpot.getPiece().setPx((e.getX() - 8));
-					selectedSpot.getPiece().setPy((e.getY() - 31));
+					selectedSpot.getPiece().setPx((e.getX()));
+					selectedSpot.getPiece().setPy((e.getY()));
 					frame.repaint();
 				}
 			}
@@ -247,7 +247,7 @@ public class Game {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println(e.getX() + " " + e.getY());
-				if(getSpot(e.getX() - 8, e.getY() - 31) != null) selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
+				if(getSpot(e.getX(), e.getY()) != null) selectedSpot = getSpot(e.getX(), e.getY());
 			}
 
 			@Override
@@ -285,7 +285,6 @@ public class Game {
 		});
 		//pn.setPreferredSize(new Dimension(1000, 600));
 		pn.setBackground(Color.red);
-		pn.setBounds(0, 0, 250, 250);
 		pn.setLayout(new FlowLayout());
 		frame.add(pn);
 		frame.setDefaultCloseOperation(3);
@@ -366,7 +365,7 @@ public class Game {
 		//		resetButton.addActionListener(this);
 
 
-		pn.setBounds(100, 40, 704, 704);
+		pn.setBounds(0, 0, 704, 704);
 		frame.add(pn);
 		frame.setLayout(null);
 		frame.setVisible(true);
