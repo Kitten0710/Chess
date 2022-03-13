@@ -158,10 +158,6 @@ public class Game {
 						else g.setColor(new Color(119, 148, 85));
 						g.fillRect(x*72, y*72, 72, 72);
 						white =! white;
-						if(white) g.setColor(new Color(235,235, 208));
-						else g.setColor(new Color(119, 148, 85));
-						g.fillRect(x*88, y*88, 88, 88);
-						white =! white;
 					}
 					white =! white;
 				}
