@@ -3,8 +3,11 @@ package model;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -17,9 +20,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import model.board.Board;
 import model.menu.Menu;
@@ -138,78 +144,76 @@ public class Game {
 		frame.setUndecorated(false);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setTitle("Chess");
-		JLabel jb2 = new JLabel();
-		jb2.setText("ok");
 		JPanel pn = new JPanel() {
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
 				//if(State == STATE.GAME) {
-					for(int y = 0; y < 8; y++)
+				for(int y = 0; y < 8; y++)
+				{
+					for(int x = 0; x < 8; x++)
 					{
-						for(int x = 0; x < 8; x++)
-						{
-							if(white) g.setColor(new Color(235,235, 208));
-							else g.setColor(new Color(119, 148, 85));
-							g.fillRect(x*88, y*88, 88, 88);
-							white =! white;
-						}
+						if(white) g.setColor(new Color(235,235, 208));
+						else g.setColor(new Color(119, 148, 85));
+						g.fillRect(x*88, y*88, 88, 88);
 						white =! white;
 					}
-					for(Spot p: wspots)
-					{
-						if(p.getPiece().isDead() == true) continue;
-						int id = 0;
-						if(p.getPiece().getName().equalsIgnoreCase("king")){
-							id = 0;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("queen")){
-							id = 1;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("bishop")){
-							id = 2;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("knight")){
-							id = 3;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("rook")){
-							id = 4;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("pawn")){
-							id = 5;
-						}
-						if(!p.getPiece().isColor()){
-							id += 6;
-						}
-						g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
+					white =! white;
+				}
+				for(Spot p: wspots)
+				{
+					if(p.getPiece().isDead() == true) continue;
+					int id = 0;
+					if(p.getPiece().getName().equalsIgnoreCase("king")){
+						id = 0;
 					}
-					for(Spot p: bspots)
-					{
-						if(p.getPiece().isDead() == true) continue;
-						int id = 0;
-						if(p.getPiece().getName().equalsIgnoreCase("king")){
-							id = 0;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("queen")){
-							id = 1;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("bishop")){
-							id = 2;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("knight")){
-							id = 3;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("rook")){
-							id = 4;
-						}
-						if(p.getPiece().getName().equalsIgnoreCase("pawn")){
-							id = 5;
-						}
-						if(!p.getPiece().isColor()){
-							id += 6;
-						}
-						g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
+					if(p.getPiece().getName().equalsIgnoreCase("queen")){
+						id = 1;
 					}
+					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+						id = 2;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("knight")){
+						id = 3;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("rook")){
+						id = 4;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+						id = 5;
+					}
+					if(!p.getPiece().isColor()){
+						id += 6;
+					}
+					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
+				}
+				for(Spot p: bspots)
+				{
+					if(p.getPiece().isDead() == true) continue;
+					int id = 0;
+					if(p.getPiece().getName().equalsIgnoreCase("king")){
+						id = 0;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("queen")){
+						id = 1;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("bishop")){
+						id = 2;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("knight")){
+						id = 3;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("rook")){
+						id = 4;
+					}
+					if(p.getPiece().getName().equalsIgnoreCase("pawn")){
+						id = 5;
+					}
+					if(!p.getPiece().isColor()){
+						id += 6;
+					}
+					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
+				}
 				//} else if(State == STATE.MENU) {
 				//	menu.render(g);
 				//}
@@ -279,8 +283,83 @@ public class Game {
 			public void mouseExited(MouseEvent e) {
 			}
 		});
-		
-	
+//		JButton startButton = new JButton("START");
+//		JButton resetButton = new JButton("RESET");
+//		JLabel timeLabel = new JLabel();
+//		JLabel timeLabel2 = new JLabel();
+//		JPanel pn2 = new JPanel();
+//		int seconds =0;
+//		int minutes =1;
+//		int hours =0;
+//		boolean started = true;
+//		String seconds_string = String.format("%02d", seconds);
+//		String minutes_string = String.format("%02d", minutes);
+//		String hours_string = String.format("%02d", hours);
+//
+//		Timer timer = new Timer(1000, new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//
+//				if(seconds>0) {
+//					seconds = seconds-1;
+//				}
+//				else if(seconds==0 && minutes>0) {
+//					minutes = minutes - 1;
+//					seconds = 59;
+//				}
+//				seconds_string = String.format("%02d", seconds);
+//				minutes_string = String.format("%02d", minutes);
+//				hours_string = String.format("%02d", hours);
+//				timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//
+//			}
+//
+//		});
+//		Timer timer2 = new Timer(1000, new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//
+//				if(seconds>0) {
+//					seconds = seconds-1;
+//				}
+//				else if(seconds==0 && minutes>0) {
+//					minutes = minutes - 1;
+//					seconds = 59;
+//				}
+//				seconds_string = String.format("%02d", seconds);
+//				minutes_string = String.format("%02d", minutes);
+//				hours_string = String.format("%02d", hours);
+//				timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//
+//			}
+//
+//		});
+//		pn2.add(timeLabel);
+//		pn2.add(timeLabel2);
+//		pn2.add(startButton);
+//		pn2.add(resetButton);
+//		pn2.setLayout(null);
+//		pn2.setBackground(Color.red);
+//		pn2.setBounds(10, 10, 500, 500);
+//		timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//		timeLabel.setBounds(100,100,200,100);
+//		timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
+//		timeLabel.setBorder(BorderFactory.createBevelBorder(1));
+//		timeLabel.setOpaque(true);
+//		timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
+//		timeLabel2.setBounds(100,350,200,100);
+//		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,35));
+//		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
+//		timeLabel2.setOpaque(true);
+//		startButton.setBounds(200,200,100,50);
+//		startButton.setFocusable(false);
+//		startButton.addActionListener(this);
+//
+//		resetButton.setBounds(200,300,100,50);
+//		resetButton.setFocusable(false);
+//		resetButton.addActionListener(this);
+
+
 		pn.setBounds(100, 40, 704, 704);
 		frame.add(pn);
 		frame.setLayout(null);
