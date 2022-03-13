@@ -3,11 +3,8 @@ package model;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-<<<<<<< HEAD
 import java.awt.FlowLayout;
-=======
 import java.awt.Font;
->>>>>>> branch 'master' of https://github.com/Kitten0710/Chess.git
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -157,19 +154,13 @@ public class Game {
 				{
 					for(int x = 0; x < 8; x++)
 					{
-<<<<<<< HEAD
-						for(int x = 0; x < 8; x++)
-						{
-							if(white) g.setColor(new Color(235,235, 208));
-							else g.setColor(new Color(119, 148, 85));
-							g.fillRect(x*72, y*72, 72, 72);
-							white =! white;
-						}
-=======
+						if(white) g.setColor(new Color(235,235, 208));
+						else g.setColor(new Color(119, 148, 85));
+						g.fillRect(x*72, y*72, 72, 72);
+						white =! white;
 						if(white) g.setColor(new Color(235,235, 208));
 						else g.setColor(new Color(119, 148, 85));
 						g.fillRect(x*88, y*88, 88, 88);
->>>>>>> branch 'master' of https://github.com/Kitten0710/Chess.git
 						white =! white;
 					}
 					white =! white;
@@ -296,98 +287,95 @@ public class Game {
 			public void mouseExited(MouseEvent e) {
 			}
 		});
-<<<<<<< HEAD
 		//pn.setPreferredSize(new Dimension(1000, 600));
 		pn.setBackground(Color.red);
 		pn.setBounds(0, 0, 250, 250);
 		pn.setLayout(new FlowLayout());
 		frame.add(pn);
 		frame.setDefaultCloseOperation(3);
-=======
-//		JButton startButton = new JButton("START");
-//		JButton resetButton = new JButton("RESET");
-//		JLabel timeLabel = new JLabel();
-//		JLabel timeLabel2 = new JLabel();
-//		JPanel pn2 = new JPanel();
-//		int seconds =0;
-//		int minutes =1;
-//		int hours =0;
-//		boolean started = true;
-//		String seconds_string = String.format("%02d", seconds);
-//		String minutes_string = String.format("%02d", minutes);
-//		String hours_string = String.format("%02d", hours);
-//
-//		Timer timer = new Timer(1000, new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent e) {
-//
-//				if(seconds>0) {
-//					seconds = seconds-1;
-//				}
-//				else if(seconds==0 && minutes>0) {
-//					minutes = minutes - 1;
-//					seconds = 59;
-//				}
-//				seconds_string = String.format("%02d", seconds);
-//				minutes_string = String.format("%02d", minutes);
-//				hours_string = String.format("%02d", hours);
-//				timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
-//
-//			}
-//
-//		});
-//		Timer timer2 = new Timer(1000, new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent e) {
-//
-//				if(seconds>0) {
-//					seconds = seconds-1;
-//				}
-//				else if(seconds==0 && minutes>0) {
-//					minutes = minutes - 1;
-//					seconds = 59;
-//				}
-//				seconds_string = String.format("%02d", seconds);
-//				minutes_string = String.format("%02d", minutes);
-//				hours_string = String.format("%02d", hours);
-//				timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
-//
-//			}
-//
-//		});
-//		pn2.add(timeLabel);
-//		pn2.add(timeLabel2);
-//		pn2.add(startButton);
-//		pn2.add(resetButton);
-//		pn2.setLayout(null);
-//		pn2.setBackground(Color.red);
-//		pn2.setBounds(10, 10, 500, 500);
-//		timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
-//		timeLabel.setBounds(100,100,200,100);
-//		timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
-//		timeLabel.setBorder(BorderFactory.createBevelBorder(1));
-//		timeLabel.setOpaque(true);
-//		timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
-//		timeLabel2.setBounds(100,350,200,100);
-//		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,35));
-//		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
-//		timeLabel2.setOpaque(true);
-//		startButton.setBounds(200,200,100,50);
-//		startButton.setFocusable(false);
-//		startButton.addActionListener(this);
-//
-//		resetButton.setBounds(200,300,100,50);
-//		resetButton.setFocusable(false);
-//		resetButton.addActionListener(this);
+		//		JButton startButton = new JButton("START");
+		//		JButton resetButton = new JButton("RESET");
+		//		JLabel timeLabel = new JLabel();
+		//		JLabel timeLabel2 = new JLabel();
+		//		JPanel pn2 = new JPanel();
+		//		int seconds =0;
+		//		int minutes =1;
+		//		int hours =0;
+		//		boolean started = true;
+		//		String seconds_string = String.format("%02d", seconds);
+		//		String minutes_string = String.format("%02d", minutes);
+		//		String hours_string = String.format("%02d", hours);
+		//
+		//		Timer timer = new Timer(1000, new ActionListener() {
+		//
+		//			public void actionPerformed(ActionEvent e) {
+		//
+		//				if(seconds>0) {
+		//					seconds = seconds-1;
+		//				}
+		//				else if(seconds==0 && minutes>0) {
+		//					minutes = minutes - 1;
+		//					seconds = 59;
+		//				}
+		//				seconds_string = String.format("%02d", seconds);
+		//				minutes_string = String.format("%02d", minutes);
+		//				hours_string = String.format("%02d", hours);
+		//				timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
+		//
+		//			}
+		//
+		//		});
+		//		Timer timer2 = new Timer(1000, new ActionListener() {
+		//
+		//			public void actionPerformed(ActionEvent e) {
+		//
+		//				if(seconds>0) {
+		//					seconds = seconds-1;
+		//				}
+		//				else if(seconds==0 && minutes>0) {
+		//					minutes = minutes - 1;
+		//					seconds = 59;
+		//				}
+		//				seconds_string = String.format("%02d", seconds);
+		//				minutes_string = String.format("%02d", minutes);
+		//				hours_string = String.format("%02d", hours);
+		//				timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
+		//
+		//			}
+		//
+		//		});
+		//		pn2.add(timeLabel);
+		//		pn2.add(timeLabel2);
+		//		pn2.add(startButton);
+		//		pn2.add(resetButton);
+		//		pn2.setLayout(null);
+		//		pn2.setBackground(Color.red);
+		//		pn2.setBounds(10, 10, 500, 500);
+		//		timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
+		//		timeLabel.setBounds(100,100,200,100);
+		//		timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
+		//		timeLabel.setBorder(BorderFactory.createBevelBorder(1));
+		//		timeLabel.setOpaque(true);
+		//		timeLabel2.setText(hours_string+":"+minutes_string+":"+seconds_string);
+		//		timeLabel2.setBounds(100,350,200,100);
+		//		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,35));
+		//		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
+		//		timeLabel2.setOpaque(true);
+		//		startButton.setBounds(200,200,100,50);
+		//		startButton.setFocusable(false);
+		//		startButton.addActionListener(this);
+		//
+		//		resetButton.setBounds(200,300,100,50);
+		//		resetButton.setFocusable(false);
+		//		resetButton.addActionListener(this);
 
 
 		pn.setBounds(100, 40, 704, 704);
 		frame.add(pn);
 		frame.setLayout(null);
->>>>>>> branch 'master' of https://github.com/Kitten0710/Chess.git
 		frame.setVisible(true);
 	}
-	
+
 	public static Spot getSpot(int x, int y){
 		int xp = x/72;
 		int yp = y/72;
