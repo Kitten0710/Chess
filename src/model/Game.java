@@ -133,7 +133,7 @@ public class Game {
 		int ind=0;
 		for(int y = 0; y < 400; y += 200){
 			for(int x = 0; x < 1200; x += 200){
-				imgs[ind] = all.getSubimage(x, y, 200, 200).getScaledInstance(88, 88, BufferedImage.SCALE_SMOOTH);
+				imgs[ind] = all.getSubimage(x, y, 200, 200).getScaledInstance(81, 81, BufferedImage.SCALE_SMOOTH);
 				ind++;
 			}    
 		}
@@ -144,7 +144,7 @@ public class Game {
 
 		//frame.setUndecorated(true);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setBounds(100, 100, 1000, 1000);
+		frame.setSize(648 + 500, 648 + 40);
 		frame.setTitle("Chess");
 		JPanel pn = new JPanel() {
 			@Override
@@ -157,7 +157,7 @@ public class Game {
 					{
 						if(white) g.setColor(new Color(235,235, 208));
 						else g.setColor(new Color(119, 148, 85));
-						g.fillRect(x*88, y*88, 88, 88);
+						g.fillRect(x*81, y*81, 81, 81);
 						white =! white;
 					}
 					white =! white;
@@ -229,9 +229,8 @@ public class Game {
 					return;
 				}
 				if(selectedSpot != null){
-
-					selectedSpot.getPiece().setPx((e.getX() - 140));
-					selectedSpot.getPiece().setPy((e.getY() - 110));
+					selectedSpot.getPiece().setPx((e.getX() - 40));
+					selectedSpot.getPiece().setPy((e.getY() - 70));
 					frame.repaint();
 				}
 			}
@@ -248,10 +247,9 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-
-				System.out.println(e.getX() + " " + e.getY());
-				if(getSpot(e.getX() - 110, e.getY() - 80) != null) {
-					selectedSpot = getSpot(e.getX() - 110, e.getY() - 80);
+				System.out.println("before " + (e.getX() - 8) + " " + (e.getY() - 31));
+				if(getSpot(e.getX() - 8, e.getY() - 31) != null) {
+					selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
 					System.out.println(selectedSpot.getPiece().getName());
 				}
 			}
@@ -259,13 +257,13 @@ public class Game {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(selectedSpot != null) {
-
-					if(selectedSpot.move((e.getX() - 112)/72, (e.getY() - 82)/72) == true) {
+					System.out.println("after " + (e.getX() - 8) + " " + (e.getY() - 31));
+					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
 						if(isTurn == true) isTurn = false;
 						else isTurn = true;
 					}
 
-					selectedSpot.move((e.getX() - 112)/72, (e.getY() - 82)/72);
+					selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81);
 					Iterator<Spot> itr1 = wspots.iterator();
 					while(itr1.hasNext()) {
 						Spot temp = itr1.next();
@@ -294,15 +292,16 @@ public class Game {
 			}
 		});
 
-		pn.setBounds(100, 50, 704, 704);
+		pn.setSize(648, 648);
 		frame.add(pn);
-		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.setVisible(true);
 	}
 
 	public static Spot getSpot(int x, int y){
-		int xp = x/88;
-		int yp = y/88;
+		int xp = x/81;
+		int yp = y/81;
 		for(Spot p: bspots){
 			if(xp == p.getPiece().getX() && yp== p.getPiece().getY()){
 				return p;
