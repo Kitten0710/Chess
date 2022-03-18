@@ -225,7 +225,13 @@ public class Game {
 					selectedSpot = null;
 					return;
 				}
-				if(selectedSpot != null){
+				if(selectedSpot != null) {
+//					if(isTurn == true) {
+//						if(wking.CheckMate(isTurn) == true) System.out.println("Vua trang dang bi chieu");;
+//					} else {
+//						if(bking.CheckMate(isTurn) == true) System.out.println("Vua den dang bi chieu");;
+//					}
+					
 					selectedSpot.getPiece().setPx((e.getX() - 40));
 					selectedSpot.getPiece().setPy((e.getY() - 70));
 					frame.repaint();

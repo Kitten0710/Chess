@@ -154,6 +154,24 @@ public class King implements Spot{
 		// TODO phải kiểm tra xem ô đó trống hay k
 	}
 	
+	public boolean CheckMate(boolean color) {
+		// nếu là tướng trắng
+		if(color == true) {
+			for(Spot p : Game.getBspots()) {
+				if(p.move(a.getX(), a.getY()) == true) {
+					return true;
+				}
+			}
+		} else {
+			for(Spot p : Game.getWspots()) {
+				if(p.move(a.getX(), a.getY()) == true) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	public Piece getPiece() {
 		return this.a;
