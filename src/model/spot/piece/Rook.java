@@ -133,11 +133,11 @@ public class Rook implements Spot{
 				return true;
 			}
 		}
-		
-		if((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY()) 
-				&& x >= 0 && x < 8 && y >= 0 && y < 8
-				&& (a.getX() == x && a.getY() != y) || (a.getX() != x && a.getY() == y)) {
+		if(((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY())) 
+				&& (x >= 0 && x < 8 && y >= 0 && y < 8)
+				&& ((a.getX() == x && a.getY() != y) || (a.getX() != x && a.getY() == y))) {
 			canMove = true;
+			System.out.println("tao o day" + x);
 			if(Game.getSpot(x*81, y*81) != null) {
 				if(Game.getSpot(x*81, y*81).getPiece().isColor() == a.isColor()) {
 					canMove = false;

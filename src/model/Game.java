@@ -244,7 +244,6 @@ public class Game {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println("before " + (e.getX() - 8) + " " + (e.getY() - 31));
 				if(getSpot(e.getX() - 8, e.getY() - 31) != null) {
 					selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
 					System.out.println(selectedSpot.getPiece().getName());
@@ -254,7 +253,6 @@ public class Game {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(selectedSpot != null) {
-					System.out.println("after " + (e.getX() - 8) + " " + (e.getY() - 31));
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
 						if(isTurn == true) isTurn = false;
 						else isTurn = true;
