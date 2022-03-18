@@ -198,6 +198,7 @@ public class Rook implements Spot{
 		}
 		a.move(x, y, canMove);
 		if(canMove == true) countTurn++;
+		System.out.println("con xe " + canMove);
 		return canMove;
 	}
 
