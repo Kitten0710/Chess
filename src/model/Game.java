@@ -226,9 +226,7 @@ public class Game {
 					return;
 				}
 				if(selectedSpot != null) {
-//					if(wking.CheckMate(true) == true) System.out.println("Vua trang dang bi chieu");
-//					if(bking.CheckMate(false) == true) System.out.println("Vua den dang bi chieu");
-					
+
 					selectedSpot.getPiece().setPx((e.getX() - 40));
 					selectedSpot.getPiece().setPy((e.getY() - 70));
 					frame.repaint();
@@ -333,7 +331,8 @@ public class Game {
 				wkinglive = true;
 			}
 		}	
-		return bkinglive && wkinglive;
+		if(bkinglive == true || wkinglive == true) return false;
+		else return true;
 	}
 
 	public boolean isTurn() {
@@ -341,6 +340,18 @@ public class Game {
 	}
 
 	public boolean isCheckMated() {
+		for(Spot p : bspots) {
+			if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(false) == true) {
+				System.out.println("Vua den dang bi chieu");	
+				return true;
+			}
+		}
+		for(Spot p : wspots) {
+			if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(true) == true) {
+				System.out.println("Vua trang dang bi chieu");	
+				return true;
+			}
+		}
 		return false;
 	}
 	public static List<Spot> getWspots() {
