@@ -226,11 +226,8 @@ public class Game {
 					return;
 				}
 				if(selectedSpot != null) {
-//					if(isTurn == true) {
-//						if(wking.CheckMate(isTurn) == true) System.out.println("Vua trang dang bi chieu");;
-//					} else {
-//						if(bking.CheckMate(isTurn) == true) System.out.println("Vua den dang bi chieu");;
-//					}
+//					if(wking.CheckMate(true) == true) System.out.println("Vua trang dang bi chieu");
+//					if(bking.CheckMate(false) == true) System.out.println("Vua den dang bi chieu");
 					
 					selectedSpot.getPiece().setPx((e.getX() - 40));
 					selectedSpot.getPiece().setPy((e.getY() - 70));

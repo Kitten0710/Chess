@@ -35,7 +35,7 @@ public class Knight implements Spot{
 	
 	@Override
 	public void CheckMove() {
-		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override

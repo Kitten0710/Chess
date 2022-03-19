@@ -157,14 +157,20 @@ public class King implements Spot{
 	public boolean CheckMate(boolean color) {
 		// nếu là tướng trắng
 		if(color == true) {
-			for(Spot p : Game.getBspots()) {
+			List<Spot> temp = new ArrayList<Spot>();
+			temp = Game.getBspots();
+			for(Spot p : temp) {
 				if(p.move(a.getX(), a.getY()) == true) {
+					temp = Game.getBspots();
 					return true;
 				}
 			}
 		} else {
-			for(Spot p : Game.getWspots()) {
+			List<Spot> temp = new ArrayList<Spot>();
+			temp = Game.getWspots();
+			for(Spot p : temp) {
 				if(p.move(a.getX(), a.getY()) == true) {
+					temp = Game.getWspots();
 					return true;
 				}
 			}
