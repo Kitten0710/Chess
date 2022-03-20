@@ -294,7 +294,7 @@ public class Game {
 			}
 		});
 
-		pn.setBounds(100, 50, 704, 704);
+		pn.setBounds(100, 40, 704, 704);
 		frame.add(pn);
 		frame.setLayout(null);
 		frame.setVisible(true);
