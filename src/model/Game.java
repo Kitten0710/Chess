@@ -311,7 +311,7 @@ public class Game {
 		return null;
 	}
 	public void play() {
-
+		
 	}
 	public Board getBoard() {
 		return board;
