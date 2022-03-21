@@ -7,10 +7,10 @@ public class Controller {
 	public Controller() {
 		int count = 1;
 		System.out.println(game.isEnd());
-		while(game.isEnd() == false) {
-			System.out.println(count++);
-			game.play();
-			if(game.isCheckMated() == true) System.out.println("chieu tuong!");;
-		}
+//		while(game.isEnd() == false) {
+//			System.out.println(count++);
+//			game.play();
+//			if(game.isCheckMated() == true) System.out.println("chieu tuong!");;
+//		}
 	}
 }
