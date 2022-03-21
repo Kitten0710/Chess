@@ -33,7 +33,7 @@ public class King implements Spot{
 	@Override
 	public boolean move(int x, int y) {
 		boolean canMove = false; 
-		Spot b = Game.getSpot(x*64, y*64);
+		Spot b = Game.getSpot(x*81, y*81);
 		// nhập thành
 		if(b != null && countTurn == 0 && b.getPiece().getName() == "rook") {
 			Rook r = (Rook) b;
@@ -80,7 +80,7 @@ public class King implements Spot{
 				rook.setCountTurn(1);
 				king.setCountTurn(1);
 				a.move(x, y, canMove);
-				return canMove;
+				return true;
 			} else if(a.isColor() == true && r.getCountTurn() == 0) {	// quân trắng
 				int k1, k2;
 				if(x > a.getX()) {
@@ -124,7 +124,7 @@ public class King implements Spot{
 				rook.setCountTurn(1);
 				king.setCountTurn(1);
 				a.move(x, y, canMove);
-				return canMove;
+				return true;
 			}
 		}
 
@@ -140,7 +140,7 @@ public class King implements Spot{
 			}	
 		}
 		if(canMove == true) {
-			if(Game.getSpot(x*64, y*64) != null && Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
+			if(Game.getSpot(x*81, y*81) != null && Game.getSpot(x*81, y*81).getPiece().isColor() == a.isColor()) {
 				canMove = false;
 			}
 		}
@@ -152,6 +152,30 @@ public class King implements Spot{
 	@Override
 	public void CheckMove() {
 		// TODO phải kiểm tra xem ô đó trống hay k
+	}
+	
+	public boolean CheckMate(boolean color) {
+		// nếu là tướng trắng
+		if(color == true) {
+			List<Spot> temp = new ArrayList<Spot>();
+			temp = Game.getBspots();
+			for(Spot p : temp) {
+				if(p.move(a.getX(), a.getY()) == true) {
+					temp = Game.getBspots();
+					return true;
+				}
+			}
+		} else {
+			List<Spot> temp = new ArrayList<Spot>();
+			temp = Game.getWspots();
+			for(Spot p : temp) {
+				if(p.move(a.getX(), a.getY()) == true) {
+					temp = Game.getWspots();
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	@Override

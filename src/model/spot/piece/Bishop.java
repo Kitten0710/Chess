@@ -28,8 +28,8 @@ public class Bishop implements Spot{
 	@Override
 	public boolean move(int x, int y) {
 		boolean canMove = false;
-		if(x >= 0 && x < 8 && y >= 0 && y < 8
-				&& (x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y)) {
+		if((x >= 0 && x < 8 && y >= 0 && y < 8)
+				&& ((x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y))) {
 			canMove = true;
 			int k;
 			if((x - a.getX() == y - a.getY())) { // cheo chinh
@@ -112,7 +112,7 @@ public class Bishop implements Spot{
 		}
 		
 		if(canMove == true) {
-			if(Game.getSpot(x*64, y*64) != null && Game.getSpot(x*64, y*64).getPiece().isColor() == a.isColor()) {
+			if(Game.getSpot(x*81, y*81) != null && Game.getSpot(x*81, y*81).getPiece().isColor() == a.isColor()) {
 				canMove = false;
 			}
 		}
