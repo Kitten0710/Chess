@@ -138,11 +138,12 @@ public class Game {
 		JFrame frame = new JFrame();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		//frame.setUndecorated(true);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(648 + 500, 648 + 40);
 		frame.setTitle("Chess");
+		JPanel left_board = new JPanel();
 		JPanel pn = new JPanel() {
 			@Override
 			public void paint(Graphics g) {
