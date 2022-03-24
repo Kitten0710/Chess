@@ -287,8 +287,9 @@ public class Game {
 			}
 		});
 
-
+		
 		pn.setSize(648, 648);
+		frame.setLayout(null);
 		frame.add(pn);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
