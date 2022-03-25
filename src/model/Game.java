@@ -6,7 +6,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -39,7 +40,7 @@ import model.spot.piece.Rook;
 
 
 
-public class Game {
+public class Game implements ActionListener{
 	private Board board;
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
@@ -140,12 +141,12 @@ public class Game {
 		JFrame frame = new JFrame();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		//frame.setUndecorated(true);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(648 + 500, 648 + 40);
 		frame.setTitle("Chess");
-		
+
 		//board_game_setting
 		JLabel lb1 = new JLabel() {
 			@Override
@@ -222,6 +223,7 @@ public class Game {
 				//}
 			}
 		};
+		//===mouse_listener===
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
@@ -291,34 +293,39 @@ public class Game {
 			}
 		});
 		lb1.setSize(648, 648);
-		
+
 		//===Time_setting===
+		JLabel timeLabel1 = new JLabel();
+		JLabel timeLabel2 = new JLabel();
 		int seconds = 0;
 		int minutes = 15;
 		String seconds_string = String.format("%02d", seconds);
 		String minutes_string = String.format("%02d", minutes);
+
+
+		//===Time_run===
+		
 		
 		//===Time_label_1
-		JLabel timeLabel1 = new JLabel();
+
 		timeLabel1.setText(minutes_string+":"+seconds_string);
 		timeLabel1.setBounds(650,0,470,163);
 		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel1.setOpaque(true);
 		timeLabel1.setHorizontalAlignment(JTextField.CENTER);
-		
+
 		//===Time_label_2===
-		JLabel timeLabel2 = new JLabel();
+
 		timeLabel2.setText(minutes_string+":"+seconds_string);
 		timeLabel2.setBounds(650,485,470,163);
 		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel2.setOpaque(true);
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
-		
-		//===Time_run===
-		
-		
+
+
+
 		//===Frame add===
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
@@ -327,7 +334,13 @@ public class Game {
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
+	//===Time_run===
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
+		
+
+	}
 	public static Spot getSpot(int x, int y){
 		int xp = x/81;
 		int yp = y/81;
@@ -344,7 +357,7 @@ public class Game {
 		return null;
 	}
 	public void play() {
-		
+
 	}
 	public Board getBoard() {
 		return board;
@@ -409,5 +422,9 @@ public class Game {
 	public static void setContinue(boolean isContinue) {
 		Game.isContinue = isContinue;
 	}
+
+	
+
+	
 
 }
