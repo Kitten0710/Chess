@@ -393,6 +393,7 @@ public class Game implements ActionListener{
 		minutes = 15;
 		seconds_string = String.format("%02d", seconds);
 		minutes_string = String.format("%02d", minutes);
+		W_startButton.setText("START");
 		timeLabel1.setText(minutes_string+":"+seconds_string);
 	}
 	public static Spot getSpot(int x, int y){
