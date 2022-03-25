@@ -3,7 +3,7 @@ package model;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -19,10 +19,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 
 import model.board.Board;
@@ -144,8 +145,9 @@ public class Game {
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(648 + 500, 648 + 40);
 		frame.setTitle("Chess");
-		JPanel left_board = new JPanel();
-		JLabel lb = new JLabel() {
+		
+		//board_game_setting
+		JLabel lb1 = new JLabel() {
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
@@ -288,15 +290,35 @@ public class Game {
 			public void mouseExited(MouseEvent e) {
 			}
 		});
-
+		lb1.setSize(648, 648);
 		
-		lb.setSize(648, 648);
-		left_board.setBackground(Color.blue);
-		left_board.setSize(30, 20);
+		//===Time_setting===
+		int seconds =0;
+		int minutes =1;
+		String seconds_string = String.format("%02d", seconds);
+		String minutes_string = String.format("%02d", minutes);
 		
-		frame.add(lb);
-		frame.add(left_board, BorderLayout.CENTER);
+		//===Time_label_1
+		JLabel timeLabel1 = new JLabel();
+		timeLabel1.setText(minutes_string+":"+seconds_string);
+		timeLabel1.setBounds(650,0,470,163);
+		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
+		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
+		timeLabel1.setOpaque(true);
+		timeLabel1.setHorizontalAlignment(JTextField.CENTER);
 		
+		//===Time_label_2
+		JLabel timeLabel2 = new JLabel();
+		timeLabel2.setText(minutes_string+":"+seconds_string);
+		timeLabel2.setBounds(650,485,470,163);
+		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,70));
+		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
+		timeLabel2.setOpaque(true);
+		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
+		//===Frame add===
+		frame.add(timeLabel1);
+		frame.add(timeLabel2);
+		frame.add(lb1);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
