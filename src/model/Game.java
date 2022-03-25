@@ -305,8 +305,7 @@ public class Game implements ActionListener{
 			}
 		});
 		lb1.setSize(648, 648);
-		//===Time_label_1_setting===
-
+		//==========Time_label_1==========
 		timeLabel1.setText(minutes_string+":"+seconds_string);
 		timeLabel1.setBounds(655,0,470,163);
 		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
@@ -314,7 +313,7 @@ public class Game implements ActionListener{
 		timeLabel1.setOpaque(true);
 		timeLabel1.setHorizontalAlignment(JTextField.CENTER);
 
-		//===Time_label_2_setting===
+		//==========Time_label_2==========
 
 		timeLabel2.setText(minutes_string+":"+seconds_string);
 		timeLabel2.setBounds(655,485,470,163);
@@ -341,7 +340,7 @@ public class Game implements ActionListener{
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
-	//===Time_setting===
+	////==========Time_setting==========
 	Timer timer = new Timer(1000, new ActionListener() {
 
 		@Override
@@ -360,7 +359,7 @@ public class Game implements ActionListener{
 		}
 
 	});
-	//===Time_run===
+	//==========Time_run==========
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==W_startButton) {
@@ -382,7 +381,7 @@ public class Game implements ActionListener{
 			reset();
 		}
 	}
-	//===button===
+	//==========button==========
 	void start() {
 		timer.start();
 	}
