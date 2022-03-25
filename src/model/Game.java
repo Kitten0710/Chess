@@ -54,7 +54,13 @@ public class Game implements ActionListener{
 	};
 	public static STATE State = STATE.MENU;
 	private GameState menu = new GameState();
-
+	//===Time_setting===
+			JLabel timeLabel1 = new JLabel();
+			JLabel timeLabel2 = new JLabel();
+			int seconds = 0;
+			int minutes = 15;
+			String seconds_string = String.format("%02d", seconds);
+			String minutes_string = String.format("%02d", minutes);
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
@@ -294,31 +300,25 @@ public class Game implements ActionListener{
 		});
 		lb1.setSize(648, 648);
 
-		//===Time_setting===
-		JLabel timeLabel1 = new JLabel();
-		JLabel timeLabel2 = new JLabel();
-		int seconds = 0;
-		int minutes = 15;
-		String seconds_string = String.format("%02d", seconds);
-		String minutes_string = String.format("%02d", minutes);
+		
 
 
-		//===Time_run===
 		
 		
-		//===Time_label_1
+		
+		//===Time_label_1_setting===
 
 		timeLabel1.setText(minutes_string+":"+seconds_string);
-		timeLabel1.setBounds(650,0,470,163);
+		timeLabel1.setBounds(655,0,470,163);
 		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel1.setOpaque(true);
 		timeLabel1.setHorizontalAlignment(JTextField.CENTER);
 
-		//===Time_label_2===
+		//===Time_label_2_setting===
 
 		timeLabel2.setText(minutes_string+":"+seconds_string);
-		timeLabel2.setBounds(650,485,470,163);
+		timeLabel2.setBounds(655,485,470,163);
 		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel2.setOpaque(true);
@@ -326,7 +326,7 @@ public class Game implements ActionListener{
 
 
 
-		//===Frame add===
+		//===Frame_add_setting===
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
 		frame.add(lb1);
@@ -334,6 +334,25 @@ public class Game implements ActionListener{
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
+	//===Time_setting===
+	Timer timer = new Timer(1000, new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(seconds>0) {
+				seconds = seconds-1;
+			}
+			else if(seconds==0 && minutes>0) {
+				minutes = minutes - 1;
+				seconds = 59;
+			}
+			seconds_string = String.format("%02d", seconds);
+			minutes_string = String.format("%02d", minutes);
+			timeLabel1.setText(minutes_string+":"+seconds_string);
+
+		}
+		
+	});
 	//===Time_run===
 	@Override
 	public void actionPerformed(ActionEvent e) {
