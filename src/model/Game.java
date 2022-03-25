@@ -21,6 +21,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,12 +56,15 @@ public class Game implements ActionListener{
 	public static STATE State = STATE.MENU;
 	private GameState menu = new GameState();
 	//===Time_setting===
-			JLabel timeLabel1 = new JLabel();
-			JLabel timeLabel2 = new JLabel();
-			int seconds = 0;
-			int minutes = 15;
-			String seconds_string = String.format("%02d", seconds);
-			String minutes_string = String.format("%02d", minutes);
+	JLabel timeLabel1 = new JLabel();
+	JLabel timeLabel2 = new JLabel();
+	int seconds = 0;
+	int minutes = 15;
+	String seconds_string = String.format("%02d", seconds);
+	String minutes_string = String.format("%02d", minutes);
+	JButton W_startButton = new JButton("START");
+	JButton W_resetButton = new JButton("RESET");
+	boolean started = false;
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
@@ -254,7 +258,7 @@ public class Game implements ActionListener{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
-			
+
 			//Mouse_press
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -263,7 +267,7 @@ public class Game implements ActionListener{
 					System.out.println(selectedSpot.getPiece().getName());
 				}
 			}
-			
+
 			//Mouse_release
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -319,9 +323,17 @@ public class Game implements ActionListener{
 		timeLabel2.setOpaque(true);
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
 
+		W_startButton.setBounds(100,200,100,50);
+		W_startButton.setFocusable(false);
+		W_startButton.addActionListener(this);
 
+		W_resetButton.setBounds(200,200,100,50);
+		W_resetButton.setFocusable(false);
+		W_resetButton.addActionListener(this);
 
 		//===Frame_add_setting===
+		frame.add(W_startButton);
+		frame.add(W_resetButton);
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
 		frame.add(lb1);
@@ -346,14 +358,46 @@ public class Game implements ActionListener{
 			timeLabel1.setText(minutes_string+":"+seconds_string);
 
 		}
-		
+
 	});
 	//===Time_run===
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==W_startButton) {
 
-		
+			if(started==false) {
+				started=true;
+				W_startButton.setText("STOP");
+				start();
+			}
+			else {
+				started=false;
+				W_startButton.setText("START");
+				stop();
+			}
 
+		}
+		if(e.getSource()==W_resetButton) {
+			started=false;
+			W_resetButton.setText("START");
+			reset();
+		}
+	}
+	void start() {
+		timer.start();
+	}
+
+	void stop() {
+		timer.stop();
+	}
+
+	void reset() {
+		timer.stop();
+		seconds = 0;
+		minutes = 15;
+		seconds_string = String.format("%02d", seconds);
+		minutes_string = String.format("%02d", minutes);
+		timeLabel1.setText(minutes_string+":"+seconds_string);
 	}
 	public static Spot getSpot(int x, int y){
 		int xp = x/81;
@@ -437,8 +481,8 @@ public class Game implements ActionListener{
 		Game.isContinue = isContinue;
 	}
 
-	
 
-	
+
+
 
 }
