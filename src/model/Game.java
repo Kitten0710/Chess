@@ -307,7 +307,7 @@ public class Game {
 		timeLabel1.setOpaque(true);
 		timeLabel1.setHorizontalAlignment(JTextField.CENTER);
 		
-		//===Time_label_2
+		//===Time_label_2===
 		JLabel timeLabel2 = new JLabel();
 		timeLabel2.setText(minutes_string+":"+seconds_string);
 		timeLabel2.setBounds(650,485,470,163);
@@ -315,6 +315,10 @@ public class Game {
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel2.setOpaque(true);
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
+		
+		//===Time_run===
+		
+		
 		//===Frame add===
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
