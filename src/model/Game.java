@@ -323,11 +323,11 @@ public class Game implements ActionListener{
 		timeLabel2.setOpaque(true);
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
 
-		W_startButton.setBounds(100,200,100,50);
+		W_startButton.setBounds(950,200,130,60);
 		W_startButton.setFocusable(false);
 		W_startButton.addActionListener(this);
 
-		W_resetButton.setBounds(200,200,100,50);
+		W_resetButton.setBounds(950,300,130,60);
 		W_resetButton.setFocusable(false);
 		W_resetButton.addActionListener(this);
 
@@ -379,7 +379,6 @@ public class Game implements ActionListener{
 		}
 		if(e.getSource()==W_resetButton) {
 			started=false;
-			W_resetButton.setText("START");
 			reset();
 		}
 	}
