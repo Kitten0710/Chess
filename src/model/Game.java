@@ -254,7 +254,8 @@ public class Game implements ActionListener{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
-
+			
+			//Mouse_press
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if(getSpot(e.getX() - 8, e.getY() - 31) != null) {
@@ -262,7 +263,8 @@ public class Game implements ActionListener{
 					System.out.println(selectedSpot.getPiece().getName());
 				}
 			}
-
+			
+			//Mouse_release
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(selectedSpot != null) {
@@ -299,13 +301,6 @@ public class Game implements ActionListener{
 			}
 		});
 		lb1.setSize(648, 648);
-
-		
-
-
-		
-		
-		
 		//===Time_label_1_setting===
 
 		timeLabel1.setText(minutes_string+":"+seconds_string);
