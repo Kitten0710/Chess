@@ -29,8 +29,6 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 
 import model.board.Board;
-import model.menu.Menu;
-import model.menu.button.GameState;
 import model.spot.Spot;
 import model.spot.piece.Bishop;
 import model.spot.piece.King;
@@ -54,7 +52,6 @@ public class Game implements ActionListener{
 		GAME
 	};
 	public static STATE State = STATE.MENU;
-	private GameState menu = new GameState();
 	//===Time_setting===
 	JLabel timeLabel1 = new JLabel();
 	JLabel timeLabel2 = new JLabel();
