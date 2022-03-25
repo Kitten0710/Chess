@@ -69,7 +69,7 @@ public class Menu extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == startBtn) {
-			System.out.println("Jikjin");
+			//State = STATE.GAME;
 		}
 		if(e.getSource() == exitBtn)
 			System.exit(0);

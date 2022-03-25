@@ -47,11 +47,6 @@ public class Game implements ActionListener{
 	private static boolean isContinue = true; 
 	private static boolean isTurn = true;
 
-	public static enum STATE{
-		MENU,
-		GAME
-	};
-	public static STATE State = STATE.MENU;
 	//===Time_setting===
 	JLabel timeLabel1 = new JLabel();
 	JLabel timeLabel2 = new JLabel();
@@ -159,7 +154,6 @@ public class Game implements ActionListener{
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
-				//if(State == STATE.GAME) {
 				for(int y = 0; y < 8; y++)
 				{
 					for(int x = 0; x < 8; x++)
@@ -225,9 +219,6 @@ public class Game implements ActionListener{
 					}
 					g.drawImage(imgs[id], p.getPiece().getPx(), p.getPiece().getPy(), this);
 				}
-				//} else if(State == STATE.MENU) {
-				//	menu.render(g);
-				//}
 			}
 		};
 		//===mouse_listener===
