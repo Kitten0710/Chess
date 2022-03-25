@@ -1,6 +1,7 @@
 package model;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import java.awt.Graphics;
@@ -144,7 +145,7 @@ public class Game {
 		frame.setSize(648 + 500, 648 + 40);
 		frame.setTitle("Chess");
 		JPanel left_board = new JPanel();
-		JPanel pn = new JPanel() {
+		JLabel lb = new JLabel() {
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
@@ -289,9 +290,13 @@ public class Game {
 		});
 
 		
-		pn.setSize(648, 648);
-		frame.setLayout(null);
-		frame.add(pn);
+		lb.setSize(648, 648);
+		left_board.setBackground(Color.blue);
+		left_board.setSize(30, 20);
+		
+		frame.add(lb);
+		frame.add(left_board, BorderLayout.CENTER);
+		
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
