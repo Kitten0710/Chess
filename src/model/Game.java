@@ -293,8 +293,8 @@ public class Game {
 		lb1.setSize(648, 648);
 		
 		//===Time_setting===
-		int seconds =0;
-		int minutes =1;
+		int seconds = 0;
+		int minutes = 15;
 		String seconds_string = String.format("%02d", seconds);
 		String minutes_string = String.format("%02d", minutes);
 		
