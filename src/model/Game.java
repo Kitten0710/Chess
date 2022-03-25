@@ -382,6 +382,7 @@ public class Game implements ActionListener{
 			reset();
 		}
 	}
+	//===button===
 	void start() {
 		timer.start();
 	}
