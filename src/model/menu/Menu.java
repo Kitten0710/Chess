@@ -1,4 +1,4 @@
-package menu2;
+package model.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

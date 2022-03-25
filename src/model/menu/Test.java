@@ -1,4 +1,4 @@
-package menu2;
+package model.menu;
 
 public class Test {
 
