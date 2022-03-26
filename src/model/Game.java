@@ -266,7 +266,11 @@ public class Game {
 								start1();
 								isTurn = false;
 							}
-						else isTurn = true;
+						else { 
+							stop1();
+							start2();
+							isTurn = true;
+						}
 					}
 
 					selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81);
