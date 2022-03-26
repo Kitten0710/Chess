@@ -319,8 +319,8 @@ public class Game {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
-		if(isTurn == true) {
-			start();
+		if(isTurn == false) {
+			timer.start();
 		}
 	}
 	////==========Time_setting==========
@@ -343,26 +343,25 @@ public class Game {
 		
 
 	});
-	//==========Time_run==========
 	
 	//==========button==========
-	void start() {
-		timer.start();
-	}
-
-	void stop() {
-		timer.stop();
-	}
-
-	void reset() {
-		timer.stop();
-		seconds = 0;
-		minutes = 15;
-		seconds_string = String.format("%02d", seconds);
-		minutes_string = String.format("%02d", minutes);
-		W_startButton.setText("START");
-		timeLabel1.setText(minutes_string+":"+seconds_string);
-	}
+//	void start() {
+//		
+//	}
+//
+//	void stop() {
+//		timer.stop();
+//	}
+//
+//	void reset() {
+//		timer.stop();
+//		seconds = 0;
+//		minutes = 15;
+//		seconds_string = String.format("%02d", seconds);
+//		minutes_string = String.format("%02d", minutes);
+//		W_startButton.setText("START");
+//		timeLabel1.setText(minutes_string+":"+seconds_string);
+//	}
 	public static Spot getSpot(int x, int y){
 		int xp = x/81;
 		int yp = y/81;
