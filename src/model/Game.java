@@ -318,18 +318,15 @@ public class Game {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
-		//time_run
+		//======time_run======
 		if(isTurn == true) {
-			timer2.start();
-			timer1.stop();
-			isTurn = false;
+			start2();
 		}
-		else {
-			timer2.stop();
-			timer1.start();
+		if(isTurn == false) {
+			stop2();
 		}
 	}
-	////==========Time_setting==========
+	//==========Time_setting==========
 	Timer timer1 = new Timer(1000, new ActionListener() {
 
 		@Override
@@ -370,14 +367,19 @@ public class Game {
 	});
 	
 	//==========button==========
-//	void start() {
-//		
-//	}
-//
-//	void stop() {
-//		timer.stop();
-//	}
-//
+	void start1() {
+		timer1.start();
+	}
+	void start2() {
+		timer2.start();
+	}
+	void stop1() {
+		timer1.stop();
+	}
+	void stop2() {
+		timer2.stop();
+	}
+
 
 	public static Spot getSpot(int x, int y){
 		int xp = x/81;
