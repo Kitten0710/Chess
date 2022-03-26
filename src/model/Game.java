@@ -39,7 +39,7 @@ import model.spot.piece.Rook;
 
 
 
-public class Game implements ActionListener{
+public class Game {
 	private Board board;
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
@@ -310,23 +310,18 @@ public class Game implements ActionListener{
 		timeLabel2.setOpaque(true);
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
 
-		W_startButton.setBounds(950,200,130,60);
-		W_startButton.setFocusable(false);
-		W_startButton.addActionListener(this);
-
-		W_resetButton.setBounds(950,300,130,60);
-		W_resetButton.setFocusable(false);
-		W_resetButton.addActionListener(this);
+		
 
 		//===Frame_add_setting===
-		frame.add(W_startButton);
-		frame.add(W_resetButton);
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
 		frame.add(lb1);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		if(isTurn == true) {
+			start();
+		}
 	}
 	////==========Time_setting==========
 	Timer timer = new Timer(1000, new ActionListener() {
@@ -345,30 +340,11 @@ public class Game implements ActionListener{
 			timeLabel1.setText(minutes_string+":"+seconds_string);
 
 		}
+		
 
 	});
 	//==========Time_run==========
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==W_startButton) {
-
-			if(started==false) {
-				started=true;
-				W_startButton.setText("STOP");
-				start();
-			}
-			else {
-				started=false;
-				W_startButton.setText("START");
-				stop();
-			}
-
-		}
-		if(e.getSource()==W_resetButton) {
-			started=false;
-			reset();
-		}
-	}
+	
 	//==========button==========
 	void start() {
 		timer.start();
