@@ -56,7 +56,6 @@ public class Game {
 	String minutes_string = String.format("%02d", minutes);
 	JButton W_startButton = new JButton("START");
 	JButton W_resetButton = new JButton("RESET");
-	boolean started = false;
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
@@ -319,6 +318,7 @@ public class Game {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		//time_run
 		if(isTurn == false) {
 			timer.start();
 		}
@@ -340,7 +340,7 @@ public class Game {
 			timeLabel1.setText(minutes_string+":"+seconds_string);
 
 		}
-		
+	
 
 	});
 	
