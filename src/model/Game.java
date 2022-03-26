@@ -319,12 +319,18 @@ public class Game {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		//time_run
-		if(isTurn == false) {
-			timer.start();
+		if(isTurn == true) {
+			timer2.start();
+			timer1.stop();
+			isTurn = false;
+		}
+		else {
+			timer2.stop();
+			timer1.start();
 		}
 	}
 	////==========Time_setting==========
-	Timer timer = new Timer(1000, new ActionListener() {
+	Timer timer1 = new Timer(1000, new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -343,6 +349,25 @@ public class Game {
 	
 
 	});
+	Timer timer2 = new Timer(1000, new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(seconds>0) {
+				seconds = seconds-1;
+			}
+			else if(seconds==0 && minutes>0) {
+				minutes = minutes - 1;
+				seconds = 59;
+			}
+			seconds_string = String.format("%02d", seconds);
+			minutes_string = String.format("%02d", minutes);
+			timeLabel2.setText(minutes_string+":"+seconds_string);
+
+		}
+	
+
+	});
 	
 	//==========button==========
 //	void start() {
@@ -353,15 +378,7 @@ public class Game {
 //		timer.stop();
 //	}
 //
-//	void reset() {
-//		timer.stop();
-//		seconds = 0;
-//		minutes = 15;
-//		seconds_string = String.format("%02d", seconds);
-//		minutes_string = String.format("%02d", minutes);
-//		W_startButton.setText("START");
-//		timeLabel1.setText(minutes_string+":"+seconds_string);
-//	}
+
 	public static Spot getSpot(int x, int y){
 		int xp = x/81;
 		int yp = y/81;
