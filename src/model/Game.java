@@ -261,8 +261,10 @@ public class Game {
 				if(selectedSpot != null) {
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
 						if(isTurn == true) 
-							{
-								start2();isTurn = false;
+							{	
+								stop2();
+								start1();
+								isTurn = false;
 							}
 						else isTurn = true;
 					}
@@ -322,12 +324,7 @@ public class Game {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		//======time_run======
-		if(isTurn == true) {
-			start2();
-		}
-		if(isTurn == false) {
-			stop2();
-		}
+		start2();
 	}
 	//==========Time_setting==========
 	Timer timer1 = new Timer(1000, new ActionListener() {
