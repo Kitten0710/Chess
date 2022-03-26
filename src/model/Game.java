@@ -260,7 +260,10 @@ public class Game {
 			public void mouseReleased(MouseEvent e) {
 				if(selectedSpot != null) {
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
-						if(isTurn == true) isTurn = false;
+						if(isTurn == true) 
+							{
+								start2();isTurn = false;
+							}
 						else isTurn = true;
 					}
 
