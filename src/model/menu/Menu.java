@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.Game;
+
 public class Menu extends JFrame implements ActionListener{
 
 	JButton startBtn = new JButton("START");
@@ -27,7 +29,6 @@ public class Menu extends JFrame implements ActionListener{
 		this.setBounds(400, 400, 800, 650);
 		this.setResizable(true);
 		this.setLocationRelativeTo(null);
-		
 		this.setLayout(new BorderLayout());
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(false);
@@ -70,7 +71,7 @@ public class Menu extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == startBtn) {
-			//State = STATE.GAME;
+			Game game = new Game();
 		}
 		if(e.getSource() == exitBtn)
 			System.exit(0);
