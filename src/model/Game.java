@@ -410,41 +410,45 @@ public class Game {
 		this.board = board;
 	}
 
-	public boolean isEnd() {
-		boolean bkinglive = false, wkinglive = false;
+	public boolean Bkinglive() {
 		for(Spot p : bspots) {
-			if(p.getPiece().getName() == "king" && p.getPiece().isDead() == false) {
-				bkinglive = true;
-			}
-		}
-		for(Spot p : wspots) {
-			if(p.getPiece().getName() == "king" && p.getPiece().isDead() == false) {
-				wkinglive = true;
-			}
-		}	
-		if(bkinglive == true || wkinglive == true) return false;
-		else return true;
-	}
-
-	public boolean isTurn() {
-		return isTurn;
-	}
-
-	public boolean isCheckMated() {
-		for(Spot p : bspots) {
-			if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(false) == true) {
-				System.out.println("Vua den dang bi chieu");	
-				return true;
-			}
-		}
-		for(Spot p : wspots) {
-			if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(true) == true) {
-				System.out.println("Vua trang dang bi chieu");	
+			if(p.getPiece().getName() == "king") {
 				return true;
 			}
 		}
 		return false;
 	}
+	public boolean Wkinglive() {
+		for(Spot p : wspots) {
+			if(p.getPiece().getName() == "king") {
+				return true;
+			}
+		}	
+		return false;
+	}
+
+	public boolean isCheckMated(boolean isColor) {
+		if(isColor == false) {
+			for(Spot p : bspots) {
+				System.out.println("ben den ne");
+				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(false) == true) {
+					System.out.println("Vua den dang bi chieu");	
+					return true;
+				}
+			}
+		} else {
+			for(Spot p : wspots) {
+				System.out.println("ben trang ne");
+				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(true) == true) {
+					System.out.println("Vua trang dang bi chieu");	
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 	public static List<Spot> getWspots() {
 		return wspots;
 	}
