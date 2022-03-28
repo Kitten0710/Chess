@@ -24,18 +24,18 @@ public class Menu extends JFrame implements ActionListener{
 
 		this.setTitle("CHESS GAME"); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(400, 400, 1000, 900);
+		this.setBounds(400, 400, 800, 650);
 		this.setResizable(true);
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
+		
 		this.setLayout(new BorderLayout());
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(false);
 		
-		startBtn.setBounds(694, 360, 150, 50);
+		startBtn.setBounds(320, 300, 150, 50);
 		startBtn.setFont(new Font("Arial", 0, 32));
 		startBtn.setBackground(Color.BLUE);
-		exitBtn.setBounds(694, 450, 150, 50);
+		exitBtn.setBounds(320, 400, 150, 50);
 		exitBtn.setFont(new Font("Arial", 0, 32));
 		exitBtn.setBackground(Color.BLUE);
 		
@@ -63,6 +63,7 @@ public class Menu extends JFrame implements ActionListener{
 		this.pack();
 		this.setVisible(true);
 		 */
+		this.setVisible(true);
 
 	}
 
