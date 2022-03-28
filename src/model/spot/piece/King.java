@@ -156,26 +156,41 @@ public class King implements Spot{
 	
 	public boolean CheckMate(boolean color) {
 		// nếu là tướng trắng
+		Piece other = new Piece(a);
 		if(color == true) {
-			List<Spot> temp = new ArrayList<Spot>();
-			temp = Game.getBspots();
-			for(Spot p : temp) {
-				if(p.move(a.getX(), a.getY()) == true) {
-					temp = Game.getBspots();
+			for(Spot p : Game.getWspots()) {
+				if(p.move(other.getX(), other.getY()) == true) {
 					return true;
 				}
 			}
 		} else {
-			List<Spot> temp = new ArrayList<Spot>();
-			temp = Game.getWspots();
-			for(Spot p : temp) {
-				if(p.move(a.getX(), a.getY()) == true) {
-					temp = Game.getWspots();
+			for(Spot p : Game.getBspots()) {
+				if(p.move(other.getX(), other.getY()) == true) {
 					return true;
 				}
 			}
 		}
 		return false;
+//		if(color == true) {
+//			List<Spot> temp = new ArrayList<Spot>();
+//			temp = Game.getBspots();
+//			for(Spot p : temp) {
+//				if(p.move(a.getX(), a.getY()) == true) {
+//					temp = Game.getBspots();
+//					return true;
+//				}
+//			}
+//		} else {
+//			List<Spot> temp = new ArrayList<Spot>();
+//			temp = Game.getWspots();
+//			for(Spot p : temp) {
+//				if(p.move(a.getX(), a.getY()) == true) {
+//					temp = Game.getWspots();
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
 	}
 	
 	@Override

@@ -430,16 +430,14 @@ public class Game {
 	public boolean isCheckMated(boolean isColor) {
 		if(isColor == false) {
 			for(Spot p : bspots) {
-				System.out.println("ben den ne");
-				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(false) == true) {
+				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(true) == true) {
 					System.out.println("Vua den dang bi chieu");	
 					return true;
 				}
 			}
 		} else {
 			for(Spot p : wspots) {
-				System.out.println("ben trang ne");
-				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(true) == true) {
+				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(false) == true) {
 					System.out.println("Vua trang dang bi chieu");	
 					return true;
 				}

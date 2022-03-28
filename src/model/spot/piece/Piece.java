@@ -14,6 +14,16 @@ public class Piece {
 	private boolean isDead;
 	private String name;
 	
+	public Piece(Piece piece) {
+		this.x = piece.x;
+		this.y = piece.y;
+		this.px = piece.px;
+		this.py = piece.py;
+		this.color = piece.color;
+		this.isDead = piece.isDead;
+		this.name = piece.name;
+	}
+	
 	public Piece(int x, int y, boolean color, boolean isDead, String name) {
 		super();
 		this.x = x;
