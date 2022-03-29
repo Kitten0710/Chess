@@ -50,10 +50,15 @@ public class Game {
 	//===Time_setting===
 	JLabel timeLabel1 = new JLabel();
 	JLabel timeLabel2 = new JLabel();
-	int seconds = 0;
-	int minutes = 15;
-	String seconds_string = String.format("%02d", seconds);
-	String minutes_string = String.format("%02d", minutes);
+	int fseconds = 0;
+	int fminutes = 15;
+	int sseconds = 0;
+	int sminutes = 15;
+	String seconds_string1 = String.format("%02d", fseconds);
+	String minutes_string1 = String.format("%02d", fminutes);
+	String seconds_string2 = String.format("%02d", sseconds);
+	String minutes_string2 = String.format("%02d", sminutes);
+	
 	JButton W_startButton = new JButton("START");
 	JButton W_resetButton = new JButton("RESET");
 	public Game() {
@@ -302,7 +307,7 @@ public class Game {
 		});
 		lb1.setSize(648, 648);
 		//==========Time_label_1==========
-		timeLabel1.setText(minutes_string+":"+seconds_string);
+		timeLabel1.setText(minutes_string1+":"+seconds_string1);
 		timeLabel1.setBounds(655,0,470,163);
 		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
@@ -311,7 +316,7 @@ public class Game {
 
 		//==========Time_label_2==========
 
-		timeLabel2.setText(minutes_string+":"+seconds_string);
+		timeLabel2.setText(minutes_string2+":"+seconds_string2);
 		timeLabel2.setBounds(655,485,470,163);
 		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
@@ -335,16 +340,16 @@ public class Game {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(seconds>0) {
-				seconds = seconds-1;
+			if(fseconds>0) {
+				fseconds = fseconds-1;
 			}
-			else if(seconds==0 && minutes>0) {
-				minutes = minutes - 1;
-				seconds = 59;
+			else if(fseconds==0 && fminutes>0) {
+				fminutes = fminutes - 1;
+				fseconds = 59;
 			}
-			seconds_string = String.format("%02d", seconds);
-			minutes_string = String.format("%02d", minutes);
-			timeLabel1.setText(minutes_string+":"+seconds_string);
+			seconds_string1 = String.format("%02d", fseconds);
+			minutes_string1 = String.format("%02d", fminutes);
+			timeLabel1.setText(minutes_string1+":"+seconds_string1);
 
 		}
 	
@@ -354,16 +359,16 @@ public class Game {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(seconds>0) {
-				seconds = seconds-1;
+			if(sseconds>0) {
+				sseconds = sseconds-1;
 			}
-			else if(seconds==0 && minutes>0) {
-				minutes = minutes - 1;
-				seconds = 59;
+			else if(sseconds==0 && sminutes>0) {
+				sminutes = sminutes - 1;
+				sseconds = 59;
 			}
-			seconds_string = String.format("%02d", seconds);
-			minutes_string = String.format("%02d", minutes);
-			timeLabel2.setText(minutes_string+":"+seconds_string);
+			seconds_string2 = String.format("%02d", sseconds);
+			minutes_string2 = String.format("%02d", sminutes);
+			timeLabel2.setText(minutes_string2+":"+seconds_string2);
 
 		}
 	
