@@ -259,35 +259,40 @@ public class Game {
 			@Override
 			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
-					if(isTurn == true) {	// luot trang
-						Piece other = null;
-						Iterator<Spot> itr1 = Game.getWspots().iterator();
-						while(itr1.hasNext()) {
-							Spot temp = itr1.next();
-							if(temp.getPiece().getName() == "king") {
-								other = temp.getPiece();
-								break;
-							}
-						}
-						Iterator<Spot> itr2 = Game.getBspots().iterator();
-						while(itr2.hasNext()) {
-							Spot temp = itr2.next();
-							if(temp.move(other.getX(), other.getY()) == true) {
-								System.out.println("Quan trang dang bi chieu tuong!");
-							}
-						}
-					} 
-					
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
 						if(isTurn == true) {	
 							stop2();
 							start1();
 							isTurn = false;
+							Piece other = null;
+							Iterator<Spot> itr1 = Game.getBspots().iterator();
+							while(itr1.hasNext()) {
+								Spot temp = itr1.next();
+								if(temp.getPiece().getName() == "king") {
+									other = temp.getPiece();
+									if(((King) temp).CheckMate(true) == true) {
+										System.out.println("Vua den dang bi chieu!");
+										break;
+									}
+								}
+							}
 						}
 						else { 
 							stop1();
 							start2();
 							isTurn = true;
+							Piece other = null;
+							Iterator<Spot> itr1 = Game.getWspots().iterator();
+							while(itr1.hasNext()) {
+								Spot temp = itr1.next();
+								if(temp.getPiece().getName() == "king") {
+									other = temp.getPiece();
+									if(((King) temp).CheckMate(true) == true) {
+										System.out.println("Vua trang dang bi chieu!");
+										break;
+									}
+								}
+							}
 						}
 					}
 					
@@ -308,6 +313,7 @@ public class Game {
 					}
 					frame.repaint();
 				}
+				
 			}
 
 			@Override

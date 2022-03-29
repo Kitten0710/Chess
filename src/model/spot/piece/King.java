@@ -159,18 +159,20 @@ public class King implements Spot{
 		// nếu là tướng trắng
 		Piece other = new Piece(a);
 		if(color == true) {
-			Iterator<Spot> itr1 = Game.getWspots().iterator();
-			while(itr1.hasNext()) {
-				Spot temp = itr1.next();
-				if(temp.move(other.getX(), other.getY()) == true) {
-					return true;
-				}
-			}
-		} else {
 			Iterator<Spot> itr1 = Game.getBspots().iterator();
 			while(itr1.hasNext()) {
 				Spot temp = itr1.next();
 				if(temp.move(other.getX(), other.getY()) == true) {
+					this.a.setDead(false);
+					return true;
+				}
+			}
+		} else {
+			Iterator<Spot> itr1 = Game.getWspots().iterator();
+			while(itr1.hasNext()) {
+				Spot temp = itr1.next();
+				if(temp.move(other.getX(), other.getY()) == true) {
+					this.a.setDead(false);
 					return true;
 				}
 			}
