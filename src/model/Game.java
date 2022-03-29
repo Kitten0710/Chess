@@ -306,7 +306,6 @@ public class Game {
 			}
 		});
 		//==========set_label===========
-		lb1.setBorder(BorderFactory.createLineBorder(Color.RED, 15));
 		lb1.setSize(648, 648);
 		//==========Time_label_1==========
 		timeLabel1.setText(minutes_string1+":"+seconds_string1);
