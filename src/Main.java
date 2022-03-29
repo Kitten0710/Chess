@@ -1,6 +1,5 @@
-import controller.Controller;
+import controller.Controller; 
 import model.Game;
-import model.menu.set_time_white;
 
 public class Main {
 	
