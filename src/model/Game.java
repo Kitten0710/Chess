@@ -48,7 +48,7 @@ public class Game {
 	private Spot selectedSpot = null;
 	private static boolean isContinue = true; 
 	private static boolean isTurn = true;
-
+	JFrame frame = new JFrame();
 	//===Time_setting===
 	JLabel timeLabel1 = new JLabel();
 	JLabel timeLabel2 = new JLabel();
@@ -62,7 +62,7 @@ public class Game {
 	String minutes_string2 = String.format("%02d", sminutes);
 	
 	JButton Pause = new JButton("Pause");
-	JButton W_resetButton = new JButton("RESET");
+	JButton Exit_button = new JButton("EXIT");
 	public Game() {
 		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -146,8 +146,6 @@ public class Game {
 				ind++;
 			}    
 		}
-
-		JFrame frame = new JFrame();
 		//board_game_setting
 		JLabel lb1 = new JLabel() {
 			@Override
@@ -346,8 +344,9 @@ public class Game {
 		timeLabel2.setBackground(Color.WHITE);
 		timeLabel2.setForeground(Color.BLACK);
 		
-		//
-		Pause.setBounds(300, 400, 50, 70);
+		
+		Pause.setBounds(950, 185, 150, 70);
+		Exit_button.setBounds(950, 280, 150, 70);
 		//===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -360,6 +359,7 @@ public class Game {
 		frame.add(timeLabel2);
 		frame.add(lb1);
 		frame.add(Pause);
+		frame.add(Exit_button);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setResizable(false);
