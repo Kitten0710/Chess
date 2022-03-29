@@ -48,7 +48,7 @@ public class Game {
 	private Spot selectedSpot = null;
 	private static boolean isContinue = true; 
 	private static boolean isTurn = true;
-
+	JFrame frame = new JFrame();
 	//===Time_setting===
 	JLabel timeLabel1 = new JLabel();
 	JLabel timeLabel2 = new JLabel();
@@ -146,8 +146,6 @@ public class Game {
 				ind++;
 			}    
 		}
-
-		JFrame frame = new JFrame();
 		//board_game_setting
 		JLabel lb1 = new JLabel() {
 			@Override
@@ -340,8 +338,8 @@ public class Game {
 		timeLabel2.setBackground(Color.WHITE);
 		timeLabel2.setForeground(Color.BLACK);
 		
-		//
-		Pause.setBounds(300, 400, 50, 70);
+		
+		Pause.setBounds(950, 185, 150, 70);
 		//===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
