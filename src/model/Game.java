@@ -62,7 +62,7 @@ public class Game {
 	String minutes_string2 = String.format("%02d", sminutes);
 	
 	JButton Pause = new JButton("Pause");
-	JButton W_resetButton = new JButton("RESET");
+	JButton Exit_button = new JButton("EXIT");
 	public Game() {
 		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -340,6 +340,7 @@ public class Game {
 		
 		
 		Pause.setBounds(950, 185, 150, 70);
+		Exit_button.setBounds(950, 280, 150, 70);
 		//===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -352,6 +353,7 @@ public class Game {
 		frame.add(timeLabel2);
 		frame.add(lb1);
 		frame.add(Pause);
+		frame.add(Exit_button);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setResizable(false);
