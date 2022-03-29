@@ -319,7 +319,8 @@ public class Game {
 		timeLabel2.setBackground(Color.WHITE);
 		timeLabel2.setForeground(Color.BLACK);
 		
-
+		//
+		
 		//===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -331,6 +332,7 @@ public class Game {
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
 		frame.add(lb1);
+		frame.add(Pause);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
