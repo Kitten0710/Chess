@@ -328,6 +328,7 @@ public class Game {
 		
 
 		//===Frame_add_setting===
+		frame.getContentPane().setBackground(new Color(255, 231, 181));
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
 		frame.add(lb1);
