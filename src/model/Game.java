@@ -34,6 +34,7 @@ import model.spot.piece.Bishop;
 import model.spot.piece.King;
 import model.spot.piece.Knight;
 import model.spot.piece.Pawn;
+import model.spot.piece.Piece;
 import model.spot.piece.Queen;
 import model.spot.piece.Rook;
 
@@ -264,13 +265,31 @@ public class Game {
 			@Override
 			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
-					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
-						if(isTurn == true) 
-							{	
-								stop2();
-								start1();
-								isTurn = false;
+					if(isTurn == true) {	// luot trang
+						Piece other = null;
+						Iterator<Spot> itr1 = Game.getWspots().iterator();
+						while(itr1.hasNext()) {
+							Spot temp = itr1.next();
+							if(temp.getPiece().getName() == "king") {
+								other = temp.getPiece();
+								break;
 							}
+						}
+						Iterator<Spot> itr2 = Game.getBspots().iterator();
+						while(itr2.hasNext()) {
+							Spot temp = itr2.next();
+							if(temp.move(other.getX(), other.getY()) == true) {
+								System.out.println("Quan trang dang bi chieu tuong!");
+							}
+						}
+					} 
+					
+					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
+						if(isTurn == true) {	
+							stop2();
+							start1();
+							isTurn = false;
+						}
 						else { 
 							stop1();
 							start2();
