@@ -1,10 +1,9 @@
 package view;
 
+import model.menu.Menu;
+
 public class View {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	Menu mn = new Menu();
 
 }

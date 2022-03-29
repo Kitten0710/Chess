@@ -35,10 +35,10 @@ public class Menu extends JFrame implements ActionListener{
 		
 		startBtn.setBounds(320, 300, 150, 50);
 		startBtn.setFont(new Font("Arial", 0, 32));
-		startBtn.setBackground(Color.BLUE);
+		startBtn.setBackground(Color.white);
 		exitBtn.setBounds(320, 400, 150, 50);
 		exitBtn.setFont(new Font("Arial", 0, 32));
-		exitBtn.setBackground(Color.BLUE);
+		exitBtn.setBackground(Color.white);
 		
 		try {
 			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\bg8.jpg"))));
