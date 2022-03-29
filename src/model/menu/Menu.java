@@ -26,7 +26,7 @@ public class Menu extends JFrame implements ActionListener{
 
 		this.setTitle("CHESS GAME"); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(400, 400, 800, 650);
+		this.setBounds(400, 400, 1148, 688);
 		this.setResizable(true);
 		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
@@ -42,28 +42,16 @@ public class Menu extends JFrame implements ActionListener{
 		
 		try {
 			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\bg8.jpg"))));
-			//bg.setSize(1920, 1080);
+			bg.setSize(1148, 688);
+			
 			this.add(bg);
 			bg.add(startBtn, BorderLayout.CENTER);
 			bg.add(exitBtn, BorderLayout.CENTER);
-			//bg.setVisible(true);
 		} catch (IOException e) {
             e.printStackTrace();
        }
-        
-		//this.add(startBtn);
 		startBtn.addActionListener(this);
 		exitBtn.addActionListener(this);
-		
-		/*
-		try {
-            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\Users\\DELL\\git\\Chess\\img\\bg8.jpg")))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		this.pack();
-		this.setVisible(true);
-		 */
 		this.setVisible(true);
 
 	}
