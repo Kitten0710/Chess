@@ -59,7 +59,7 @@ public class Game {
 	String seconds_string2 = String.format("%02d", sseconds);
 	String minutes_string2 = String.format("%02d", sminutes);
 	
-	JButton W_startButton = new JButton("START");
+	JButton Pause = new JButton("Pause");
 	JButton W_resetButton = new JButton("RESET");
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
