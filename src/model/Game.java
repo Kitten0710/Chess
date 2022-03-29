@@ -145,14 +145,6 @@ public class Game {
 		}
 
 		JFrame frame = new JFrame();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		//frame.setUndecorated(true);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setSize(648 + 500, 648 + 40);
-		frame.setTitle("Chess");
-
 		//board_game_setting
 		JLabel lb1 = new JLabel() {
 			@Override
@@ -309,7 +301,7 @@ public class Game {
 		lb1.setSize(648, 648);
 		//==========Time_label_1==========
 		timeLabel1.setText(minutes_string1+":"+seconds_string1);
-		timeLabel1.setBounds(655,0,470,163);
+		timeLabel1.setBounds(647,0,490,163);
 		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel1.setOpaque(true);
@@ -319,7 +311,7 @@ public class Game {
 		//==========Time_label_2==========
 
 		timeLabel2.setText(minutes_string2+":"+seconds_string2);
-		timeLabel2.setBounds(655,485,470,163);
+		timeLabel2.setBounds(647,485,490,163);
 		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel2.setOpaque(true);
@@ -329,6 +321,12 @@ public class Game {
 		
 
 		//===Frame_add_setting===
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setUndecorated(true);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setSize(648 + 500, 648 + 38);
+		frame.setTitle("Chess");
 		frame.getContentPane().setBackground(new Color(255, 231, 181));
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
