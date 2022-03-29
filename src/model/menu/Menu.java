@@ -60,6 +60,7 @@ public class Menu extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == startBtn) {
 			Game game = new Game();
+			this.setVisible(false);
 		}
 		if(e.getSource() == exitBtn)
 			System.exit(0);
