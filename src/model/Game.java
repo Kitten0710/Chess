@@ -29,6 +29,7 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 
 import model.board.Board;
+import model.menu.GameStatus;
 import model.spot.Spot;
 import model.spot.piece.Bishop;
 import model.spot.piece.King;
@@ -62,6 +63,7 @@ public class Game {
 	JButton Pause = new JButton("Pause");
 	JButton W_resetButton = new JButton("RESET");
 	public Game() {
+		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
 		Knight bkinght  = new Knight(1, 0, false, false, "knight");
