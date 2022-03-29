@@ -313,7 +313,8 @@ public class Game {
 		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel1.setOpaque(true);
 		timeLabel1.setHorizontalAlignment(JTextField.CENTER);
-
+		timeLabel1.setBackground(Color.WHITE);
+		timeLabel1.setForeground(Color.BLACK);
 		//==========Time_label_2==========
 
 		timeLabel2.setText(minutes_string2+":"+seconds_string2);
@@ -322,7 +323,8 @@ public class Game {
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel2.setOpaque(true);
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
-
+		timeLabel2.setBackground(Color.WHITE);
+		timeLabel2.setForeground(Color.BLACK);
 		
 
 		//===Frame_add_setting===
