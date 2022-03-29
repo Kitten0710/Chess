@@ -1,6 +1,7 @@
 package model.spot.piece;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import model.Game;
@@ -158,14 +159,18 @@ public class King implements Spot{
 		// nếu là tướng trắng
 		Piece other = new Piece(a);
 		if(color == true) {
-			for(Spot p : Game.getWspots()) {
-				if(p.move(other.getX(), other.getY()) == true) {
+			Iterator<Spot> itr1 = Game.getWspots().iterator();
+			while(itr1.hasNext()) {
+				Spot temp = itr1.next();
+				if(temp.move(other.getX(), other.getY()) == true) {
 					return true;
 				}
 			}
 		} else {
-			for(Spot p : Game.getBspots()) {
-				if(p.move(other.getX(), other.getY()) == true) {
+			Iterator<Spot> itr1 = Game.getBspots().iterator();
+			while(itr1.hasNext()) {
+				Spot temp = itr1.next();
+				if(temp.move(other.getX(), other.getY()) == true) {
 					return true;
 				}
 			}

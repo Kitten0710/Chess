@@ -228,7 +228,7 @@ public class Game {
 		//===mouse_listener===
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
-			public void mouseDragged(MouseEvent e) {
+			public void mouseDragged(MouseEvent e) {	// giu
 				if(selectedSpot != null && selectedSpot.getPiece().isColor() != isTurn) {
 					selectedSpot = null;
 					return;
@@ -253,7 +253,7 @@ public class Game {
 
 			//Mouse_press
 			@Override
-			public void mousePressed(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {	// click
 				if(getSpot(e.getX() - 8, e.getY() - 31) != null) {
 					selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
 					System.out.println(selectedSpot.getPiece().getName());
@@ -262,7 +262,7 @@ public class Game {
 
 			//Mouse_release
 			@Override
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
 						if(isTurn == true) 
@@ -277,7 +277,7 @@ public class Game {
 							isTurn = true;
 						}
 					}
-
+					
 					selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81);
 					Iterator<Spot> itr1 = wspots.iterator();
 					while(itr1.hasNext()) {
@@ -475,9 +475,4 @@ public class Game {
 	public static void setContinue(boolean isContinue) {
 		Game.isContinue = isContinue;
 	}
-
-
-
-
-
 }
