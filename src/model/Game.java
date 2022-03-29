@@ -59,7 +59,7 @@ public class Game {
 	String seconds_string2 = String.format("%02d", sseconds);
 	String minutes_string2 = String.format("%02d", sminutes);
 	
-	JButton W_startButton = new JButton("START");
+	JButton Pause = new JButton("Pause");
 	JButton W_resetButton = new JButton("RESET");
 	public Game() {
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -305,6 +305,7 @@ public class Game {
 			public void mouseExited(MouseEvent e) {
 			}
 		});
+		//==========set_label===========
 		lb1.setSize(648, 648);
 		//==========Time_label_1==========
 		timeLabel1.setText(minutes_string1+":"+seconds_string1);
@@ -328,6 +329,7 @@ public class Game {
 		
 
 		//===Frame_add_setting===
+		frame.getContentPane().setBackground(new Color(255, 231, 181));
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
 		frame.add(lb1);

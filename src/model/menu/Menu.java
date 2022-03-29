@@ -33,17 +33,21 @@ public class Menu extends JFrame implements ActionListener{
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(false);
 		
-		startBtn.setBounds(320, 300, 150, 50);
-		startBtn.setFont(new Font("Arial", 0, 32));
-		startBtn.setBackground(Color.white);
-		exitBtn.setBounds(320, 400, 150, 50);
-		exitBtn.setFont(new Font("Arial", 0, 32));
-		exitBtn.setBackground(Color.white);
+		//===== Start Button =====
+		startBtn.setBounds(490, 250, 150, 50);
+		startBtn.setFont(new Font("Arial", Font.BOLD, 32));
+		startBtn.setBackground(new Color(167, 226, 245));
+		startBtn.setBorder(null);
+		startBtn.setFocusPainted(false);
+		//===== Exit Button =====
+		exitBtn.setBounds(490, 350, 150, 50);
+		exitBtn.setFont(new Font("Arial", Font.BOLD, 32));
+		exitBtn.setBackground(new Color(167, 226, 245));
+		exitBtn.setBorder(null);
+		exitBtn.setFocusPainted(false);
 		
 		try {
 			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\bg9.jpg"))));
-			bg.setSize(1148, 688);
-			
 			this.add(bg);
 			bg.add(startBtn, BorderLayout.CENTER);
 			bg.add(exitBtn, BorderLayout.CENTER);
