@@ -29,6 +29,7 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 
 import model.board.Board;
+import model.menu.GameStatus;
 import model.spot.Spot;
 import model.spot.piece.Bishop;
 import model.spot.piece.King;
@@ -63,6 +64,7 @@ public class Game {
 	JButton Pause = new JButton("Pause");
 	JButton W_resetButton = new JButton("RESET");
 	public Game() {
+		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
 		Knight bkinght  = new Knight(1, 0, false, false, "knight");
@@ -146,14 +148,6 @@ public class Game {
 		}
 
 		JFrame frame = new JFrame();
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		//frame.setUndecorated(true);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setSize(648 + 500, 648 + 40);
-		frame.setTitle("Chess");
-
 		//board_game_setting
 		JLabel lb1 = new JLabel() {
 			@Override
@@ -328,7 +322,7 @@ public class Game {
 		lb1.setSize(648, 648);
 		//==========Time_label_1==========
 		timeLabel1.setText(minutes_string1+":"+seconds_string1);
-		timeLabel1.setBounds(655,0,470,163);
+		timeLabel1.setBounds(647,0,490,163);
 		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel1.setOpaque(true);
@@ -338,7 +332,7 @@ public class Game {
 		//==========Time_label_2==========
 
 		timeLabel2.setText(minutes_string2+":"+seconds_string2);
-		timeLabel2.setBounds(655,485,470,163);
+		timeLabel2.setBounds(647,485,490,163);
 		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel2.setOpaque(true);
@@ -346,13 +340,22 @@ public class Game {
 		timeLabel2.setBackground(Color.WHITE);
 		timeLabel2.setForeground(Color.BLACK);
 		
-
+		//
+		Pause.setBounds(300, 400, 50, 70);
 		//===Frame_add_setting===
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setUndecorated(true);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setSize(648 + 500, 648 + 38);
+		frame.setTitle("Chess");
 		frame.getContentPane().setBackground(new Color(255, 231, 181));
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
 		frame.add(lb1);
+		frame.add(Pause);
 		frame.setLocationRelativeTo(null);
+		frame.setLayout(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 		//======time_run======

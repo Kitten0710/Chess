@@ -3,7 +3,7 @@ package model.menu;
 public class Test {
 
 	public static void main(String[] args) {
-			Menu m = new Menu();
+			GameStatus st = new GameStatus();
 	}
 
 }
