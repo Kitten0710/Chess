@@ -41,7 +41,7 @@ public class Menu extends JFrame implements ActionListener{
 		exitBtn.setBackground(Color.white);
 		
 		try {
-			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\bg8.jpg"))));
+			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\bg9.jpg"))));
 			bg.setSize(1148, 688);
 			
 			this.add(bg);
