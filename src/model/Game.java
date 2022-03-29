@@ -320,7 +320,7 @@ public class Game {
 		timeLabel2.setForeground(Color.BLACK);
 		
 		//
-		
+		Pause.setBounds(300, 400, 50, 70);
 		//===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -334,6 +334,7 @@ public class Game {
 		frame.add(lb1);
 		frame.add(Pause);
 		frame.setLocationRelativeTo(null);
+		frame.setLayout(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 		//======time_run======
