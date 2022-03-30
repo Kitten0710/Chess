@@ -258,7 +258,7 @@ public class Game {
 			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
-						if(isTurn == true) {	
+						if(isTurn == true) {	// lượt quân trắng
 							stop2();
 							start1();
 							isTurn = false;
@@ -275,14 +275,29 @@ public class Game {
 								}
 							}
 						}
-						else { 
+						else { 		// lượt quân đen
 							stop1();
 							start2();
 							isTurn = true;
 							Piece other = null;
-							Iterator<Spot> itr1 = Game.getWspots().iterator();
+							// kiểm tra vua đen có đang bị chiếu không
+							Iterator<Spot> itr1 = Game.getBspots().iterator();
 							while(itr1.hasNext()) {
 								Spot temp = itr1.next();
+								if(temp.getPiece().getName() == "king") {
+									other = temp.getPiece();
+									if(((King) temp).CheckMate(false) == true) {
+										System.out.println("Vua đen vẫn đang bị chiếu! Đi lại đi");
+										isTurn = false;
+										selectedSpot.move(selectedSpot.getPiece().getX(), selectedSpot.getPiece().getY());
+										return;
+									}
+								}
+							}
+							// kiểm tra vua trắng có bị chiếu không
+							Iterator<Spot> itr2 = Game.getWspots().iterator();
+							while(itr2.hasNext()) {
+								Spot temp = itr2.next();
 								if(temp.getPiece().getName() == "king") {
 									other = temp.getPiece();
 									if(((King) temp).CheckMate(true) == true) {
@@ -291,6 +306,7 @@ public class Game {
 									}
 								}
 							}
+							
 						}
 					}
 					
