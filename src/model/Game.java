@@ -41,13 +41,14 @@ import model.spot.piece.Rook;
 
 
 
-public class Game {
+public class Game implements ActionListener{
 	private Board board;
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
 	private Spot selectedSpot = null;
 	private static boolean isContinue = true; 
 	private static boolean isTurn = true;
+	private static boolean isPause = false;
 	JFrame frame = new JFrame();
 	//===Time_setting===
 	JLabel timeLabel1 = new JLabel();
@@ -60,7 +61,7 @@ public class Game {
 	String minutes_string1 = String.format("%02d", fminutes);
 	String seconds_string2 = String.format("%02d", sseconds);
 	String minutes_string2 = String.format("%02d", sminutes);
-	
+
 	JButton Pause = new JButton("Pause");
 	JButton Restart_button = new JButton("Restart");
 	JButton Exit_button = new JButton("EXIT");
@@ -259,42 +260,46 @@ public class Game {
 			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
-						if(isTurn == true) {	
-							stop2();
-							start1();
-							isTurn = false;
-							Piece other = null;
-							Iterator<Spot> itr1 = Game.getBspots().iterator();
-							while(itr1.hasNext()) {
-								Spot temp = itr1.next();
-								if(temp.getPiece().getName() == "king") {
-									other = temp.getPiece();
-									if(((King) temp).CheckMate(true) == true) {
-										System.out.println("Vua den dang bi chieu!");
-										break;
+						if(isPause == false) {
+							if(isTurn == true) {	
+								stop2();
+								start1();
+								isTurn = false;
+								Piece other = null;
+								Iterator<Spot> itr1 = Game.getBspots().iterator();
+								while(itr1.hasNext()) {
+									Spot temp = itr1.next();
+									if(temp.getPiece().getName() == "king") {
+										other = temp.getPiece();
+										if(((King) temp).CheckMate(true) == true) {
+											System.out.println("Vua den dang bi chieu!");
+											break;
+										}
+									}
+								}
+							}
+							else { 
+								stop1();
+								start2();
+								isTurn = true;
+								Piece other = null;
+								Iterator<Spot> itr1 = Game.getWspots().iterator();
+								while(itr1.hasNext()) {
+									Spot temp = itr1.next();
+									if(temp.getPiece().getName() == "king") {
+										other = temp.getPiece();
+										if(((King) temp).CheckMate(true) == true) {
+											System.out.println("Vua trang dang bi chieu!");
+											break;
+										}
 									}
 								}
 							}
 						}
-						else { 
-							stop1();
-							start2();
-							isTurn = true;
-							Piece other = null;
-							Iterator<Spot> itr1 = Game.getWspots().iterator();
-							while(itr1.hasNext()) {
-								Spot temp = itr1.next();
-								if(temp.getPiece().getName() == "king") {
-									other = temp.getPiece();
-									if(((King) temp).CheckMate(true) == true) {
-										System.out.println("Vua trang dang bi chieu!");
-										break;
-									}
-								}
-							}
+						else {
+							frame.setEnabled(false);
 						}
 					}
-					
 					selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81);
 					Iterator<Spot> itr1 = wspots.iterator();
 					while(itr1.hasNext()) {
@@ -312,7 +317,7 @@ public class Game {
 					}
 					frame.repaint();
 				}
-				
+
 			}
 
 			@Override
@@ -344,10 +349,11 @@ public class Game {
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
 		timeLabel2.setBackground(Color.WHITE);
 		timeLabel2.setForeground(Color.BLACK);
-		
-		
-		Pause.setBounds(950, 185, 150, 70);
-		Exit_button.setBounds(950, 280, 150, 70);
+
+
+		Pause.setBounds(950, 190, 150, 70);
+		Restart_button.setBounds(950, 290, 150, 70);
+		Exit_button.setBounds(950, 390, 150, 70);
 		//===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -360,6 +366,7 @@ public class Game {
 		frame.add(timeLabel2);
 		frame.add(lb1);
 		frame.add(Pause);
+		frame.add(Restart_button);
 		frame.add(Exit_button);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
@@ -385,7 +392,7 @@ public class Game {
 			timeLabel1.setText(minutes_string1+":"+seconds_string1);
 
 		}
-	
+
 
 	});
 	Timer timer2 = new Timer(1000, new ActionListener() {
@@ -404,10 +411,34 @@ public class Game {
 			timeLabel2.setText(minutes_string2+":"+seconds_string2);
 
 		}
-	
+
 
 	});
-	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource()==Pause) {
+
+			if(isPause==false) {
+				isPause=true;
+				timer1.stop();
+				timer2.stop();
+				Pause.setText("Continue");
+			}
+			//	   else {
+			//	    started=false;
+			//	    startButton.setText("START");
+			//	    stop();
+			//	   }
+			//	   
+			//	  }
+			//	  if(e.getSource()==resetButton) {
+			//	   started=false;
+			//	   startButton.setText("START");
+			//	   reset();
+		}
+
+	}
 	//==========button==========
 	void start1() {
 		timer1.start();
@@ -481,10 +512,10 @@ public class Game {
 				}
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	public static List<Spot> getWspots() {
 		return wspots;
 	}
