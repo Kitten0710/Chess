@@ -62,6 +62,7 @@ public class Game {
 	String minutes_string2 = String.format("%02d", sminutes);
 	
 	JButton Pause = new JButton("Pause");
+	JButton Restart_button = new JButton("Restart");
 	JButton Exit_button = new JButton("EXIT");
 	public Game() {
 		GameStatus gs = new GameStatus();
