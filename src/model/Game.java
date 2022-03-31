@@ -268,7 +268,7 @@ public class Game {
 								Spot temp = itr1.next();
 								if(temp.getPiece().getName() == "king") {
 									other = temp.getPiece();
-									if(((King) temp).CheckMate(true) == true) {
+									if(((King) temp).CheckMate(false) == true) {
 										System.out.println("Vua den dang bi chieu!");
 										break;
 									}
