@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.imageio.plugins.tiff.BaselineTIFFTagSet;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -314,31 +315,7 @@ public class Game implements ActionListener{
 							_wKing = new King(temp.getPiece());
 						}
 					}
-					if(isTurn == true) {
-						if(_bKing.CheckMate(false) == true && isContinue == true) {
-							//frame.add(wwin);
-							//frame.repaint();
-							System.out.println("White won");
-							JOptionPane.showMessageDialog(null, "White Won");
-							// white won
-							timer1.stop();
-							timer2.stop();
-							isContinue = false;
-							return;
-						}
-					} else {
-						if(_wKing.CheckMate(true) == true && isContinue == true) {
-							//frame.add(bwin);
-							//frame.repaint();
-							System.out.println("Black Won");
-							JOptionPane.showMessageDialog(null, "Black Won");
-							// black won
-							timer1.stop();
-							timer2.stop();
-							isContinue = false;
-							return;
-						}
-					}
+					
 					selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
 					System.out.println(selectedSpot.getPiece().getName());
 				}
@@ -402,11 +379,31 @@ public class Game implements ActionListener{
 							itr2.remove();
 						}
 					}
-					if(isTurn == true) {
-					}
 					frame.repaint();
+					if(isTurn == true) {
+						if(_bKing.CheckMate() == true && isContinue == true) {
+							//frame.add(wwin);
+							//frame.repaint();
+							// white won
+							timer1.stop();
+							timer2.stop();
+							JOptionPane.showMessageDialog(null, "White Won");
+							isContinue = false;
+							return;
+						}
+					} else {
+						if(_wKing.CheckMate() == true && isContinue == true) {
+							//frame.add(bwin);
+							//frame.repaint();
+							// black won
+							timer1.stop();
+							timer2.stop();
+							JOptionPane.showMessageDialog(null, "Black Won");
+							isContinue = false;
+							return;
+						}
+					}
 				}
-				
 			}
 
 			@Override
@@ -584,14 +581,14 @@ public class Game implements ActionListener{
 	public boolean isCheckMated(boolean isColor) {
 		if(isColor == false) {
 			for(Spot p : bspots) {
-				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(true) == true) {
+				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate() == true) {
 					System.out.println("Vua den dang bi chieu");	
 					return true;
 				}
 			}
 		} else {
 			for(Spot p : wspots) {
-				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate(false) == true) {
+				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate() == true) {
 					System.out.println("Vua trang dang bi chieu");	
 					return true;
 				}

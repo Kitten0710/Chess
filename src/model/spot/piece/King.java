@@ -155,7 +155,8 @@ public class King implements Spot{
 		// TODO phải kiểm tra xem ô đó trống hay k
 	}
 	
-	public boolean CheckMate(boolean color) {
+	public boolean CheckMate() {
+		boolean color = this.getPiece().isColor();
 		// nếu là tướng trắng
 		Piece other = new Piece(a);
 		if(color == true) {
@@ -163,7 +164,7 @@ public class King implements Spot{
 			while(itr1.hasNext()) {
 				Spot temp = itr1.next();
 				if(temp.move(other.getX(), other.getY()) == true) {
-					this.a.setDead(false);
+					this.a.setDead(true);
 					return true;
 				}
 			}
@@ -172,32 +173,12 @@ public class King implements Spot{
 			while(itr1.hasNext()) {
 				Spot temp = itr1.next();
 				if(temp.move(other.getX(), other.getY()) == true) {
-					this.a.setDead(false);
+					this.a.setDead(true);
 					return true;
 				}
 			}
 		}
 		return false;
-//		if(color == true) {
-//			List<Spot> temp = new ArrayList<Spot>();
-//			temp = Game.getBspots();
-//			for(Spot p : temp) {
-//				if(p.move(a.getX(), a.getY()) == true) {
-//					temp = Game.getBspots();
-//					return true;
-//				}
-//			}
-//		} else {
-//			List<Spot> temp = new ArrayList<Spot>();
-//			temp = Game.getWspots();
-//			for(Spot p : temp) {
-//				if(p.move(a.getX(), a.getY()) == true) {
-//					temp = Game.getWspots();
-//					return true;
-//				}
-//			}
-//		}
-//		return false;
 	}
 	
 	@Override
