@@ -258,55 +258,54 @@ public class Game implements ActionListener{
 			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
-						if(isTurn == true) {	// lÆ°á»£t quÃ¢n tráº¯ng
+						if(isTurn == true) {	// lượt quân trắng
 							stop2();
 							start1();
 							isTurn = false;
-							Piece other = null;
-							Iterator<Spot> itr1 = Game.getBspots().iterator();
-							while(itr1.hasNext()) {
-								Spot temp = itr1.next();
-								if(temp.getPiece().getName() == "king") {
-									other = temp.getPiece();
-									if(((King) temp).CheckMate(false) == true) {
-										System.out.println("Vua den dang bi chieu!");
-										break;
-									}
-								}
-							}
+//							Piece other = null;
+//							Iterator<Spot> itr1 = Game.getBspots().iterator();
+//							while(itr1.hasNext()) {
+//								Spot temp = itr1.next();
+//								if(temp.getPiece().getName() == "king") {
+//									other = temp.getPiece();
+//									if(((King) temp).CheckMate(false) == true) {
+//										System.out.println("Vua den dang bi chieu!");
+//										break;
+//									}
+//								}
+//							}
 						}
-						else { 		// lÆ°á»£t quÃ¢n Ä‘en
+						else { 		// lượt quân đen
 							stop1();
 							start2();
 							isTurn = true;
-							Piece other = null;
-							// kiá»ƒm tra vua Ä‘en cÃ³ Ä‘ang bá»‹ chiáº¿u khÃ´ng
-							Iterator<Spot> itr1 = Game.getBspots().iterator();
-							while(itr1.hasNext()) {
-								Spot temp = itr1.next();
-								if(temp.getPiece().getName() == "king") {
-									other = temp.getPiece();
-									if(((King) temp).CheckMate(false) == true) {
-										System.out.println("Vua Ä‘en váº«n Ä‘ang bá»‹ chiáº¿u! Ä�i láº¡i Ä‘i");
-										isTurn = false;
-										selectedSpot.move(selectedSpot.getPiece().getX(), selectedSpot.getPiece().getY());
-										return;
-									}
-								}
-							}
-							// kiá»ƒm tra vua tráº¯ng cÃ³ bá»‹ chiáº¿u khÃ´ng
-							Iterator<Spot> itr2 = Game.getWspots().iterator();
-							while(itr2.hasNext()) {
-								Spot temp = itr2.next();
-								if(temp.getPiece().getName() == "king") {
-									other = temp.getPiece();
-									if(((King) temp).CheckMate(true) == true) {
-										System.out.println("Vua trang dang bi chieu!");
-										break;
-									}
-								}
-							}
-							
+//							Piece other = null;
+//							// kiểm tra vua đen có đang bị chiếu không
+//							Iterator<Spot> itr1 = Game.getBspots().iterator();
+//							while(itr1.hasNext()) {
+//								Spot temp = itr1.next();
+//								if(temp.getPiece().getName() == "king") {
+//									other = temp.getPiece();
+//									if(((King) temp).CheckMate(false) == true) {
+//										System.out.println("Vua đen vẫn đang bị chiếu! Đi lại đi");
+//										isTurn = false;
+//										selectedSpot.move(selectedSpot.getPiece().getX(), selectedSpot.getPiece().getY());
+//										return;
+//									}
+//								}
+//							}
+//							// kiểm tra vua trắng có bị chiếu không
+//							Iterator<Spot> itr2 = Game.getWspots().iterator();
+//							while(itr2.hasNext()) {
+//								Spot temp = itr2.next();
+//								if(temp.getPiece().getName() == "king") {
+//									other = temp.getPiece();
+//									if(((King) temp).CheckMate(true) == true) {
+//										System.out.println("Vua trang dang bi chieu!");
+//										break;
+//									}
+//								}
+//							}
 						}
 					}
 					
@@ -315,6 +314,9 @@ public class Game implements ActionListener{
 					while(itr1.hasNext()) {
 						Spot temp = itr1.next();
 						if(temp.getPiece().isDead() == true) {
+							if(temp.getPiece().getName() == "king") {
+								/* Duc do it */
+							}
 							itr1.remove();
 						}
 					}
@@ -322,6 +324,9 @@ public class Game implements ActionListener{
 					while(itr2.hasNext()) {
 						Spot temp = itr2.next();
 						if(temp.getPiece().isDead() == true) {
+							if(temp.getPiece().getName() == "king") {
+								/* Duc do it */
+							}
 							itr2.remove();
 						}
 					}
