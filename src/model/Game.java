@@ -75,8 +75,11 @@ public class Game implements ActionListener{
 	JPanel bwin = new JPanel();
 	JPanel wwin = new JPanel();
 	
+	Sound sound = new Sound();
 
 	public Game() {
+		playMusic(1);
+		
 		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
@@ -335,23 +338,6 @@ public class Game implements ActionListener{
 			@Override
 			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
-					King _bKing = null;
-					King _wKing = null;
-					Iterator<Spot> _itr1 = Game.getBspots().iterator();
-					while(_itr1.hasNext()) {
-						Spot temp = _itr1.next();
-						if(temp.getPiece().getName() == "king") {
-							_bKing = new King(temp.getPiece());
-						}
-					}
-					Iterator<Spot> _itr2 = Game.getWspots().iterator();
-					while(_itr2.hasNext()) {
-						Spot temp = _itr2.next();
-						if(temp.getPiece().getName() == "king") {
-							_wKing = new King(temp.getPiece());
-						}
-					}
-					
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
 						if(isTurn == true) {	// luot quan trang
 							stop2();
@@ -369,14 +355,6 @@ public class Game implements ActionListener{
 					while(itr1.hasNext()) {
 						Spot temp = itr1.next();
 						if(temp.getPiece().isDead() == true) {
-							if(temp.getPiece().getName() == "king") {
-								frame.repaint();
-								isContinue = false;
-								frame.add(bwin);
-								timer1.stop();
-								timer2.stop();
-								JOptionPane.showMessageDialog(null, "Black Won");
-							}
 							itr1.remove();
 						}
 					}
@@ -384,18 +362,40 @@ public class Game implements ActionListener{
 					while(itr2.hasNext()) {
 						Spot temp = itr2.next();
 						if(temp.getPiece().isDead() == true) {
-							if(temp.getPiece().getName() == "king") {
-								frame.repaint();
-								isContinue = false;
-								frame.add(wwin);
-								timer1.stop();
-								timer2.stop();
-								JOptionPane.showMessageDialog(null, "White Won");
-							}
 							itr2.remove();
 						}
 					}
+					playMusic(2);
 					frame.repaint();
+				}
+				boolean ktBoolean1 = false, ktBoolean2 = false;
+				Iterator<Spot> itr1 = wspots.iterator();
+				while(itr1.hasNext()) {
+					Spot temp = itr1.next();
+					if(temp.getPiece().getName() == "king") {
+						ktBoolean1 = true;
+					}
+				}
+				if(ktBoolean1 == false) {
+					isContinue = false;
+					timer1.stop();
+					timer2.stop();
+					playMusic(4);
+					JOptionPane.showMessageDialog(null, "White Won");
+				}
+				Iterator<Spot> itr2 = bspots.iterator();
+				while(itr2.hasNext()) {
+					Spot temp = itr2.next();
+					if(temp.getPiece().getName() == "king") {
+						ktBoolean2 = true;
+					}
+				}
+				if(ktBoolean2 == false) {
+					isContinue = false;
+					timer1.stop();
+					timer2.stop();
+					playMusic(4);
+					JOptionPane.showMessageDialog(null, "Black Won");
 				}
 			}
 
@@ -590,7 +590,17 @@ public class Game implements ActionListener{
 		
 		return false;
 	}
-	
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+	}
+	public void stopMusic() {
+		sound.stop();
+	}
+	public void playSE(int i) {
+		sound.setFile(i);
+		sound.play();
+	}
 	public static List<Spot> getWspots() {
 		return wspots;
 	}

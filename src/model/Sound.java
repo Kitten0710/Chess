@@ -11,6 +11,10 @@ public class Sound {
 	String namefile[] = new String[30];
 	public Sound() {
 		namefile[0] = "audio\\backgroundmusic.wav";
+		namefile[1] = "audio\\startgame.wav";
+		namefile[2] = "audio\\move.wav";
+		namefile[3] = "audio\\casteling.wav";
+		namefile[4] = "audio\\endgame.wav";
 	}
 	
 	public void setFile(int i) {
