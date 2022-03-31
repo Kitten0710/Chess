@@ -247,7 +247,43 @@ public class Game implements ActionListener{
 			//Mouse_press
 			@Override
 			public void mousePressed(MouseEvent e) {	// click
-				if(getSpot(e.getX() - 8, e.getY() - 31) != null) {
+				
+				if(getSpot(e.getX() - 8, e.getY() - 31) != null && Bkinglive() && Wkinglive() && isContinue) {
+					King _bKing = null;
+					King _wKing = null;
+					Iterator<Spot> _itr1 = Game.getBspots().iterator();
+					while(_itr1.hasNext()) {
+						Spot temp = _itr1.next();
+						if(temp.getPiece().getName() == "king") {
+							_bKing = new King(temp.getPiece());
+						}
+					}
+					Iterator<Spot> _itr2 = Game.getWspots().iterator();
+					while(_itr2.hasNext()) {
+						Spot temp = _itr2.next();
+						if(temp.getPiece().getName() == "king") {
+							_wKing = new King(temp.getPiece());
+						}
+					}
+					if(isTurn == true) {
+						if(_bKing.CheckMate(false) == true && isContinue == true) {
+							/* Duc do it */
+							// white won
+							timer1.stop();
+							timer2.stop();
+							isContinue = false;
+							return;
+						}
+					} else {
+						if(_wKing.CheckMate(true) == true && isContinue == true) {
+							/* Duc do it */
+							// black won
+							timer1.stop();
+							timer2.stop();
+							isContinue = false;
+							return;
+						}
+					}
 					selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
 					System.out.println(selectedSpot.getPiece().getName());
 				}
@@ -257,58 +293,35 @@ public class Game implements ActionListener{
 			@Override
 			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
-					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
-						if(isTurn == true) {	// lượt quân trắng
-							stop2();
-							start1();
-							isTurn = false;
-//							Piece other = null;
-//							Iterator<Spot> itr1 = Game.getBspots().iterator();
-//							while(itr1.hasNext()) {
-//								Spot temp = itr1.next();
-//								if(temp.getPiece().getName() == "king") {
-//									other = temp.getPiece();
-//									if(((King) temp).CheckMate(false) == true) {
-//										System.out.println("Vua den dang bi chieu!");
-//										break;
-//									}
-//								}
-//							}
+					King _bKing = null;
+					King _wKing = null;
+					Iterator<Spot> _itr1 = Game.getBspots().iterator();
+					while(_itr1.hasNext()) {
+						Spot temp = _itr1.next();
+						if(temp.getPiece().getName() == "king") {
+							_bKing = new King(temp.getPiece());
 						}
-						else { 		// lượt quân đen
-							stop1();
-							start2();
-							isTurn = true;
-//							Piece other = null;
-//							// kiểm tra vua đen có đang bị chiếu không
-//							Iterator<Spot> itr1 = Game.getBspots().iterator();
-//							while(itr1.hasNext()) {
-//								Spot temp = itr1.next();
-//								if(temp.getPiece().getName() == "king") {
-//									other = temp.getPiece();
-//									if(((King) temp).CheckMate(false) == true) {
-//										System.out.println("Vua đen vẫn đang bị chiếu! Đi lại đi");
-//										isTurn = false;
-//										selectedSpot.move(selectedSpot.getPiece().getX(), selectedSpot.getPiece().getY());
-//										return;
-//									}
-//								}
-//							}
-//							// kiểm tra vua trắng có bị chiếu không
-//							Iterator<Spot> itr2 = Game.getWspots().iterator();
-//							while(itr2.hasNext()) {
-//								Spot temp = itr2.next();
-//								if(temp.getPiece().getName() == "king") {
-//									other = temp.getPiece();
-//									if(((King) temp).CheckMate(true) == true) {
-//										System.out.println("Vua trang dang bi chieu!");
-//										break;
-//									}
-//								}
-//							}
+					}
+					Iterator<Spot> _itr2 = Game.getWspots().iterator();
+					while(_itr2.hasNext()) {
+						Spot temp = _itr2.next();
+						if(temp.getPiece().getName() == "king") {
+							_wKing = new King(temp.getPiece());
 						}
 					}
 					
+					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
+						if(isTurn == true) {	// luot quan trang
+							stop2();
+							start1();
+							isTurn = false;
+						}
+						else { 		// luot quan den
+							stop1();
+							start2();
+							isTurn = true;
+						}
+					}
 					selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81);
 					Iterator<Spot> itr1 = wspots.iterator();
 					while(itr1.hasNext()) {
@@ -316,6 +329,8 @@ public class Game implements ActionListener{
 						if(temp.getPiece().isDead() == true) {
 							if(temp.getPiece().getName() == "king") {
 								/* Duc do it */
+								timer1.stop();
+								timer2.stop();
 							}
 							itr1.remove();
 						}
@@ -326,9 +341,13 @@ public class Game implements ActionListener{
 						if(temp.getPiece().isDead() == true) {
 							if(temp.getPiece().getName() == "king") {
 								/* Duc do it */
+								timer1.stop();
+								timer2.stop();
 							}
 							itr2.remove();
 						}
+					}
+					if(isTurn == true) {
 					}
 					frame.repaint();
 				}
