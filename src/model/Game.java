@@ -75,6 +75,7 @@ public class Game implements ActionListener{
 	JPanel bwin = new JPanel();
 	JPanel wwin = new JPanel();
 	
+
 	public Game() {
 		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");

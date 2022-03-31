@@ -16,14 +16,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import model.Game;
+import model.Sound;
 
 public class Menu extends JFrame implements ActionListener{
 
 	JButton startBtn = new JButton("START");
 	JButton exitBtn = new JButton("EXIT");
-
+	
+	Sound sound = new Sound();
 	public Menu() {
-
+		playMusic(0);
 		this.setTitle("CHESS GAME"); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(400, 400, 1148, 688);
@@ -59,12 +61,24 @@ public class Menu extends JFrame implements ActionListener{
 		this.setVisible(true);
 
 	}
-
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	public void stopMusic() {
+		sound.stop();
+	}
+	public void playSE(int i) {
+		sound.setFile(i);
+		sound.play();
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == startBtn) {
 			Game game = new Game();
 			this.setVisible(false);
+			stopMusic();
 		}
 		if(e.getSource() == exitBtn)
 			System.exit(0);
