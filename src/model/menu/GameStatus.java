@@ -96,6 +96,7 @@ public class GameStatus extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		e.getActionCommand();
 		Game game = new Game();
 		if(game.Bkinglive() == false) {
 			//this.add(wwin);
