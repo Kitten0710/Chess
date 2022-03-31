@@ -512,8 +512,12 @@ public class Game implements ActionListener{
 			
 		}
 		if(e.getSource() == Restart) {
-			Game game = new Game();
+			//bspots = new ArrayList<Spot>();
+			//wspots = new ArrayList<Spot>();
+			
 			frame.setVisible(false);
+			
+			
 		}
 		if(e.getSource() == Exit) {
 			System.exit(0);
