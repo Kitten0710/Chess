@@ -1,31 +1,33 @@
 package model;
 
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Label;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.im.InputContext;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.interfaces.DSAKeyPairGenerator;
+import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.imageio.plugins.tiff.BaselineTIFFTagSet;
-import javax.sound.sampled.AudioInputStream;
+import javax.naming.NameClassPair;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,6 +37,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.RowFilter.ComparisonType;
 
 import model.board.Board;
 import model.menu.GameStatus;
@@ -43,11 +46,8 @@ import model.spot.piece.Bishop;
 import model.spot.piece.King;
 import model.spot.piece.Knight;
 import model.spot.piece.Pawn;
-import model.spot.piece.Piece;
 import model.spot.piece.Queen;
 import model.spot.piece.Rook;
-
-
 
 public class Game implements ActionListener{
 	private Board board;
@@ -72,15 +72,37 @@ public class Game implements ActionListener{
 	JButton Restart = new JButton("Restart");
 	JButton Pause = new JButton("Pause");
 	JButton Exit = new JButton("EXIT");
-	
+
 	JPanel bwin = new JPanel();
 	JPanel wwin = new JPanel();
-	
 	Sound sound = new Sound();
-
+	int B[] = new int [4];
+	int W[] = new int [4];
+	
+	public static List<Spot> getWspots() {
+		return wspots;
+	}
+	public static void setWspots(List<Spot> wspots) {
+		Game.wspots = wspots;
+	}
+	public static List<Spot> getBspots() {
+		return bspots;
+	}
+	public static void setBspots(List<Spot> bspots) {
+		Game.bspots = bspots;
+	}
+	public static boolean isContinue() {
+		return isContinue;
+	}
+	public static void setTurn(boolean isTurn) {
+		Game.isTurn = isTurn;
+	}
+	public static void setContinue(boolean isContinue) {
+		Game.isContinue = isContinue;
+	}
 	public Game() {
 		playMusic(1);
-		
+
 		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");
 		bspots.add(brook);
@@ -164,7 +186,7 @@ public class Game implements ActionListener{
 			}    
 		}
 		//board_game_setting
-		JLabel lb1 = new JLabel() {
+		JPanel jp1 = new JPanel() {
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
@@ -235,49 +257,49 @@ public class Game implements ActionListener{
 				}
 			}
 		};
-		
-			//===== Black win =====
-				// JText 1
-			JTextField jt1 = new JTextField("BLACK WON!!!");
-			jt1.setFont(new Font("Arial", Font.BOLD, 36));
-			jt1.setEditable(false);
-			jt1.setBackground(new Color(255, 230, 204));
-			jt1.setBounds(900, 100, 250, 50);
-			jt1.setBorder(null);
-			jt1.setForeground(Color.black);
-				// Jpanel Black Win
-			bwin.setBounds(161, 174, 325, 440);
-			bwin.setBackground(new Color(255, 235, 204));
-			try {
-				JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\blackKing2.png"))));
-				bwin.add(bg);
-				bwin.add(jt1);
-				//frame.add(bwin);
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
 
-			//===== White Win =====
-				// JText 2
-			JTextField jt2 = new JTextField("WHITE WON!!!");
-			jt2.setFont(new Font("Arial", Font.BOLD, 36));
-			jt2.setEditable(false);
-			jt2.setBackground(new Color(167,226,245));
-			jt2.setBounds(900, 100, 250, 50);
-			jt2.setBorder(null);
-			jt2.setForeground(Color.black);
-				// Jpanel White Win
-			wwin.setBounds(161, 174, 325, 440);
-			wwin.setBackground(new Color(167,226,245));
-			try {
-				JLabel bgx = new JLabel(new ImageIcon(ImageIO.read(new File("img\\whiteKing2.png"))));
-				wwin.add(bgx);
-				wwin.add(jt2);
-				//frame.add(wwin);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+		//===== Black win =====
+		// JText 1
+		JTextField jt1 = new JTextField("BLACK WON!!!");
+		jt1.setFont(new Font("Arial", Font.BOLD, 36));
+		jt1.setEditable(false);
+		jt1.setBackground(new Color(255, 230, 204));
+		jt1.setBounds(900, 100, 250, 50);
+		jt1.setBorder(null);
+		jt1.setForeground(Color.black);
+		// Jpanel Black Win
+		bwin.setBounds(161, 174, 325, 440);
+		bwin.setBackground(new Color(255, 235, 204));
+		try {
+			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\blackKing2.png"))));
+			bwin.add(bg);
+			bwin.add(jt1);
+			//frame.add(bwin);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+		//===== White Win =====
+		// JText 2
+		JTextField jt2 = new JTextField("WHITE WON!!!");
+		jt2.setFont(new Font("Arial", Font.BOLD, 36));
+		jt2.setEditable(false);
+		jt2.setBackground(new Color(167,226,245));
+		jt2.setBounds(900, 100, 250, 50);
+		jt2.setBorder(null);
+		jt2.setForeground(Color.black);
+		// Jpanel White Win
+		wwin.setBounds(161, 174, 325, 440);
+		wwin.setBackground(new Color(167,226,245));
+		try {
+			JLabel bgx = new JLabel(new ImageIcon(ImageIO.read(new File("img\\whiteKing2.png"))));
+			wwin.add(bgx);
+			wwin.add(jt2);
+			//frame.add(wwin);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		//===mouse_listener===
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
@@ -298,7 +320,6 @@ public class Game implements ActionListener{
 			public void mouseMoved(MouseEvent e) {
 			}
 		});
-
 		frame.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -328,10 +349,10 @@ public class Game implements ActionListener{
 					Label secLabel = new Label();
 					secLabel.setBounds(selectedSpot.getPiece().getPx() + 8, selectedSpot.getPiece().getPy() + 31, 81, 81);
 					secLabel.setBackground(Color.YELLOW);
-					
+
 					frame.add(secLabel);
 					//frame.repaint();
-		
+
 				}
 			}
 
@@ -344,11 +365,27 @@ public class Game implements ActionListener{
 							stop2();
 							start1();
 							isTurn = false;
+							W[0] = selectedSpot.getPiece().getPx();
+							W[1] = selectedSpot.getPiece().getPy();
+							W[2] = e.getX() - 8;
+							W[3] = e.getY() - 31;
+							JLabel jLabel = new JLabel() {
+								void draw(Graphics g) {
+									g.setColor(Color.YELLOW);
+									g.fillRect(W[0], W[1], 81, 81);
+									//Do it
+								}
+							};
+							frame.add(jLabel);
 						}
 						else { 		// luot quan den
 							stop1();
 							start2();
 							isTurn = true;
+							B[0] = selectedSpot.getPiece().getPx();
+							B[1] = selectedSpot.getPiece().getPy();
+							B[2] = e.getX() - 8;
+							B[3] = e.getY() - 31;
 						}
 					}
 					selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81);
@@ -411,7 +448,7 @@ public class Game implements ActionListener{
 			}
 		});
 		//==========set_label===========
-		lb1.setSize(648, 648);
+		jp1.setSize(648, 648);
 		//==========Time_label_1==========
 		timeLabel1.setText(minutes_string1+":"+seconds_string1);
 		timeLabel1.setBounds(647,0,490,163);
@@ -431,8 +468,8 @@ public class Game implements ActionListener{
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
 		timeLabel2.setBackground(Color.WHITE);
 		timeLabel2.setForeground(Color.BLACK);
-		
-		
+
+
 		Pause.setBounds(950, 190, 150, 70);
 		Exit.setBounds(950, 390, 150, 70);
 		Restart.setBounds(950, 290, 150, 70);
@@ -446,7 +483,7 @@ public class Game implements ActionListener{
 		frame.getContentPane().setBackground(new Color(255, 231, 181));
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
-		frame.add(lb1);
+		frame.add(jp1);
 		frame.add(Pause);
 		frame.add(Exit);
 		frame.add(Restart);
@@ -477,7 +514,7 @@ public class Game implements ActionListener{
 			timeLabel1.setText(minutes_string1+":"+seconds_string1);
 
 		}
-	
+
 
 	});
 	Timer timer2 = new Timer(1000, new ActionListener() {
@@ -496,7 +533,7 @@ public class Game implements ActionListener{
 			timeLabel2.setText(minutes_string2+":"+seconds_string2);
 
 		}
-	
+
 
 	});
 	@Override
@@ -519,9 +556,9 @@ public class Game implements ActionListener{
 					timer1.start();
 				}
 			}
-			
+
 		}
-		
+
 		if(e.getSource() == Restart) {
 			bspots = new ArrayList<Spot>();
 			wspots = new ArrayList<Spot>();
@@ -533,7 +570,7 @@ public class Game implements ActionListener{
 		if(e.getSource() == Exit) {
 			System.exit(0);
 		}	
-		
+
 	}
 	//==========button==========
 	void start1() {
@@ -603,26 +640,6 @@ public class Game implements ActionListener{
 		sound.setFile(i);
 		sound.play();
 	}
-	public static List<Spot> getWspots() {
-		return wspots;
-	}
-	public static void setWspots(List<Spot> wspots) {
-		Game.wspots = wspots;
-	}
-	public static List<Spot> getBspots() {
-		return bspots;
-	}
-	public static void setBspots(List<Spot> bspots) {
-		Game.bspots = bspots;
-	}
-	public static boolean isContinue() {
-		return isContinue;
-	}
-	public static void setTurn(boolean isTurn) {
-		Game.isTurn = isTurn;
-	}
-	public static void setContinue(boolean isContinue) {
-		Game.isContinue = isContinue;
-	}
-	
+
+
 }
