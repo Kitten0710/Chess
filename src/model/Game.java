@@ -55,6 +55,7 @@ public class Game implements ActionListener{
 	private static List<Spot> wspots = new ArrayList<Spot>();
 	private Spot selectedSpot = null;
 	private static boolean isContinue = true; 
+	private static boolean isEnd = false; 
 	private static boolean isTurn = true;
 	JFrame frame = new JFrame();
 	//===Time_setting===
@@ -381,7 +382,8 @@ public class Game implements ActionListener{
 					timer1.stop();
 					timer2.stop();
 					playMusic(4);
-					JOptionPane.showMessageDialog(null, "White Won");
+					isEnd = true;
+					JOptionPane.showMessageDialog(null, "Black Won");
 				}
 				Iterator<Spot> itr2 = bspots.iterator();
 				while(itr2.hasNext()) {
@@ -395,7 +397,8 @@ public class Game implements ActionListener{
 					timer1.stop();
 					timer2.stop();
 					playMusic(4);
-					JOptionPane.showMessageDialog(null, "Black Won");
+					isEnd = true;
+					JOptionPane.showMessageDialog(null, "White Won");
 				}
 			}
 
@@ -498,9 +501,27 @@ public class Game implements ActionListener{
 	});
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == Pause) {
+		if(e.getSource() == Pause && isEnd == false) {
+			if(isContinue == true) {
+				isContinue = false;
+				if(isTurn == true) {
+					timer2.stop();
+					JOptionPane.showMessageDialog(null, "Stop! White turn");
+				} else {
+					timer1.stop();
+					JOptionPane.showMessageDialog(null, "Stop! Black turn");
+				}
+			} else if(isContinue == false){
+				isContinue = true;
+				if(isTurn == true) {
+					timer2.start();
+				} else {
+					timer1.start();
+				}
+			}
 			
 		}
+		
 		if(e.getSource() == Restart) {
 			bspots = new ArrayList<Spot>();
 			wspots = new ArrayList<Spot>();
@@ -571,25 +592,6 @@ public class Game implements ActionListener{
 		return false;
 	}
 
-	public boolean isCheckMated(boolean isColor) {
-		if(isColor == false) {
-			for(Spot p : bspots) {
-				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate() == true) {
-					System.out.println("Vua den dang bi chieu");	
-					return true;
-				}
-			}
-		} else {
-			for(Spot p : wspots) {
-				if(p.getPiece().getName() == "king" && ((King) (p)).CheckMate() == true) {
-					System.out.println("Vua trang dang bi chieu");	
-					return true;
-				}
-			}
-		}
-		
-		return false;
-	}
 	public void playMusic(int i) {
 		sound.setFile(i);
 		sound.play();
