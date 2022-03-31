@@ -21,9 +21,11 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
@@ -63,6 +65,10 @@ public class Game implements ActionListener{
 	JButton Restart = new JButton("Restart");
 	JButton Pause = new JButton("Pause");
 	JButton Exit = new JButton("EXIT");
+	
+	JPanel bwin = new JPanel();
+	JPanel wwin = new JPanel();
+	
 	public Game() {
 		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -218,6 +224,49 @@ public class Game implements ActionListener{
 				}
 			}
 		};
+		
+			//===== Black win =====
+				// JText 1
+			JTextField jt1 = new JTextField("BLACK WON!!!");
+			jt1.setFont(new Font("Arial", Font.BOLD, 36));
+			jt1.setEditable(false);
+			jt1.setBackground(new Color(255, 230, 204));
+			jt1.setBounds(900, 100, 250, 50);
+			jt1.setBorder(null);
+			jt1.setForeground(Color.black);
+				// Jpanel Black Win
+			bwin.setBounds(161, 174, 325, 440);
+			bwin.setBackground(new Color(255, 235, 204));
+			try {
+				JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\blackKing2.png"))));
+				bwin.add(bg);
+				bwin.add(jt1);
+				//frame.add(bwin);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+
+			//===== White Win =====
+				// JText 2
+			JTextField jt2 = new JTextField("WHITE WON!!!");
+			jt2.setFont(new Font("Arial", Font.BOLD, 36));
+			jt2.setEditable(false);
+			jt2.setBackground(new Color(167,226,245));
+			jt2.setBounds(900, 100, 250, 50);
+			jt2.setBorder(null);
+			jt2.setForeground(Color.black);
+				// Jpanel White Win
+			wwin.setBounds(161, 174, 325, 440);
+			wwin.setBackground(new Color(167,226,245));
+			try {
+				JLabel bgx = new JLabel(new ImageIcon(ImageIO.read(new File("img\\whiteKing2.png"))));
+				wwin.add(bgx);
+				wwin.add(jt2);
+				//frame.add(wwin);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		//===mouse_listener===
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
@@ -267,7 +316,10 @@ public class Game implements ActionListener{
 					}
 					if(isTurn == true) {
 						if(_bKing.CheckMate(false) == true && isContinue == true) {
-							/* Duc do it */
+							//frame.add(wwin);
+							//frame.repaint();
+							System.out.println("White won");
+							JOptionPane.showMessageDialog(null, "White Won");
 							// white won
 							timer1.stop();
 							timer2.stop();
@@ -276,7 +328,10 @@ public class Game implements ActionListener{
 						}
 					} else {
 						if(_wKing.CheckMate(true) == true && isContinue == true) {
-							/* Duc do it */
+							//frame.add(bwin);
+							//frame.repaint();
+							System.out.println("Black Won");
+							JOptionPane.showMessageDialog(null, "Black Won");
 							// black won
 							timer1.stop();
 							timer2.stop();
@@ -328,7 +383,7 @@ public class Game implements ActionListener{
 						Spot temp = itr1.next();
 						if(temp.getPiece().isDead() == true) {
 							if(temp.getPiece().getName() == "king") {
-								/* Duc do it */
+								frame.add(bwin);
 								timer1.stop();
 								timer2.stop();
 							}
@@ -340,7 +395,7 @@ public class Game implements ActionListener{
 						Spot temp = itr2.next();
 						if(temp.getPiece().isDead() == true) {
 							if(temp.getPiece().getName() == "king") {
-								/* Duc do it */
+								frame.add(wwin);
 								timer1.stop();
 								timer2.stop();
 							}

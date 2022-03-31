@@ -20,9 +20,9 @@ import model.Game;
 
 public class GameStatus extends JFrame implements ActionListener{
 
-	private JPanel bwin = new JPanel();
-	private JPanel wwin = new JPanel();
-	private JPanel draw = new JPanel();
+	JPanel bwin = new JPanel();
+	JPanel wwin = new JPanel();
+	JPanel draw = new JPanel();
 
 	public GameStatus() {
 
