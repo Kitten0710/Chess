@@ -315,7 +315,6 @@ public class Game implements ActionListener{
 					while(itr1.hasNext()) {
 						Spot temp = itr1.next();
 						if(temp.getPiece().isDead() == true) {
-							if()
 							itr1.remove();
 						}
 					}
