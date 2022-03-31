@@ -6,14 +6,18 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.im.InputContext;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import java.util.Iterator;
@@ -21,6 +25,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.imageio.plugins.tiff.BaselineTIFFTagSet;
+import javax.sound.sampled.AudioInputStream;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -297,7 +302,6 @@ public class Game implements ActionListener{
 			//Mouse_press
 			@Override
 			public void mousePressed(MouseEvent e) {	// click
-				
 				if(getSpot(e.getX() - 8, e.getY() - 31) != null && Bkinglive() && Wkinglive() && isContinue) {
 					King _bKing = null;
 					King _wKing = null;
@@ -315,9 +319,14 @@ public class Game implements ActionListener{
 							_wKing = new King(temp.getPiece());
 						}
 					}
-					
 					selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
-					System.out.println(selectedSpot.getPiece().getName());
+					Label secLabel = new Label();
+					secLabel.setBounds(selectedSpot.getPiece().getPx() + 8, selectedSpot.getPiece().getPy() + 31, 81, 81);
+					secLabel.setBackground(Color.YELLOW);
+					
+					frame.add(secLabel);
+					//frame.repaint();
+		
 				}
 			}
 
@@ -360,9 +369,12 @@ public class Game implements ActionListener{
 						Spot temp = itr1.next();
 						if(temp.getPiece().isDead() == true) {
 							if(temp.getPiece().getName() == "king") {
+								frame.repaint();
+								isContinue = false;
 								frame.add(bwin);
 								timer1.stop();
 								timer2.stop();
+								JOptionPane.showMessageDialog(null, "Black Won");
 							}
 							itr1.remove();
 						}
@@ -372,37 +384,17 @@ public class Game implements ActionListener{
 						Spot temp = itr2.next();
 						if(temp.getPiece().isDead() == true) {
 							if(temp.getPiece().getName() == "king") {
+								frame.repaint();
+								isContinue = false;
 								frame.add(wwin);
 								timer1.stop();
 								timer2.stop();
+								JOptionPane.showMessageDialog(null, "White Won");
 							}
 							itr2.remove();
 						}
 					}
 					frame.repaint();
-					if(isTurn == true) {
-						if(_bKing.CheckMate() == true && isContinue == true) {
-							//frame.add(wwin);
-							//frame.repaint();
-							// white won
-							timer1.stop();
-							timer2.stop();
-							JOptionPane.showMessageDialog(null, "White Won");
-							isContinue = false;
-							return;
-						}
-					} else {
-						if(_wKing.CheckMate() == true && isContinue == true) {
-							//frame.add(bwin);
-							//frame.repaint();
-							// black won
-							timer1.stop();
-							timer2.stop();
-							JOptionPane.showMessageDialog(null, "Black Won");
-							isContinue = false;
-							return;
-						}
-					}
 				}
 			}
 
@@ -509,12 +501,12 @@ public class Game implements ActionListener{
 			
 		}
 		if(e.getSource() == Restart) {
-			//bspots = new ArrayList<Spot>();
-			//wspots = new ArrayList<Spot>();
-			
+			bspots = new ArrayList<Spot>();
+			wspots = new ArrayList<Spot>();
 			frame.setVisible(false);
-			
-			
+			Game game = new Game();
+			game.isTurn = true;
+			game.isContinue = true;
 		}
 		if(e.getSource() == Exit) {
 			System.exit(0);
