@@ -41,7 +41,7 @@ import model.spot.piece.Rook;
 
 
 
-public class Game {
+public class Game implements ActionListener{
 	private Board board;
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
@@ -60,9 +60,9 @@ public class Game {
 	String minutes_string1 = String.format("%02d", fminutes);
 	String seconds_string2 = String.format("%02d", sseconds);
 	String minutes_string2 = String.format("%02d", sminutes);
-	
+	JButton Restart = new JButton("Restart");
 	JButton Pause = new JButton("Pause");
-	JButton Exit_button = new JButton("EXIT");
+	JButton Exit = new JButton("EXIT");
 	public Game() {
 		GameStatus gs = new GameStatus();
 		Rook brook      = new Rook(0, 0, false, false, "rook");
@@ -258,7 +258,7 @@ public class Game {
 			public void mouseReleased(MouseEvent e) {	// tha
 				if(selectedSpot != null) {
 					if(selectedSpot.move((e.getX() - 8)/81, (e.getY() - 31)/81) == true) {
-						if(isTurn == true) {	// lượt quân trắng
+						if(isTurn == true) {	// lÆ°á»£t quÃ¢n tráº¯ng
 							stop2();
 							start1();
 							isTurn = false;
@@ -275,26 +275,26 @@ public class Game {
 								}
 							}
 						}
-						else { 		// lượt quân đen
+						else { 		// lÆ°á»£t quÃ¢n Ä‘en
 							stop1();
 							start2();
 							isTurn = true;
 							Piece other = null;
-							// kiểm tra vua đen có đang bị chiếu không
+							// kiá»ƒm tra vua Ä‘en cÃ³ Ä‘ang bá»‹ chiáº¿u khÃ´ng
 							Iterator<Spot> itr1 = Game.getBspots().iterator();
 							while(itr1.hasNext()) {
 								Spot temp = itr1.next();
 								if(temp.getPiece().getName() == "king") {
 									other = temp.getPiece();
 									if(((King) temp).CheckMate(false) == true) {
-										System.out.println("Vua đen vẫn đang bị chiếu! Đi lại đi");
+										System.out.println("Vua Ä‘en váº«n Ä‘ang bá»‹ chiáº¿u! Ä�i láº¡i Ä‘i");
 										isTurn = false;
 										selectedSpot.move(selectedSpot.getPiece().getX(), selectedSpot.getPiece().getY());
 										return;
 									}
 								}
 							}
-							// kiểm tra vua trắng có bị chiếu không
+							// kiá»ƒm tra vua tráº¯ng cÃ³ bá»‹ chiáº¿u khÃ´ng
 							Iterator<Spot> itr2 = Game.getWspots().iterator();
 							while(itr2.hasNext()) {
 								Spot temp = itr2.next();
@@ -362,8 +362,9 @@ public class Game {
 		timeLabel2.setForeground(Color.BLACK);
 		
 		
-		Pause.setBounds(950, 185, 150, 70);
-		Exit_button.setBounds(950, 280, 150, 70);
+		Pause.setBounds(950, 190, 150, 70);
+		Exit.setBounds(950, 390, 150, 70);
+		Restart.setBounds(950, 290, 150, 70);
 		//===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -376,7 +377,11 @@ public class Game {
 		frame.add(timeLabel2);
 		frame.add(lb1);
 		frame.add(Pause);
-		frame.add(Exit_button);
+		frame.add(Exit);
+		frame.add(Restart);
+		Restart.addActionListener(this);
+		Pause.addActionListener(this);
+		Exit.addActionListener(this);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setResizable(false);
@@ -423,7 +428,20 @@ public class Game {
 	
 
 	});
-	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == Pause) {
+			
+		}
+		if(e.getSource() == Restart) {
+			Game game = new Game();
+			frame.setVisible(false);
+		}
+		if(e.getSource() == Exit) {
+			System.exit(0);
+		}	
+		
+	}
 	//==========button==========
 	void start1() {
 		timer1.start();
@@ -522,4 +540,5 @@ public class Game {
 	public static void setContinue(boolean isContinue) {
 		Game.isContinue = isContinue;
 	}
+	
 }
