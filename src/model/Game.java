@@ -72,7 +72,9 @@ public class Game implements ActionListener{
 	JButton Restart = new JButton("Restart");
 	JButton Pause = new JButton("Pause");
 	JButton Exit = new JButton("EXIT");
-
+	JTextField white_name = new JTextField();
+	JTextField black_name = new JTextField();
+	JTextField step = new JTextField();
 	JPanel bwin = new JPanel();
 	JPanel wwin = new JPanel();
 	Sound sound = new Sound();
@@ -451,7 +453,7 @@ public class Game implements ActionListener{
 		jp1.setSize(648, 648);
 		//==========Time_label_1==========
 		timeLabel1.setText(minutes_string1+":"+seconds_string1);
-		timeLabel1.setBounds(647,0,490,163);
+		timeLabel1.setBounds(647,0,490,120);
 		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel1.setOpaque(true);
@@ -461,14 +463,35 @@ public class Game implements ActionListener{
 		//==========Time_label_2==========
 
 		timeLabel2.setText(minutes_string2+":"+seconds_string2);
-		timeLabel2.setBounds(647,485,490,163);
+		timeLabel2.setBounds(647,527,490,120);
 		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel2.setOpaque(true);
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
 		timeLabel2.setBackground(Color.WHITE);
 		timeLabel2.setForeground(Color.BLACK);
-
+		
+		//===name label===
+		white_name.setText("Player 1");
+		white_name.setBounds(647, 486, 490, 42);
+		white_name.setBackground(Color.WHITE);
+		white_name.setBorder(BorderFactory.createBevelBorder(1));
+		white_name.setEditable(false);
+		white_name.setFont(new Font("Arial", Font.BOLD, 20));
+		white_name.setHorizontalAlignment(JTextField.CENTER);
+		white_name.setBorder(null);
+		
+		black_name.setText("Player 2");
+		black_name.setBounds(647, 120, 490, 42);
+		black_name.setBackground(Color.WHITE);
+		black_name.setBorder(BorderFactory.createBevelBorder(1));
+		black_name.setEditable(false);
+		black_name.setFont(new Font("Arial", Font.BOLD, 20));
+		black_name.setHorizontalAlignment(JTextField.CENTER);
+		black_name.setBorder(null);
+		
+		step.setBounds(647, 162, 248, 327);
+		step.setBorder(null);
 		//===chess_button_setting===
 		Pause.setBounds(950, 190, 150, 70);
 		Pause.setBackground(new Color(144,197,127));
@@ -490,13 +513,16 @@ public class Game implements ActionListener{
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(648 + 500, 648 + 38);
 		frame.setTitle("Chess");
-		frame.getContentPane().setBackground(new Color(188,188,188));
+		frame.getContentPane().setBackground(new Color(255,232,164));
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
+		frame.add(white_name);
+		frame.add(black_name);
 		frame.add(jp1);
 		frame.add(Pause);
 		frame.add(Exit);
 		frame.add(Restart);
+		frame.add(step);
 		Restart.addActionListener(this);
 		Pause.addActionListener(this);
 		Exit.addActionListener(this);
