@@ -453,45 +453,50 @@ public class Game implements ActionListener{
 		jp1.setSize(648, 648);
 		//==========Time_label_1==========
 		timeLabel1.setText(minutes_string1+":"+seconds_string1);
-		timeLabel1.setBounds(647,0,490,120);
+		timeLabel1.setBounds(648,0,490,120);
 		timeLabel1.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel1.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel1.setOpaque(true);
 		timeLabel1.setHorizontalAlignment(JTextField.CENTER);
-		timeLabel1.setBackground(Color.WHITE);
-		timeLabel1.setForeground(Color.BLACK);
+		timeLabel1.setBackground(new Color(133,165,61));
+		timeLabel1.setForeground(new Color(255,244,192));
+		timeLabel1.setBorder(BorderFactory.createLineBorder(Color.black));
 		//==========Time_label_2==========
 
 		timeLabel2.setText(minutes_string2+":"+seconds_string2);
-		timeLabel2.setBounds(647,527,490,120);
+		timeLabel2.setBounds(648,529,490,120);
 		timeLabel2.setFont(new Font("Verdana",Font.PLAIN,70));
 		timeLabel2.setBorder(BorderFactory.createBevelBorder(1));
 		timeLabel2.setOpaque(true);
 		timeLabel2.setHorizontalAlignment(JTextField.CENTER);
-		timeLabel2.setBackground(Color.WHITE);
-		timeLabel2.setForeground(Color.BLACK);
+		timeLabel2.setBackground(new Color(133,165,61));
+		timeLabel2.setForeground(new Color(255,244,192));
+		timeLabel2.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		//===name label===
 		white_name.setText("Player 1");
-		white_name.setBounds(647, 486, 490, 42);
+		white_name.setBounds(648, 487, 490, 42);
 		white_name.setBackground(Color.WHITE);
 		white_name.setBorder(BorderFactory.createBevelBorder(1));
 		white_name.setEditable(false);
 		white_name.setFont(new Font("Arial", Font.BOLD, 20));
 		white_name.setHorizontalAlignment(JTextField.CENTER);
-		white_name.setBorder(null);
+		white_name.setBackground(new Color(204,195,153));
+		white_name.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		black_name.setText("Player 2");
-		black_name.setBounds(647, 120, 490, 42);
+		black_name.setBounds(648, 120, 490, 42);
 		black_name.setBackground(Color.WHITE);
 		black_name.setBorder(BorderFactory.createBevelBorder(1));
 		black_name.setEditable(false);
 		black_name.setFont(new Font("Arial", Font.BOLD, 20));
 		black_name.setHorizontalAlignment(JTextField.CENTER);
-		black_name.setBorder(null);
+		black_name.setBackground(new Color(204,195,153));
+		black_name.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		step.setBounds(647, 162, 248, 327);
-		step.setBorder(null);
+		step.setBounds(648, 162, 248, 325);
+		step.setEditable(false);
+		step.setBorder(BorderFactory.createLineBorder(Color.black));
 		//===chess_button_setting===
 		Pause.setBounds(950, 190, 150, 70);
 		Pause.setBackground(new Color(144,197,127));
