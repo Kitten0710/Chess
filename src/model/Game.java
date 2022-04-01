@@ -78,7 +78,7 @@ public class Game implements ActionListener{
 	Sound sound = new Sound();
 	int B[] = new int [4];
 	int W[] = new int [4];
-	
+
 	public static List<Spot> getWspots() {
 		return wspots;
 	}
@@ -469,10 +469,20 @@ public class Game implements ActionListener{
 		timeLabel2.setBackground(Color.WHITE);
 		timeLabel2.setForeground(Color.BLACK);
 
-
+		//===chess_button_setting===
 		Pause.setBounds(950, 190, 150, 70);
+		Pause.setBackground(new Color(144,197,127));
+		Pause.setForeground(Color.WHITE);
+		Pause.setFont(new Font("Arial", Font.BOLD, 20));
 		Exit.setBounds(950, 390, 150, 70);
+		Exit.setBackground(new Color(144,197,127));
+		Exit.setForeground(Color.WHITE);
+		Exit.setFont(new Font("Arial", Font.BOLD, 20));
 		Restart.setBounds(950, 290, 150, 70);
+		Restart.setBackground(new Color(144,197,127));
+		Restart.setForeground(Color.WHITE);
+		Restart.setFont(new Font("Arial", Font.BOLD, 20));
+		
 		//===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -480,7 +490,7 @@ public class Game implements ActionListener{
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(648 + 500, 648 + 38);
 		frame.setTitle("Chess");
-		frame.getContentPane().setBackground(new Color(255, 231, 181));
+		frame.getContentPane().setBackground(new Color(188,188,188));
 		frame.add(timeLabel1);
 		frame.add(timeLabel2);
 		frame.add(jp1);
@@ -541,6 +551,7 @@ public class Game implements ActionListener{
 		if(e.getSource() == Pause && isEnd == false) {
 			if(isContinue == true) {
 				isContinue = false;
+				Pause.setText("Countinue");
 				if(isTurn == true) {
 					timer2.stop();
 					JOptionPane.showMessageDialog(null, "Stop! White turn");
@@ -550,6 +561,7 @@ public class Game implements ActionListener{
 				}
 			} else if(isContinue == false){
 				isContinue = true;
+				Pause.setText("Pause");
 				if(isTurn == true) {
 					timer2.start();
 				} else {
