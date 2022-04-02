@@ -105,7 +105,7 @@ public class Piece {
 			String stringmove = (color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp); 
 			System.out.println(stringmove);
 			String text = Game.step.getText();
-			Game.step.setText(text + "  " + stringmove + "\n");
+			Game.step.setText(text + " " + stringmove + "\n");
 		}
 		if(canMove == false) {
 			px = this.x*81;

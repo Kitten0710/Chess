@@ -1,34 +1,24 @@
 package model;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Label;
-import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.interfaces.DSAKeyPairGenerator;
-import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.naming.NameClassPair;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,8 +30,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Timer;
-import javax.swing.RowFilter.ComparisonType;
-import javax.swing.ScrollPaneConstants;
 
 import model.board.Board;
 import model.spot.Spot;
@@ -78,6 +66,7 @@ public class Game implements ActionListener{
 	JTextField white_name = new JTextField();
 	JTextField black_name = new JTextField();
 	public static JTextArea step = new JTextArea(5, 10);
+	public static JScrollPane jsp;
 	JPanel bwin = new JPanel();
 	JPanel wwin = new JPanel();
 	Sound sound = new Sound();
@@ -333,22 +322,6 @@ public class Game implements ActionListener{
 			@Override
 			public void mousePressed(MouseEvent e) {	// click
 				if(getSpot(e.getX() - 8, e.getY() - 31) != null && Bkinglive() && Wkinglive() && isContinue) {
-					King _bKing = null;
-					King _wKing = null;
-					Iterator<Spot> _itr1 = Game.getBspots().iterator();
-					while(_itr1.hasNext()) {
-						Spot temp = _itr1.next();
-						if(temp.getPiece().getName() == "king") {
-							_bKing = new King(temp.getPiece());
-						}
-					}
-					Iterator<Spot> _itr2 = Game.getWspots().iterator();
-					while(_itr2.hasNext()) {
-						Spot temp = _itr2.next();
-						if(temp.getPiece().getName() == "king") {
-							_wKing = new King(temp.getPiece());
-						}
-					}
 					selectedSpot = getSpot(e.getX() - 8, e.getY() - 31);
 					Label secLabel = new Label();
 					secLabel.setBounds(selectedSpot.getPiece().getPx() + 8, selectedSpot.getPiece().getPy() + 31, 81, 81);
@@ -495,12 +468,14 @@ public class Game implements ActionListener{
 		black_name.setHorizontalAlignment(JTextField.CENTER);
 		black_name.setBackground(new Color(204,195,153));
 		black_name.setBorder(BorderFactory.createLineBorder(Color.black));
-		step.setBounds(648, 162, 248, 300);
-		step.setBackground(Color.cyan);
-		step.setFont(new Font("SansSerif", Font.BOLD, 20));
-		step.setEditable(false);
+		
+		step.setBounds(648, 162, 248, 325);
+		step.setFont(new Font("SansSerif", Font.ITALIC, 20));
+		step.setEditable(true);
 		step.setBorder(BorderFactory.createLineBorder(Color.black));
 		step.setWrapStyleWord(true);
+		jsp = new JScrollPane(step, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		jsp.setBounds(648, 162, 248, 325);
 		
 		//===chess_button_setting===
 		Pause.setBounds(950, 190, 150, 70);
@@ -532,7 +507,7 @@ public class Game implements ActionListener{
 		frame.add(Pause);
 		frame.add(Exit);
 		frame.add(Restart);
-		frame.add(step);
+		frame.add(jsp);
 		Restart.addActionListener(this);
 		Pause.addActionListener(this);
 		Exit.addActionListener(this);
