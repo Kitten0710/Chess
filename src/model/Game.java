@@ -273,7 +273,7 @@ public class Game implements ActionListener{
 		bwin.setBounds(161, 174, 325, 440);
 		bwin.setBackground(new Color(255, 235, 204));
 		try {
-			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\blackKing2.png"))));
+			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\blackKing.png"))));
 			bwin.add(bg);
 			bwin.add(jt1);
 			//frame.add(bwin);
@@ -294,7 +294,7 @@ public class Game implements ActionListener{
 		wwin.setBounds(161, 174, 325, 440);
 		wwin.setBackground(new Color(167,226,245));
 		try {
-			JLabel bgx = new JLabel(new ImageIcon(ImageIO.read(new File("img\\whiteKing2.png"))));
+			JLabel bgx = new JLabel(new ImageIcon(ImageIO.read(new File("img\\whiteKing.png"))));
 			wwin.add(bgx);
 			wwin.add(jt2);
 			//frame.add(wwin);
