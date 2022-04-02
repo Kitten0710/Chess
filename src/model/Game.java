@@ -495,11 +495,13 @@ public class Game implements ActionListener{
 		black_name.setHorizontalAlignment(JTextField.CENTER);
 		black_name.setBackground(new Color(204,195,153));
 		black_name.setBorder(BorderFactory.createLineBorder(Color.black));
-		step.setBounds(648, 162, 248, 325);
+		step.setBounds(648, 162, 248, 300);
+		step.setBackground(Color.cyan);
 		step.setFont(new Font("SansSerif", Font.BOLD, 20));
 		step.setEditable(false);
 		step.setBorder(BorderFactory.createLineBorder(Color.black));
 		step.setWrapStyleWord(true);
+		
 		//===chess_button_setting===
 		Pause.setBounds(950, 190, 150, 70);
 		Pause.setBackground(new Color(144,197,127));

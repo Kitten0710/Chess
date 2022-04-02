@@ -66,7 +66,7 @@ public class Menu extends JFrame implements ActionListener{
 		startBtn.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent evt)  {
 				startBtn.setBackground(new Color(194, 0, 0));
-				startBtn.setForeground(new Color(217, 217, 217));
+				startBtn.setForeground(Color.white);
 			}
 			public void mouseExited(MouseEvent evt) {
 				startBtn.setBackground(new Color(217, 217, 217));
@@ -82,7 +82,7 @@ public class Menu extends JFrame implements ActionListener{
 			public void mouseEntered(MouseEvent evt) 
 			{
 				exitBtn.setBackground(new Color(194, 0, 0));
-				exitBtn.setForeground(new Color(217, 217, 217));
+				exitBtn.setForeground(Color.white);
 			}
 			public void mouseExited(MouseEvent evt) 
 			{
