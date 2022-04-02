@@ -32,12 +32,7 @@ public class Knight implements Spot{
 		a.move(x, y, canMove);
 		return canMove;
 	}
-	
-	@Override
-	public void CheckMove() {
-		
-	}
-	
+
 	@Override
 	public Piece getPiece() {
 		return this.a;

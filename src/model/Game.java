@@ -1,11 +1,9 @@
 package model;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -72,8 +70,7 @@ public class Game implements ActionListener {
 	JPanel wwin = new JPanel();
 	Sound sound = new Sound();
 	public static int[] laststep = new int[4];
-	public static Graphics graphics;
-
+	
 	public static List<Spot> getWspots() {
 		return wspots;
 	}
@@ -275,7 +272,6 @@ public class Game implements ActionListener {
 			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\blackKing.png"))));
 			bwin.add(bg);
 			bwin.add(jt1);
-			// frame.add(bwin);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -296,7 +292,6 @@ public class Game implements ActionListener {
 			JLabel bgx = new JLabel(new ImageIcon(ImageIO.read(new File("img\\whiteKing.png"))));
 			wwin.add(bgx);
 			wwin.add(jt2);
-			// frame.add(wwin);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -494,8 +489,6 @@ public class Game implements ActionListener {
 		// ===Frame_add_setting===
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// frame.setUndecorated(true);
-		// frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(648 + 500, 648 + 38);
 		frame.setTitle("Chess");
 		frame.getContentPane().setBackground(new Color(255, 232, 164));
@@ -508,6 +501,7 @@ public class Game implements ActionListener {
 		frame.add(Exit);
 		frame.add(Restart);
 		frame.add(jsp);
+		
 		Restart.addActionListener(this);
 		Pause.addActionListener(this);
 		Exit.addActionListener(this);
@@ -515,7 +509,6 @@ public class Game implements ActionListener {
 		frame.setLayout(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
-
 		// ======time_run======
 		start2();
 	}

@@ -125,10 +125,4 @@ public class Bishop implements Spot{
 	public Piece getPiece() {
 		return this.a;
 	}
-
-	@Override
-	public void CheckMove() {
-		// TODO Auto-generated method stub
-	}
-
 }

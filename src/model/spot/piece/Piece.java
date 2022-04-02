@@ -1,9 +1,5 @@
 package model.spot.piece;
 
-import java.awt.Color;
-
-import javax.swing.LayoutStyle;
-
 import model.Game;
 
 public class Piece {
@@ -108,15 +104,6 @@ public class Piece {
 			System.out.println(stringmove);
 			String text = Game.step.getText();
 			Game.step.setText(text + " " + stringmove + "\n");
-			if(Game.laststep[0] == 0 && Game.laststep[1] == 0) {
-				Game.laststep[0] = this.x;
-				Game.laststep[1] = this.y;
-				Game.laststep[2] = xp;
-				Game.laststep[3] = yp;
-				System.out.println("first");
-			} else {
-				System.out.println("again");
-			}
 		}
 		if(canMove == false) {
 			px = this.x*81;

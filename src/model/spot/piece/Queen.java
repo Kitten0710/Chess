@@ -172,11 +172,6 @@ public class Queen implements Spot{
 		a.move(x, y, canMove);
 		return canMove;
 	}
-
-	@Override
-	public void CheckMove() {
-		// TODO Auto-generated method stub
-	}
 	
 	@Override
 	public Piece getPiece() {

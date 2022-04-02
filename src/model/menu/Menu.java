@@ -35,7 +35,6 @@ public class Menu extends JFrame implements ActionListener{
 		this.setResizable(true);
 		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
-		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(false);
 
 		//===== Start Button =====

@@ -152,11 +152,6 @@ public class Pawn implements Spot{
 	}
 
 	@Override
-	public void CheckMove() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	public Piece getPiece() {
 		return this.a;
 	}

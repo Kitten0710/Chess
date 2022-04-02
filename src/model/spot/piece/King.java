@@ -150,11 +150,6 @@ public class King implements Spot{
 		return canMove;
 	}
 
-	@Override
-	public void CheckMove() {
-		// TODO phải kiểm tra xem ô đó trống hay k
-	}
-	
 	public boolean CheckMate() {
 		boolean color = this.getPiece().isColor();
 		// nếu là tướng trắng
