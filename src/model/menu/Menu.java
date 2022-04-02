@@ -6,6 +6,9 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -22,7 +25,7 @@ public class Menu extends JFrame implements ActionListener{
 
 	JButton startBtn = new JButton("START");
 	JButton exitBtn = new JButton("EXIT");
-	
+
 	Sound sound = new Sound();
 	public Menu() {
 		playMusic(0);
@@ -34,30 +37,63 @@ public class Menu extends JFrame implements ActionListener{
 		this.setLayout(new BorderLayout());
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(false);
-		
+
 		//===== Start Button =====
-		startBtn.setBounds(490, 250, 150, 50);
-		startBtn.setFont(new Font("Arial", Font.BOLD, 32));
-		startBtn.setBackground(new Color(167, 226, 245));
+		startBtn.setBounds(470, 200, 200, 80);
+		startBtn.setFont(new Font("san serif", Font.BOLD, 36));
+		startBtn.setBackground(new Color(217, 217, 217));
+		startBtn.setForeground(new Color(194, 0, 0));;
 		startBtn.setBorder(null);
 		startBtn.setFocusPainted(false);
 		//===== Exit Button =====
-		exitBtn.setBounds(490, 350, 150, 50);
-		exitBtn.setFont(new Font("Arial", Font.BOLD, 32));
-		exitBtn.setBackground(new Color(167, 226, 245));
+		exitBtn.setBounds(470, 330, 200, 80);
+		exitBtn.setFont(new Font("san serif", Font.BOLD, 36));
+		exitBtn.setBackground(new Color(217, 217, 217));
+		exitBtn.setForeground(new Color(194, 0, 0));
 		exitBtn.setBorder(null);
 		exitBtn.setFocusPainted(false);
-		
+
 		try {
-			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\bg9.jpg"))));
+			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\bg1.jpg"))));
 			this.add(bg);
 			bg.add(startBtn, BorderLayout.CENTER);
 			bg.add(exitBtn, BorderLayout.CENTER);
 		} catch (IOException e) {
-            e.printStackTrace();
-       }
+			e.printStackTrace();
+		}
+
 		startBtn.addActionListener(this);
+		startBtn.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent evt)  {
+				startBtn.setBackground(new Color(194, 0, 0));
+				startBtn.setForeground(new Color(217, 217, 217));
+			}
+			public void mouseExited(MouseEvent evt) {
+				startBtn.setBackground(new Color(217, 217, 217));
+				startBtn.setForeground(new Color(194, 0, 0));
+			}
+			public void mousePressed(MouseEvent evt) {
+				startBtn.setBackground(new Color(217, 217, 217));
+				startBtn.setForeground(new Color(194, 0, 0));
+			}
+		});
 		exitBtn.addActionListener(this);
+		exitBtn.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent evt) 
+			{
+				exitBtn.setBackground(new Color(194, 0, 0));
+				exitBtn.setForeground(new Color(217, 217, 217));
+			}
+			public void mouseExited(MouseEvent evt) 
+			{
+				exitBtn.setBackground(new Color(217, 217, 217));
+				exitBtn.setForeground(new Color(194, 0, 0));
+			}
+			public void mousePressed(MouseEvent evt) {
+				exitBtn.setBackground(new Color(217, 217, 217));
+				exitBtn.setForeground(new Color(194, 0, 0));
+			}
+		});
 		this.setVisible(true);
 
 	}
@@ -73,6 +109,7 @@ public class Menu extends JFrame implements ActionListener{
 		sound.setFile(i);
 		sound.play();
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == startBtn) {
