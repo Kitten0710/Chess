@@ -13,7 +13,7 @@ public class Piece {
 	private boolean color;
 	private boolean isDead;
 	private String name;
-	
+
 	public Piece(Piece piece) {
 		this.x = piece.x;
 		this.y = piece.y;
@@ -23,7 +23,7 @@ public class Piece {
 		this.isDead = piece.isDead;
 		this.name = piece.name;
 	}
-	
+
 	public Piece(int x, int y, boolean color, boolean isDead, String name) {
 		super();
 		this.x = x;
@@ -91,18 +91,21 @@ public class Piece {
 	}
 
 	public boolean isCheckMove() {
-		
+
 		return false;
 	}
-	
+
 	public boolean checkArea() {
-		
+
 		return false;
 	}
 	public boolean move(int xp, int yp, boolean canMove){
 		if(x == xp && y == yp) canMove = false;
 		if(canMove == true) {
-			System.out.println((color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp));
+			String stringmove = (color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp); 
+			System.out.println(stringmove);
+			String text = Game.step.getText();
+			Game.step.setText(text + "  " + stringmove + "\n");
 		}
 		if(canMove == false) {
 			px = this.x*81;

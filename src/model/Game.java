@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -35,9 +36,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.RowFilter.ComparisonType;
+import javax.swing.ScrollPaneConstants;
 
 import model.board.Board;
 import model.menu.GameStatus;
@@ -74,7 +78,7 @@ public class Game implements ActionListener{
 	JButton Exit = new JButton("EXIT");
 	JTextField white_name = new JTextField();
 	JTextField black_name = new JTextField();
-	JTextField step = new JTextField();
+	public static JTextArea step = new JTextArea(5, 10);
 	JPanel bwin = new JPanel();
 	JPanel wwin = new JPanel();
 	Sound sound = new Sound();
@@ -493,10 +497,11 @@ public class Game implements ActionListener{
 		black_name.setHorizontalAlignment(JTextField.CENTER);
 		black_name.setBackground(new Color(204,195,153));
 		black_name.setBorder(BorderFactory.createLineBorder(Color.black));
-		
 		step.setBounds(648, 162, 248, 325);
+		step.setFont(new Font("SansSerif", Font.BOLD, 20));
 		step.setEditable(false);
 		step.setBorder(BorderFactory.createLineBorder(Color.black));
+		step.setWrapStyleWord(true);
 		//===chess_button_setting===
 		Pause.setBounds(950, 190, 150, 70);
 		Pause.setBackground(new Color(144,197,127));
@@ -605,6 +610,7 @@ public class Game implements ActionListener{
 		if(e.getSource() == Restart) {
 			bspots = new ArrayList<Spot>();
 			wspots = new ArrayList<Spot>();
+			step.setText("");
 			frame.setVisible(false);
 			Game game = new Game();
 			game.isTurn = true;
