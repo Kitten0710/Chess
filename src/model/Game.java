@@ -70,7 +70,7 @@ public class Game implements ActionListener {
 	JPanel wwin = new JPanel();
 	Sound sound = new Sound();
 	public static int[] laststep = new int[4];
-	
+
 	public static List<Spot> getWspots() {
 		return wspots;
 	}
@@ -183,8 +183,9 @@ public class Game implements ActionListener {
 				ind++;
 			}
 		}
-		// board_game_setting
+		// board_game_graphic
 		JPanel jp1 = new JPanel() {
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void paint(Graphics g) {
 				boolean white = true;
@@ -255,46 +256,6 @@ public class Game implements ActionListener {
 				}
 			}
 		};
-
-		// ===== Black win =====
-		// JText 1
-		JTextField jt1 = new JTextField("BLACK WON!!!");
-		jt1.setFont(new Font("Arial", Font.BOLD, 36));
-		jt1.setEditable(false);
-		jt1.setBackground(new Color(255, 230, 204));
-		jt1.setBounds(900, 100, 250, 50);
-		jt1.setBorder(null);
-		jt1.setForeground(Color.black);
-		// Jpanel Black Win
-		bwin.setBounds(161, 174, 325, 440);
-		bwin.setBackground(new Color(255, 235, 204));
-		try {
-			JLabel bg = new JLabel(new ImageIcon(ImageIO.read(new File("img\\blackKing.png"))));
-			bwin.add(bg);
-			bwin.add(jt1);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-
-		// ===== White Win =====
-		// JText 2
-		JTextField jt2 = new JTextField("WHITE WON!!!");
-		jt2.setFont(new Font("Arial", Font.BOLD, 36));
-		jt2.setEditable(false);
-		jt2.setBackground(new Color(167, 226, 245));
-		jt2.setBounds(900, 100, 250, 50);
-		jt2.setBorder(null);
-		jt2.setForeground(Color.black);
-		// Jpanel White Win
-		wwin.setBounds(161, 174, 325, 440);
-		wwin.setBackground(new Color(167, 226, 245));
-		try {
-			JLabel bgx = new JLabel(new ImageIcon(ImageIO.read(new File("img\\whiteKing.png"))));
-			wwin.add(bgx);
-			wwin.add(jt2);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 		// ===mouse_listener===
 		frame.addMouseMotionListener(new MouseMotionListener() {
@@ -501,7 +462,7 @@ public class Game implements ActionListener {
 		frame.add(Exit);
 		frame.add(Restart);
 		frame.add(jsp);
-		
+
 		Restart.addActionListener(this);
 		Pause.addActionListener(this);
 		Exit.addActionListener(this);
@@ -515,7 +476,6 @@ public class Game implements ActionListener {
 
 	// ==========Time_setting==========
 	Timer timer1 = new Timer(1000, new ActionListener() {
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (fseconds > 0) {
@@ -532,7 +492,6 @@ public class Game implements ActionListener {
 
 	});
 	Timer timer2 = new Timer(1000, new ActionListener() {
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (sseconds > 0) {
@@ -580,9 +539,9 @@ public class Game implements ActionListener {
 			step.setText("");
 			frame.setVisible(false);
 			Game game = new Game();
-			game.isTurn = true;
-			game.isContinue = true;
-			game.isEnd = false;
+			Game.isTurn = true;
+			Game.isContinue = true;
+			Game.isEnd = false;
 		}
 		if (e.getSource() == Exit) {
 			System.exit(0);

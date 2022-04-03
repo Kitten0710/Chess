@@ -14,7 +14,7 @@ public class Knight implements Spot{
 		super();
 		this.a = new Piece(x, y, color, isDead, name);
 	}
-	
+
 	public Piece getA() {
 		return a;
 	}

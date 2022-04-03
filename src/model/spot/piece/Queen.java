@@ -4,7 +4,6 @@ import model.Game;
 import model.spot.Spot;
 
 public class Queen implements Spot{
-
 	private Piece a;
 
 	public Queen(Piece a) {
@@ -16,7 +15,7 @@ public class Queen implements Spot{
 		super();
 		this.a = new Piece(x, y, color, isDead, name);
 	}
-	
+
 	public Piece getA() {
 		return a;
 	}
@@ -33,7 +32,8 @@ public class Queen implements Spot{
 				canMove = true;
 				if((x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y)) {
 					int k;
-					if((x - a.getX() == y - a.getY())) {	// cheo chinh
+					/*Kiem tra cheo chinh*/
+					if((x - a.getX() == y - a.getY())) {	
 						if(x > a.getX()) {
 							k = x - a.getX();
 							for(int i = 1; i < k; i++) {
@@ -52,7 +52,8 @@ public class Queen implements Spot{
 									}
 								}
 							}
-						} else {	// cheo phu
+						} /*Kiem tra cheo phu*/
+						else {
 							k = a.getX() - x;
 							for(int i = 1; i < k; i++) {
 								for(Spot p : Game.getWspots()) {
@@ -110,9 +111,11 @@ public class Queen implements Spot{
 							}
 						}
 					}
-				} else {	// di ngang, doc
+				} /*Di chuyen ngang, doc*/
+				else {	
 					int k1, k2;
-					if(x != a.getX() && y == a.getY()) {	// di ngang
+					/*Di chuyen ngang*/
+					if(x != a.getX() && y == a.getY()) {	
 						if(x > a.getX()) {
 							k1 = a.getX();
 							k2 = x;
@@ -136,7 +139,8 @@ public class Queen implements Spot{
 								}
 							}
 						}
-					} else {	// di doc
+					} /*Di chuyen doc*/ 
+					else {	
 						if(x == a.getX() && y > a.getY()) {
 							k1 = a.getY();
 							k2 = y;
@@ -172,7 +176,7 @@ public class Queen implements Spot{
 		a.move(x, y, canMove);
 		return canMove;
 	}
-	
+
 	@Override
 	public Piece getPiece() {
 		return this.a;

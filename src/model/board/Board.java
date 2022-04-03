@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Board {
 	private Square [][]squares = new Square[8][8];
-	
+
 	public Board() {
 		super();
 	}
@@ -18,5 +18,5 @@ public class Board {
 	public String toString() {
 		return "Board:  [squares=" + Arrays.toString(squares) + "]";
 	}
-	
+
 }

@@ -1,7 +1,6 @@
 package model.spot.piece;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import model.Game;
@@ -10,6 +9,7 @@ import model.spot.Spot;
 public class King implements Spot{
 	private Piece a;
 	private int countTurn = 0;
+
 	public King(Piece a) {
 		super();
 		this.a = a;
@@ -35,10 +35,11 @@ public class King implements Spot{
 	public boolean move(int x, int y) {
 		boolean canMove = false; 
 		Spot b = Game.getSpot(x*81, y*81);
-		// nhập thành
+		/*Nhap thanh*/
 		if(b != null && countTurn == 0 && b.getPiece().getName() == "rook") {
 			Rook r = (Rook) b;
-			if(a.isColor() == false && r.getCountTurn() == 0) {	// quân đen
+			/*Quan den*/
+			if(a.isColor() == false && r.getCountTurn() == 0) {	
 				int k1, k2;
 				if(x > a.getX()) {
 					k1 = a.getX();
@@ -67,10 +68,12 @@ public class King implements Spot{
 				r.getPiece().kill();
 				Rook rook;
 				King king;
-				if(x == 7) {	// nhập thành cánh vua
+				/*Nhap thanh ben vua*/
+				if(x == 7) {	
 					rook = new Rook(5, 0, false, false, "rook");
 					king = new King(6, 0, false, false, "king");
-				} else {	//Nếu nhập thành cánh Hậu, 
+				} /*Nhap thanh ben hau*/
+				else {
 					rook = new Rook(3, 0, false, false, "rook");
 					king = new King(2, 0, false, false, "king");
 				}
@@ -82,7 +85,8 @@ public class King implements Spot{
 				king.setCountTurn(1);
 				a.move(x, y, canMove);
 				return true;
-			} else if(a.isColor() == true && r.getCountTurn() == 0) {	// quân trắng
+			} /*Quan trang*/ 
+			else if(a.isColor() == true && r.getCountTurn() == 0) {	
 				int k1, k2;
 				if(x > a.getX()) {
 					k1 = a.getX();
@@ -111,10 +115,12 @@ public class King implements Spot{
 				r.getPiece().kill();
 				Rook rook;
 				King king;
-				if(x == 7) {	// nhập thành cánh vua
+				/*Nhap thanh ben vua*/
+				if(x == 7) {	
 					rook = new Rook(5, 7, true, false, "rook");
 					king = new King(6, 7, true, false, "king");
-				} else {	//Nếu nhập thành cánh Hậu, 
+				} /*Nhap thanh ben hau*/
+				else {	
 					rook = new Rook(3, 7, true, false, "rook");
 					king = new King(2, 7, true, false, "king");
 				}
@@ -150,32 +156,6 @@ public class King implements Spot{
 		return canMove;
 	}
 
-	public boolean CheckMate() {
-		boolean color = this.getPiece().isColor();
-		// nếu là tướng trắng
-		Piece other = new Piece(a);
-		if(color == true) {
-			Iterator<Spot> itr1 = Game.getBspots().iterator();
-			while(itr1.hasNext()) {
-				Spot temp = itr1.next();
-				if(temp.move(other.getX(), other.getY()) == true) {
-					this.a.setDead(true);
-					return true;
-				}
-			}
-		} else {
-			Iterator<Spot> itr1 = Game.getWspots().iterator();
-			while(itr1.hasNext()) {
-				Spot temp = itr1.next();
-				if(temp.move(other.getX(), other.getY()) == true) {
-					this.a.setDead(true);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
 	@Override
 	public Piece getPiece() {
 		return this.a;

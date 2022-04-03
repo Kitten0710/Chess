@@ -4,7 +4,6 @@ import model.Game;
 import model.spot.Spot;
 
 public class Bishop implements Spot{
-
 	private Piece a;
 
 	public Bishop(Piece a) {
@@ -32,7 +31,8 @@ public class Bishop implements Spot{
 				&& ((x - a.getX() == y - a.getY()) || (x - a.getX() == a.getY() - y))) {
 			canMove = true;
 			int k;
-			if((x - a.getX() == y - a.getY())) { // cheo chinh
+			/* Kiem tra duong cheo chinh */
+			if((x - a.getX() == y - a.getY())) {
 				if(x > a.getX()) {
 					k = x - a.getX();
 					for(int i = 1; i < k; i++) {
@@ -70,7 +70,8 @@ public class Bishop implements Spot{
 						}
 					}
 				}
-			} else if(x - a.getX() == a.getY() - y) { // cheo phu
+			} /*Kiem tra duong cheo phu*/
+			else if(x - a.getX() == a.getY() - y) { 
 				if(x > a.getX()) {
 					k = x - a.getX();
 					for(int i = 1; i < k; i++) {
@@ -110,7 +111,7 @@ public class Bishop implements Spot{
 				}
 			}
 		}
-		
+
 		if(canMove == true) {
 			if(Game.getSpot(x*81, y*81) != null && Game.getSpot(x*81, y*81).getPiece().isColor() == a.isColor()) {
 				canMove = false;
@@ -119,7 +120,6 @@ public class Bishop implements Spot{
 		a.move(x, y, canMove);
 		return canMove;
 	}
-
 
 	@Override
 	public Piece getPiece() {

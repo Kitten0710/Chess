@@ -37,14 +37,12 @@ public class Piece {
 	}
 	public void setPx(int px) {
 		this.px = px;
-		//this.x = px/81;
 	}
 	public int getPy() {
 		return py;
 	}
 	public void setPy(int py) {
 		this.py = py;
-		//this.y = py/81;
 	}
 	public int getX() {
 		return x;
@@ -101,7 +99,6 @@ public class Piece {
 		if(x == xp && y == yp) canMove = false;
 		if(canMove == true) {
 			String stringmove = (color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp); 
-			System.out.println(stringmove);
 			String text = Game.step.getText();
 			Game.step.setText(text + " " + stringmove + "\n");
 		}

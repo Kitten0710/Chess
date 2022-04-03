@@ -24,5 +24,5 @@ public class Square {
 	public String toString() {
 		return "Square [x=" + x + ", y=" + y + "]";
 	}
-	
+
 }

@@ -2,13 +2,11 @@ package model.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -22,7 +20,7 @@ import model.Game;
 import model.Sound;
 
 public class Menu extends JFrame implements ActionListener{
-
+	private static final long serialVersionUID = 1L;
 	JButton startBtn = new JButton("START");
 	JButton exitBtn = new JButton("EXIT");
 

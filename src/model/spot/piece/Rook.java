@@ -40,10 +40,11 @@ public class Rook implements Spot{
 	public boolean move(int x, int y) {
 		boolean canMove = false; 
 		Spot b = Game.getSpot(x*81, y*81);
-		// nhập thành
+		/*Cho phep nhap thanh*/
 		if(b != null && countTurn == 0 && b.getPiece().getName() == "king") {
 			King k = (King) b;
-			if(a.isColor() == false && k.getCountTurn() == 0) {	// quân đen
+			/*Quan den*/
+			if(a.isColor() == false && k.getCountTurn() == 0) {	
 				int k1, k2;
 				if(x > a.getX()) {
 					k1 = a.getX();
@@ -72,10 +73,12 @@ public class Rook implements Spot{
 				k.getPiece().kill();
 				Rook rook;
 				King king;
-				if(a.getX() == 7) {	// nhập thành cánh vua
+				/*Nhap thanh ben vua*/
+				if(a.getX() == 7) {
 					rook = new Rook(5, 0, false, false, "rook");
 					king = new King(6, 0, false, false, "king");
-				} else {	//Nếu nhập thành cánh Hậu, 
+				} /*Nhap thanh ben hau*/ 
+				else {	
 					rook = new Rook(3, 0, false, false, "rook");
 					king = new King(2, 0, false, false, "king");
 				}
@@ -87,7 +90,8 @@ public class Rook implements Spot{
 				king.setCountTurn(1);
 				a.move(x, y, canMove);
 				return true;
-			} else if(a.isColor() == true && k.getCountTurn() == 0) {	// quân trắng
+			} /*Quan trang*/ 
+			else if(a.isColor() == true && k.getCountTurn() == 0) {	
 				int k1, k2;
 				if(x > a.getX()) {
 					k1 = a.getX();
@@ -116,10 +120,12 @@ public class Rook implements Spot{
 				k.getPiece().kill();
 				Rook rook;
 				King king;
-				if(a.getX() == 7) {	// nhập thành cánh vua
+				/*Nhap thanh ben vua*/
+				if(a.getX() == 7) {	
 					rook = new Rook(5, 7, true, false, "rook");
 					king = new King(6, 7, true, false, "king");
-				} else {	//Nếu nhập thành cánh Hậu, 
+				} /*Nhap thanh ben hau*/ 
+				else {	
 					rook = new Rook(3, 7, true, false, "rook");
 					king = new King(2, 7, true, false, "king");
 				}
@@ -133,11 +139,11 @@ public class Rook implements Spot{
 				return true;
 			}
 		}
+		/*Di chuyen theo chieu ngang, doc*/
 		if(((x == a.getX() && y != a.getY()) || (x != a.getX() && y == a.getY())) 
 				&& (x >= 0 && x < 8 && y >= 0 && y < 8)
 				&& ((a.getX() == x && a.getY() != y) || (a.getX() != x && a.getY() == y))) {
 			canMove = true;
-			System.out.println("tao o day" + x);
 			if(Game.getSpot(x*81, y*81) != null) {
 				if(Game.getSpot(x*81, y*81).getPiece().isColor() == a.isColor()) {
 					canMove = false;
@@ -146,6 +152,7 @@ public class Rook implements Spot{
 				}
 			}
 			int k1, k2;
+			/*Di chuyen ngang*/
 			if(x != a.getX()) {
 				if(x > a.getX()) {
 					k1 = a.getX();
@@ -170,7 +177,8 @@ public class Rook implements Spot{
 						}
 					}
 				}
-			} else {
+			} /*Di chuyen doc*/ 
+			else {
 				if(y > a.getY()) {
 					k1 = a.getY();
 					k2 = y;
