@@ -66,10 +66,7 @@ public class Game implements ActionListener {
 	JTextField black_name = new JTextField();
 	public static JTextArea step = new JTextArea(5, 10);
 	public static JScrollPane jsp;
-	JPanel bwin = new JPanel();
-	JPanel wwin = new JPanel();
 	Sound sound = new Sound();
-	public static int[] laststep = new int[4];
 
 	public static List<Spot> getWspots() {
 		return wspots;
@@ -260,7 +257,7 @@ public class Game implements ActionListener {
 		// ===mouse_listener===
 		frame.addMouseMotionListener(new MouseMotionListener() {
 			@Override
-			public void mouseDragged(MouseEvent e) { // giu
+			public void mouseDragged(MouseEvent e) { 
 				if (selectedSpot != null && selectedSpot.getPiece().isColor() != isTurn) {
 					selectedSpot = null;
 					return;
@@ -292,7 +289,7 @@ public class Game implements ActionListener {
 
 			// Mouse_release
 			@Override
-			public void mouseReleased(MouseEvent e) { // tha
+			public void mouseReleased(MouseEvent e) { 
 				if (selectedSpot != null) {
 					if (selectedSpot.move((e.getX() - 8) / 81, (e.getY() - 31) / 81) == true) {
 						if (isTurn == true) { // luot quan trang
@@ -503,7 +500,6 @@ public class Game implements ActionListener {
 			seconds_string2 = String.format("%02d", sseconds);
 			minutes_string2 = String.format("%02d", sminutes);
 			timeLabel2.setText(minutes_string2 + ":" + seconds_string2);
-
 		}
 
 	});
@@ -530,7 +526,6 @@ public class Game implements ActionListener {
 					timer1.start();
 				}
 			}
-
 		}
 
 		if (e.getSource() == Restart) {
