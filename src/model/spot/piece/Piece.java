@@ -88,7 +88,9 @@ public class Piece {
 	public boolean move(int xp, int yp, boolean canMove){
 		if(x == xp && y == yp) canMove = false;
 		if(canMove == true) {
-			String stringmove = (color?"White ":"Black ") + name + ": " + (char)(x + 'A') + (8 - y) + " -> " + (char)(xp + 'A') + (8 - yp); 
+			String stringmove = (color?"White ":"Black ") + name + ": " + 
+								(char)(x + 'A') + (8 - y) + " -> " + 
+								(char)(xp + 'A') + (8 - yp); 
 			String text = Game.step.getText();
 			Game.step.setText(text + " " + stringmove + "\n");
 		}
@@ -113,6 +115,7 @@ public class Piece {
 		if(canMove) return true;
 		else return false;
 	}
+	
 	public void kill(){
 		this.isDead = true;
 	}
