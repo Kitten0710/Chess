@@ -30,7 +30,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
-import model.board.Board;
 import model.spot.Spot;
 import model.spot.piece.Bishop;
 import model.spot.piece.King;
@@ -40,7 +39,6 @@ import model.spot.piece.Queen;
 import model.spot.piece.Rook;
 
 public class Game implements ActionListener {
-	private Board board;
 	private static List<Spot> bspots = new ArrayList<Spot>();
 	private static List<Spot> wspots = new ArrayList<Spot>();
 	private Spot selectedSpot = null;
@@ -137,7 +135,6 @@ public class Game implements ActionListener {
 		Pawn wpawn8 = new Pawn(0, 6, true, false, "pawn");
 		wspots.add(wpawn8);
 
-		this.board = new Board();
 		BufferedImage all = null;
 		try {
 			all = ImageIO.read(new File("img\\chess.png"));
@@ -547,14 +544,6 @@ public class Game implements ActionListener {
 			}
 		}
 		return null;
-	}
-
-	public Board getBoard() {
-		return board;
-	}
-
-	public void setBoard(Board board) {
-		this.board = board;
 	}
 
 	public boolean Bkinglive() {
