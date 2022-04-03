@@ -3,8 +3,7 @@ package model.spot.piece;
 import model.Game;
 
 public class Piece {
-
-	private int x;
+	private int x;	
 	private int y;
 	private int px;
 	private int py;
@@ -85,16 +84,7 @@ public class Piece {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public boolean isCheckMove() {
-
-		return false;
-	}
-
-	public boolean checkArea() {
-
-		return false;
-	}
+	
 	public boolean move(int xp, int yp, boolean canMove){
 		if(x == xp && y == yp) canMove = false;
 		if(canMove == true) {
