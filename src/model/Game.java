@@ -68,34 +68,6 @@ public class Game implements ActionListener {
 	public static JScrollPane jsp;
 	Sound sound = new Sound();
 
-	public static List<Spot> getWspots() {
-		return wspots;
-	}
-
-	public static void setWspots(List<Spot> wspots) {
-		Game.wspots = wspots;
-	}
-
-	public static List<Spot> getBspots() {
-		return bspots;
-	}
-
-	public static void setBspots(List<Spot> bspots) {
-		Game.bspots = bspots;
-	}
-
-	public static boolean isContinue() {
-		return isContinue;
-	}
-
-	public static void setTurn(boolean isTurn) {
-		Game.isTurn = isTurn;
-	}
-
-	public static void setContinue(boolean isContinue) {
-		Game.isContinue = isContinue;
-	}
-
 	public Game() {
 		playMusic(1);
 
@@ -577,10 +549,6 @@ public class Game implements ActionListener {
 		return null;
 	}
 
-	public void play() {
-
-	}
-
 	public Board getBoard() {
 		return board;
 	}
@@ -620,5 +588,31 @@ public class Game implements ActionListener {
 		sound.setFile(i);
 		sound.play();
 	}
+	public static List<Spot> getWspots() {
+		return wspots;
+	}
 
+	public static void setWspots(List<Spot> wspots) {
+		Game.wspots = wspots;
+	}
+
+	public static List<Spot> getBspots() {
+		return bspots;
+	}
+
+	public static void setBspots(List<Spot> bspots) {
+		Game.bspots = bspots;
+	}
+
+	public static boolean isContinue() {
+		return isContinue;
+	}
+
+	public static void setTurn(boolean isTurn) {
+		Game.isTurn = isTurn;
+	}
+
+	public static void setContinue(boolean isContinue) {
+		Game.isContinue = isContinue;
+	}
 }
